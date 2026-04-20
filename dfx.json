@@ -13,7 +13,7 @@
   },
   "defaults": {
     "build": {
-      "args": "",
+      "args": "--package caffeineai-object-storage .mops/caffeineai-object-storage@0.1.1/src --package caffeineai-authorization .mops/caffeineai-authorization@0.1.0/src",
       "packagers": {
         "motoko": "mops",
         "typescript": "tsc"

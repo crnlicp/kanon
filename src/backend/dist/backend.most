@@ -1,7 +1,7 @@
 // Version: 1.0.0
-type AboutContent__191209003 =
+type AboutContent__162008719 =
   {contentFa : Text; contentSv : Text; id : Nat; imagePath : ?Text};
-type Activity__67060632 =
+type Activity__1042639745 =
   {
     contentFa : Text;
     contentSv : Text;
@@ -10,19 +10,19 @@ type Activity__67060632 =
     descriptionSv : Text;
     hasRegistrationForm : Bool;
     id : Nat;
-    imageUrl : ?ExternalBlob__207618041;
+    imageUrl : ?ExternalBlob__246066408;
     isActive : Bool;
     slug : Text;
     titleFa : Text;
     titleSv : Text;
-    topic : Topic__94010413;
+    topic : Topic__203323887;
     updatedAt : Int
   };
-type Area__339570517 =
+type Area__579406350 =
   {
-    areaBackground : ?ExternalBlob__207618041;
-    areaBackgroundVideo : ?ExternalBlob__207618041;
-    cardBackground : ?ExternalBlob__207618041;
+    areaBackground : ?ExternalBlob__246066408;
+    areaBackgroundVideo : ?ExternalBlob__246066408;
+    cardBackground : ?ExternalBlob__246066408;
     icon : Text;
     id : Nat;
     order : Nat;
@@ -31,17 +31,17 @@ type Area__339570517 =
     titleFa : Text;
     titleSv : Text
   };
-type BackgroundScope__306150335 =
+type BackgroundScope__93738433 =
   {#Activity; #Cultural; #Educational; #Landing; #Sport};
-type Background__624452143 =
+type Background__36571284 =
   {
     activitySlug : ?Text;
     id : Nat;
-    imageUrl : ?ExternalBlob__207618041;
+    imageUrl : ?ExternalBlob__246066408;
     mediaType : ?Text;
-    scope : BackgroundScope__306150335
+    scope : BackgroundScope__93738433
   };
-type ContactInfo__677906796 =
+type ContactInfo__673443591 =
   {
     addressFa : Text;
     addressSv : Text;
@@ -50,7 +50,7 @@ type ContactInfo__677906796 =
     mapEmbedUrl : ?Text;
     phone : Text
   };
-type ContactSubmission__140444661 =
+type ContactSubmission__402820698 =
   {
     email : Text;
     id : Nat;
@@ -59,10 +59,10 @@ type ContactSubmission__140444661 =
     phone : ?Text;
     timestamp : Int
   };
-type Data__678143819<K, V> =
-  {var count : Nat__107743821; kvs : [var ?(K, V)]};
-type ExternalBlob__207618041 = Blob;
-type FooterLink__233102596 =
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type ExternalBlob__246066408 = Blob;
+type FooterLink__190182416 =
   {
     category : Text;
     id : Nat;
@@ -71,30 +71,30 @@ type FooterLink__233102596 =
     order : Nat;
     url : Text
   };
-type HeroSlide__240257172 =
+type HeroSlide__72308354 =
   {
     id : Nat;
-    imageUrl : ?ExternalBlob__207618041;
+    imageUrl : ?ExternalBlob__246066408;
     isActive : Bool;
     order : Nat;
     subtitleFa : Text;
     subtitleSv : Text;
     titleFa : Text;
     titleSv : Text;
-    topic : Topic__94010413
+    topic : Topic__203323887
   };
-type Internal__272372588<K, V> =
-  {children : [var ?Node__216023231<K, V>]; data : Data__678143819<K, V>};
-type Leaf__366843236<K, V> = {data : Data__678143819<K, V>};
-type Map__267009501<K, V> = Map__966517126<K, V>;
-type Map__466055834<K, V> = Map__267009501<K, V>;
-type Map__966517126<K, V> =
-  {var root : Node__216023231<K, V>; var size : Nat__107743821};
-type Nat__107743821 = Nat__920180692;
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Map__158565046<K, V> = Map__297112838<K, V>;
+type Map__297112838<K, V> =
+  {var root : Node__46230540<K, V>; var size : Nat__490723111};
+type Map__605269027<K, V> = Map__158565046<K, V>;
+type Nat__490723111 = Nat__920180692;
 type Nat__920180692 = Nat;
-type Node__216023231<K, V> =
-  {#internal : Internal__272372588<K, V>; #leaf : Leaf__366843236<K, V>};
-type RegistrationSubmission__1003091347 =
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type RegistrationSubmission__1007495609 =
   {
     activityId : Nat;
     email : Text;
@@ -103,71 +103,71 @@ type RegistrationSubmission__1003091347 =
     nameFa : ?Text;
     nameSv : ?Text;
     phone : ?Text;
-    status : SubmissionStatus__736536238;
+    status : SubmissionStatus__279839005;
     submittedAt : Int
   };
-type SiteSettings__165459134 =
+type SiteSettings__359912925 =
   {
     accentColor : Text;
     adminPassword : Text;
     id : Nat;
     landingSubtitleFa : Text;
     landingSubtitleSv : Text;
-    logoUrl : ?ExternalBlob__207618041;
+    logoUrl : ?ExternalBlob__246066408;
     primaryColor : Text;
     secondaryColor : Text;
     titleFa : Text;
     titleSv : Text;
-    topicsBgImage : ?ExternalBlob__207618041;
-    topicsBgVideo : ?ExternalBlob__207618041
+    topicsBgImage : ?ExternalBlob__246066408;
+    topicsBgVideo : ?ExternalBlob__246066408
   };
-type SubmissionStatus__736536238 = {#Approved; #Pending; #Rejected};
-type Topic__94010413 = {#Cultural; #Educational; #Sport};
-type UserRole__585387465 = {#admin; #guest; #user};
+type SubmissionStatus__279839005 = {#Approved; #Pending; #Rejected};
+type Topic__203323887 = {#Cultural; #Educational; #Sport};
+type UserRole__1054455867 = {#admin; #guest; #user};
 actor {
   stable DEFAULT_ADMIN_PASSWORD : Text;
-  stable aboutHolder : {var value : ?AboutContent__191209003};
+  stable aboutHolder : {var value : ?AboutContent__162008719};
   stable accessControlState :
     {
       var adminAssigned : Bool;
-      userRoles : Map__466055834<Principal, UserRole__585387465>
+      userRoles : Map__605269027<Principal, UserRole__1054455867>
     };
   stable activities :
     {
-      var blockIndex : Nat__107743821;
-      var blocks : [var [var ?Activity__67060632]];
-      var elementIndex : Nat__107743821
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Activity__1042639745]];
+      var elementIndex : Nat__490723111
     };
   stable areas :
     {
-      var blockIndex : Nat__107743821;
-      var blocks : [var [var ?Area__339570517]];
-      var elementIndex : Nat__107743821
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Area__579406350]];
+      var elementIndex : Nat__490723111
     };
   stable backgrounds :
     {
-      var blockIndex : Nat__107743821;
-      var blocks : [var [var ?Background__624452143]];
-      var elementIndex : Nat__107743821
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Background__36571284]];
+      var elementIndex : Nat__490723111
     };
-  stable contactInfoHolder : {var value : ?ContactInfo__677906796};
+  stable contactInfoHolder : {var value : ?ContactInfo__673443591};
   stable contactSubmissions :
     {
-      var blockIndex : Nat__107743821;
-      var blocks : [var [var ?ContactSubmission__140444661]];
-      var elementIndex : Nat__107743821
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ContactSubmission__402820698]];
+      var elementIndex : Nat__490723111
     };
   stable footerLinks :
     {
-      var blockIndex : Nat__107743821;
-      var blocks : [var [var ?FooterLink__233102596]];
-      var elementIndex : Nat__107743821
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?FooterLink__190182416]];
+      var elementIndex : Nat__490723111
     };
   stable heroSlides :
     {
-      var blockIndex : Nat__107743821;
-      var blocks : [var [var ?HeroSlide__240257172]];
-      var elementIndex : Nat__107743821
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?HeroSlide__72308354]];
+      var elementIndex : Nat__490723111
     };
   stable nextActivityId : {var value : Nat};
   stable nextAreaId : {var value : Nat};
@@ -178,12 +178,12 @@ actor {
   stable nextSubmissionId : {var value : Nat};
   stable seededHolder : {var value : Bool};
   stable sessionState :
-    {adminPassword : {var value : Text}; tokens : Map__466055834<Text, Int>};
-  stable siteSettingsHolder : {var value : ?SiteSettings__165459134};
+    {adminPassword : {var value : Text}; tokens : Map__605269027<Text, Int>};
+  stable siteSettingsHolder : {var value : ?SiteSettings__359912925};
   stable submissions :
     {
-      var blockIndex : Nat__107743821;
-      var blocks : [var [var ?RegistrationSubmission__1003091347]];
-      var elementIndex : Nat__107743821
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?RegistrationSubmission__1007495609]];
+      var elementIndex : Nat__490723111
     }
 };
