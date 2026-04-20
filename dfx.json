@@ -1,0 +1,30 @@
+{
+  "canisters": {
+    "backend": {
+      "main": "src/backend/main.mo",
+      "type": "motoko",
+      "package": "backend"
+    },
+    "frontend": {
+      "type": "assets",
+      "source": ["src/frontend/dist"],
+      "dependencies": ["backend"]
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packagers": {
+        "motoko": "mops",
+        "typescript": "tsc"
+      }
+    }
+  },
+  "networks": {
+    "local": {
+      "providers": ["http://127.0.0.1:4943"],
+      "type": "persistent"
+    }
+  },
+  "version": 1
+}

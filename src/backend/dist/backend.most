@@ -1,0 +1,189 @@
+// Version: 1.0.0
+type AboutContent__191209003 =
+  {contentFa : Text; contentSv : Text; id : Nat; imagePath : ?Text};
+type Activity__67060632 =
+  {
+    contentFa : Text;
+    contentSv : Text;
+    createdAt : Int;
+    descriptionFa : Text;
+    descriptionSv : Text;
+    hasRegistrationForm : Bool;
+    id : Nat;
+    imageUrl : ?ExternalBlob__207618041;
+    isActive : Bool;
+    slug : Text;
+    titleFa : Text;
+    titleSv : Text;
+    topic : Topic__94010413;
+    updatedAt : Int
+  };
+type Area__339570517 =
+  {
+    areaBackground : ?ExternalBlob__207618041;
+    areaBackgroundVideo : ?ExternalBlob__207618041;
+    cardBackground : ?ExternalBlob__207618041;
+    icon : Text;
+    id : Nat;
+    order : Nat;
+    subtitleFa : Text;
+    subtitleSv : Text;
+    titleFa : Text;
+    titleSv : Text
+  };
+type BackgroundScope__306150335 =
+  {#Activity; #Cultural; #Educational; #Landing; #Sport};
+type Background__624452143 =
+  {
+    activitySlug : ?Text;
+    id : Nat;
+    imageUrl : ?ExternalBlob__207618041;
+    mediaType : ?Text;
+    scope : BackgroundScope__306150335
+  };
+type ContactInfo__677906796 =
+  {
+    addressFa : Text;
+    addressSv : Text;
+    email : Text;
+    id : Nat;
+    mapEmbedUrl : ?Text;
+    phone : Text
+  };
+type ContactSubmission__140444661 =
+  {
+    email : Text;
+    id : Nat;
+    message : Text;
+    name : Text;
+    phone : ?Text;
+    timestamp : Int
+  };
+type Data__678143819<K, V> =
+  {var count : Nat__107743821; kvs : [var ?(K, V)]};
+type ExternalBlob__207618041 = Blob;
+type FooterLink__233102596 =
+  {
+    category : Text;
+    id : Nat;
+    labelFa : Text;
+    labelSv : Text;
+    order : Nat;
+    url : Text
+  };
+type HeroSlide__240257172 =
+  {
+    id : Nat;
+    imageUrl : ?ExternalBlob__207618041;
+    isActive : Bool;
+    order : Nat;
+    subtitleFa : Text;
+    subtitleSv : Text;
+    titleFa : Text;
+    titleSv : Text;
+    topic : Topic__94010413
+  };
+type Internal__272372588<K, V> =
+  {children : [var ?Node__216023231<K, V>]; data : Data__678143819<K, V>};
+type Leaf__366843236<K, V> = {data : Data__678143819<K, V>};
+type Map__267009501<K, V> = Map__966517126<K, V>;
+type Map__466055834<K, V> = Map__267009501<K, V>;
+type Map__966517126<K, V> =
+  {var root : Node__216023231<K, V>; var size : Nat__107743821};
+type Nat__107743821 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__216023231<K, V> =
+  {#internal : Internal__272372588<K, V>; #leaf : Leaf__366843236<K, V>};
+type RegistrationSubmission__1003091347 =
+  {
+    activityId : Nat;
+    email : Text;
+    id : Nat;
+    message : ?Text;
+    nameFa : ?Text;
+    nameSv : ?Text;
+    phone : ?Text;
+    status : SubmissionStatus__736536238;
+    submittedAt : Int
+  };
+type SiteSettings__165459134 =
+  {
+    accentColor : Text;
+    adminPassword : Text;
+    id : Nat;
+    landingSubtitleFa : Text;
+    landingSubtitleSv : Text;
+    logoUrl : ?ExternalBlob__207618041;
+    primaryColor : Text;
+    secondaryColor : Text;
+    titleFa : Text;
+    titleSv : Text;
+    topicsBgImage : ?ExternalBlob__207618041;
+    topicsBgVideo : ?ExternalBlob__207618041
+  };
+type SubmissionStatus__736536238 = {#Approved; #Pending; #Rejected};
+type Topic__94010413 = {#Cultural; #Educational; #Sport};
+type UserRole__585387465 = {#admin; #guest; #user};
+actor {
+  stable DEFAULT_ADMIN_PASSWORD : Text;
+  stable aboutHolder : {var value : ?AboutContent__191209003};
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__466055834<Principal, UserRole__585387465>
+    };
+  stable activities :
+    {
+      var blockIndex : Nat__107743821;
+      var blocks : [var [var ?Activity__67060632]];
+      var elementIndex : Nat__107743821
+    };
+  stable areas :
+    {
+      var blockIndex : Nat__107743821;
+      var blocks : [var [var ?Area__339570517]];
+      var elementIndex : Nat__107743821
+    };
+  stable backgrounds :
+    {
+      var blockIndex : Nat__107743821;
+      var blocks : [var [var ?Background__624452143]];
+      var elementIndex : Nat__107743821
+    };
+  stable contactInfoHolder : {var value : ?ContactInfo__677906796};
+  stable contactSubmissions :
+    {
+      var blockIndex : Nat__107743821;
+      var blocks : [var [var ?ContactSubmission__140444661]];
+      var elementIndex : Nat__107743821
+    };
+  stable footerLinks :
+    {
+      var blockIndex : Nat__107743821;
+      var blocks : [var [var ?FooterLink__233102596]];
+      var elementIndex : Nat__107743821
+    };
+  stable heroSlides :
+    {
+      var blockIndex : Nat__107743821;
+      var blocks : [var [var ?HeroSlide__240257172]];
+      var elementIndex : Nat__107743821
+    };
+  stable nextActivityId : {var value : Nat};
+  stable nextAreaId : {var value : Nat};
+  stable nextBackgroundId : {var value : Nat};
+  stable nextContactSubmissionId : {var value : Nat};
+  stable nextFooterLinkId : {var value : Nat};
+  stable nextHeroSlideId : {var value : Nat};
+  stable nextSubmissionId : {var value : Nat};
+  stable seededHolder : {var value : Bool};
+  stable sessionState :
+    {adminPassword : {var value : Text}; tokens : Map__466055834<Text, Int>};
+  stable siteSettingsHolder : {var value : ?SiteSettings__165459134};
+  stable submissions :
+    {
+      var blockIndex : Nat__107743821;
+      var blocks : [var [var ?RegistrationSubmission__1003091347]];
+      var elementIndex : Nat__107743821
+    }
+};

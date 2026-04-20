@@ -1,0 +1,123 @@
+import List "mo:core/List";
+import MixinObjectStorage "mo:caffeineai-object-storage/Mixin";
+import MixinAuthorization "mo:caffeineai-authorization/MixinAuthorization";
+import AccessControl "mo:caffeineai-authorization/access-control";
+import AuthLib "lib/auth";
+
+import ContentTypes "types/content";
+import SettingsTypes "types/settings";
+import AreaTypes "types/area";
+import RegTypes "types/registration";
+import SettingsApi "mixins/settings-api";
+import ContentApi "mixins/content-api";
+import RegistrationApi "mixins/registration-api";
+import AreaApi "mixins/area-api";
+import SeedApi "mixins/seed-api";
+import AboutApi "mixins/about-api";
+import ContactApi "mixins/contact-api";
+
+
+
+actor {
+  // --- Object Storage ---
+  include MixinObjectStorage();
+
+  // --- Access Control (required platform mixin) ---
+  let accessControlState = AccessControl.initState();
+  include MixinAuthorization(accessControlState);
+
+  // --- Session / Auth State ---
+  let sessionState = AuthLib.newSessionState();
+
+  // --- Site Settings ---
+  let siteSettingsHolder : { var value : ?SettingsTypes.SiteSettings } = { var value = null };
+  let contactInfoHolder : { var value : ?SettingsTypes.ContactInfo } = { var value = null };
+
+  // --- Content State ---
+  let heroSlides = List.empty<ContentTypes.HeroSlide>();
+  let activities = List.empty<ContentTypes.Activity>();
+  let backgrounds = List.empty<ContentTypes.Background>();
+  let footerLinks = List.empty<ContentTypes.FooterLink>();
+
+  // --- Area State ---
+  let areas = List.empty<AreaTypes.Area>();
+
+  // --- Registration State ---
+  let submissions = List.empty<RegTypes.RegistrationSubmission>();
+
+  // --- About State ---
+  let aboutHolder : { var value : ?ContentTypes.AboutContent } = { var value = null };
+
+  // --- Contact Submissions State ---
+  let contactSubmissions = List.empty<RegTypes.ContactSubmission>();
+
+  // --- ID Counters ---
+  let nextHeroSlideId : { var value : Nat } = { var value = 1 };
+  let nextActivityId : { var value : Nat } = { var value = 1 };
+  let nextBackgroundId : { var value : Nat } = { var value = 1 };
+  let nextFooterLinkId : { var value : Nat } = { var value = 1 };
+  let nextSubmissionId : { var value : Nat } = { var value = 1 };
+  let nextAreaId : { var value : Nat } = { var value = 1 };
+  let nextContactSubmissionId : { var value : Nat } = { var value = 1 };
+
+  // --- Seed Flag ---
+  let seededHolder : { var value : Bool } = { var value = false };
+
+  // --- Mixin Includes ---
+  include SettingsApi(
+    sessionState,
+    siteSettingsHolder,
+    contactInfoHolder,
+  );
+
+  include ContentApi(
+    sessionState,
+    heroSlides,
+    activities,
+    backgrounds,
+    footerLinks,
+    nextHeroSlideId,
+    nextActivityId,
+    nextBackgroundId,
+    nextFooterLinkId,
+  );
+
+  include RegistrationApi(
+    sessionState,
+    submissions,
+    nextSubmissionId,
+  );
+
+  include AreaApi(
+    sessionState,
+    areas,
+    nextAreaId,
+  );
+
+  include AboutApi(
+    sessionState,
+    aboutHolder,
+  );
+
+  include ContactApi(
+    sessionState,
+    contactSubmissions,
+    nextContactSubmissionId,
+  );
+
+  include SeedApi(
+    siteSettingsHolder,
+    contactInfoHolder,
+    heroSlides,
+    activities,
+    backgrounds,
+    footerLinks,
+    areas,
+    nextHeroSlideId,
+    nextActivityId,
+    nextBackgroundId,
+    nextFooterLinkId,
+    nextAreaId,
+    seededHolder,
+  );
+};
