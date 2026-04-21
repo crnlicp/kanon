@@ -70,8 +70,10 @@ mixin (
     #ok(true);
   };
 
-  public shared func updateAdminPassword(token : Text, newPassword : Text) : async { #ok : Bool; #err : Text } {
+  public shared func updateAdminPassword(token : Text, currentPassword : Text, newPassword : Text) : async { #ok : Bool; #err : Text } {
     if (not AuthLib.isValidSession(sessionState, token)) return #err("Unauthorized");
+    // Verify current password before updating
+    if (currentPassword != sessionState.adminPassword.value) return #err("Current password is incorrect");
     if (newPassword.size() == 0) return #ok(false);
     let ok = AuthLib.updatePassword(sessionState, newPassword);
     if (ok) {
@@ -100,33 +102,5 @@ mixin (
     #ok(true);
   };
 
-  /// Emergency recovery: reset admin password to default using a hardcoded recovery secret.
-  /// Call this if locked out of the admin panel.
-  public shared func emergencyResetPassword(recoverySecret : Text) : async Bool {
-    if (recoverySecret != "RESET-" # DEFAULT_ADMIN_PASSWORD) return false;
-    AuthLib.resetPassword(sessionState);
-    switch (siteSettingsHolder.value) {
-      case (?s) {
-        siteSettingsHolder.value := ?{ s with adminPassword = DEFAULT_ADMIN_PASSWORD };
-      };
-      case null {};
-    };
-    true
-  };
 
-  /// Returns the current admin password (for change-password form pre-fill).
-  /// Always reads from the canonical source.
-  public query func getAdminPasswordHash() : async Text {
-    switch (siteSettingsHolder.value) {
-      case (?s) {
-        if (s.adminPassword.size() > 0) s.adminPassword
-        else if (sessionState.adminPassword.value.size() > 0) sessionState.adminPassword.value
-        else DEFAULT_ADMIN_PASSWORD
-      };
-      case null {
-        if (sessionState.adminPassword.value.size() > 0) sessionState.adminPassword.value
-        else DEFAULT_ADMIN_PASSWORD
-      };
-    };
-  };
 };

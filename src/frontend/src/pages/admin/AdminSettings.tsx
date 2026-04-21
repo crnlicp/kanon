@@ -2,7 +2,6 @@ import type { ExternalBlob } from "@/backend";
 import { GlassCard } from "@/components/GlassCard";
 import { MediaUpload } from "@/components/admin/MediaUpload";
 import {
-  getAdminPasswordHash,
   getBackgrounds,
   getSiteSettings,
   setBackground,
@@ -236,20 +235,14 @@ export default function AdminSettings() {
 
     setPwLoading(true);
     try {
-      const storedHash = await getAdminPasswordHash();
-      if (currentPw !== storedHash) {
-        setPwError(t("admin.loginError"));
-        setPwLoading(false);
-        return;
-      }
-      const success = await updateAdminPassword(newPw);
+      const success = await updateAdminPassword(currentPw, newPw);
       if (success) {
         toast.success(t("admin.passwordChanged"));
         setCurrentPw("");
         setNewPw("");
         setConfirmPw("");
       } else {
-        toast.error(t("common.error"));
+        toast.error(t("admin.loginError"));
       }
     } catch {
       toast.error(t("common.error"));

@@ -172,13 +172,12 @@ export function Footer() {
           <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-foreground font-body">
             <span>{t("footer.allRights")}</span>
             <a
-              href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${hostname}`}
+              href={`https://internetcomputer.org`}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-foreground transition-smooth"
-              data-ocid="footer.caffeine_link"
             >
-              © {year}. Built with love using caffeine.ai
+              © {year}. Built on the Internet Computer
             </a>
           </div>
         </div>

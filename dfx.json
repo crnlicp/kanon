@@ -3,17 +3,18 @@
     "backend": {
       "main": "src/backend/main.mo",
       "type": "motoko",
-      "package": "backend"
+      "candid": "src/backend/backend.did"
     },
     "frontend": {
       "type": "assets",
       "source": ["src/frontend/dist"],
-      "dependencies": ["backend"]
+      "dependencies": ["backend"],
+      "storage": ["50"],
+      "gzip": true
     }
   },
   "defaults": {
     "build": {
-      "args": "--package caffeineai-object-storage .mops/caffeineai-object-storage@0.1.1/src --package caffeineai-authorization .mops/caffeineai-authorization@0.1.0/src",
       "packagers": {
         "motoko": "mops",
         "typescript": "tsc"
@@ -21,8 +22,8 @@
     }
   },
   "networks": {
-    "local": {
-      "providers": ["http://127.0.0.1:4943"],
+    "mainnet": {
+      "providers": ["https://icp0.io"],
       "type": "persistent"
     }
   },

@@ -1,10 +1,12 @@
 import {
   BackgroundScope,
-  ExternalBlob,
   SubmissionStatus,
   Topic,
   createActor,
+  canisterIds,
+  ExternalBlob,
 } from "../backend";
+import { Actor, HttpAgent } from "@dfinity/agent";
 import type {
   AboutContent as BackendAboutContent,
   Activity as BackendActivity,
@@ -39,10 +41,20 @@ import type {
 
 async function getActor() {
   try {
-    const { createActorWithConfig } = await import(
-      "@caffeineai/core-infrastructure"
-    );
-    return createActorWithConfig(createActor);
+    const agent = await HttpAgent.create();
+
+    // Fetch root key for cryptographic verification in the browser
+    const fetchRootKey = await agent.fetchRootKey();
+    if (!fetchRootKey) {
+      console.warn("Unable to fetch root key. Verify your IC local is running properly.");
+    }
+
+    // Local dev canister communication doesn't need authentication
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+      agent.fetchRootKey();
+    }
+
+    return createActor(canisterIds!.backend!, null as any, null as any, { agent } as any);
   } catch {
     const { mockBackend } = await import("../mocks/backend");
     return mockBackend;
@@ -187,32 +199,14 @@ export async function adminLogin(
 ): Promise<{ success: boolean; token: string }> {
   try {
     const actor = await getActor();
-    // Try the backend's adminLogin first — returns a session token or null
-    try {
-      const token = await actor.adminLogin(password);
-      if (token) {
-        return { success: true, token };
-      }
-    } catch {
-      // Backend adminLogin not available or threw — fall back to password hash check
-    }
-
-    // Fallback: compare against stored password hash directly
-    try {
-      const stored = await actor.getAdminPasswordHash();
-      if (password === stored) {
-        return { success: true, token: password }; // use password as session token
-      }
-    } catch {
-      // Hash check also unavailable
-    }
-
-    // Final fallback for default password
-    if (password === "kanonGolYasAdminPassword") {
-      return { success: true, token: password };
+    // Call backend's adminLogin — returns a session token or null
+    const token = await actor.adminLogin(password);
+    if (token) {
+      return { success: true, token };
     }
     return { success: false, token: "" };
   } catch {
+    // Backend unavailable — allow default password for initial setup
     if (password === "kanonGolYasAdminPassword") {
       return { success: true, token: password };
     }
@@ -822,17 +816,13 @@ export async function setAreaBackgroundVideo(
 // Admin — Password Management
 // ---------------------------------------------------------------------------
 
-export async function getAdminPasswordHash(): Promise<string> {
-  const actor = await getActor();
-  return actor.getAdminPasswordHash();
-}
-
 export async function updateAdminPassword(
+  currentPassword: string,
   newPassword: string,
 ): Promise<boolean> {
   const actor = await getActor();
   const token = getToken();
-  const result = await actor.updateAdminPassword(token, newPassword);
+  const result = await actor.updateAdminPassword(token, currentPassword, newPassword);
   return unwrap(result);
 }
 

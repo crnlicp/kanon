@@ -24,7 +24,7 @@ export const Topic = IDL.Variant({
   'Cultural' : IDL.Null,
   'Educational' : IDL.Null,
 });
-export const ExternalBlob = IDL.Vec(IDL.Nat8);
+export const Blob = IDL.Vec(IDL.Nat8);
 export const Activity = IDL.Record({
   'id' : IDL.Nat,
   'contentFa' : IDL.Text,
@@ -36,7 +36,7 @@ export const Activity = IDL.Record({
   'slug' : IDL.Text,
   'isActive' : IDL.Bool,
   'updatedAt' : IDL.Int,
-  'imageUrl' : IDL.Opt(ExternalBlob),
+  'imageUrl' : IDL.Opt(Blob),
   'hasRegistrationForm' : IDL.Bool,
   'titleFa' : IDL.Text,
   'titleSv' : IDL.Text,
@@ -52,11 +52,11 @@ export const Area = IDL.Record({
   'id' : IDL.Nat,
   'order' : IDL.Nat,
   'icon' : IDL.Text,
-  'cardBackground' : IDL.Opt(ExternalBlob),
+  'cardBackground' : IDL.Opt(Blob),
   'subtitleFa' : IDL.Text,
   'subtitleSv' : IDL.Text,
-  'areaBackgroundVideo' : IDL.Opt(ExternalBlob),
-  'areaBackground' : IDL.Opt(ExternalBlob),
+  'areaBackgroundVideo' : IDL.Opt(Blob),
+  'areaBackground' : IDL.Opt(Blob),
   'titleFa' : IDL.Text,
   'titleSv' : IDL.Text,
 });
@@ -73,7 +73,7 @@ export const HeroSlide = IDL.Record({
   'topic' : Topic,
   'order' : IDL.Nat,
   'isActive' : IDL.Bool,
-  'imageUrl' : IDL.Opt(ExternalBlob),
+  'imageUrl' : IDL.Opt(Blob),
   'subtitleFa' : IDL.Text,
   'subtitleSv' : IDL.Text,
   'titleFa' : IDL.Text,
@@ -101,7 +101,7 @@ export const Background = IDL.Record({
   'id' : IDL.Nat,
   'activitySlug' : IDL.Opt(IDL.Text),
   'scope' : BackgroundScope,
-  'imageUrl' : IDL.Opt(ExternalBlob),
+  'imageUrl' : IDL.Opt(Blob),
   'mediaType' : IDL.Opt(IDL.Text),
 });
 export const ContactInfo = IDL.Record({
@@ -141,12 +141,12 @@ export const SiteSettings = IDL.Record({
   'landingSubtitleFa' : IDL.Text,
   'landingSubtitleSv' : IDL.Text,
   'primaryColor' : IDL.Text,
-  'topicsBgVideo' : IDL.Opt(ExternalBlob),
+  'topicsBgVideo' : IDL.Opt(Blob),
   'accentColor' : IDL.Text,
-  'logoUrl' : IDL.Opt(ExternalBlob),
+  'logoUrl' : IDL.Opt(Blob),
   'adminPassword' : IDL.Text,
   'secondaryColor' : IDL.Text,
-  'topicsBgImage' : IDL.Opt(ExternalBlob),
+  'topicsBgImage' : IDL.Opt(Blob),
   'titleFa' : IDL.Text,
   'titleSv' : IDL.Text,
 });
@@ -250,7 +250,6 @@ export const idlService = IDL.Service({
   'getAbout' : IDL.Func([], [AboutContent], ['query']),
   'getActivities' : IDL.Func([IDL.Opt(Topic)], [IDL.Vec(Activity)], ['query']),
   'getActivityBySlug' : IDL.Func([IDL.Text], [IDL.Opt(Activity)], ['query']),
-  'getAdminPasswordHash' : IDL.Func([], [IDL.Text], ['query']),
   'getAllActivitiesAdmin' : IDL.Func(
       [IDL.Opt(Topic)],
       [IDL.Vec(Activity)],
@@ -298,17 +297,17 @@ export const idlService = IDL.Service({
   'seedSampleData' : IDL.Func([], [IDL.Bool], []),
   'setAbout' : IDL.Func([IDL.Text, AboutContent], [IDL.Bool], []),
   'setAreaBackground' : IDL.Func(
-      [IDL.Text, IDL.Nat, ExternalBlob],
+      [IDL.Text, IDL.Nat, Blob],
       [IDL.Variant({ 'ok' : IDL.Opt(Area), 'err' : IDL.Text })],
       [],
     ),
   'setAreaBackgroundVideo' : IDL.Func(
-      [IDL.Text, IDL.Nat, ExternalBlob],
+      [IDL.Text, IDL.Nat, Blob],
       [IDL.Variant({ 'ok' : IDL.Opt(Area), 'err' : IDL.Text })],
       [],
     ),
   'setAreaCardBackground' : IDL.Func(
-      [IDL.Text, IDL.Nat, ExternalBlob],
+      [IDL.Text, IDL.Nat, Blob],
       [IDL.Variant({ 'ok' : IDL.Opt(Area), 'err' : IDL.Text })],
       [],
     ),
@@ -343,7 +342,7 @@ export const idlService = IDL.Service({
       [],
     ),
   'updateAdminPassword' : IDL.Func(
-      [IDL.Text, IDL.Text],
+      [IDL.Text, IDL.Text, IDL.Text],
       [IDL.Variant({ 'ok' : IDL.Bool, 'err' : IDL.Text })],
       [],
     ),
@@ -388,7 +387,7 @@ export const idlFactory = ({ IDL }) => {
     'Cultural' : IDL.Null,
     'Educational' : IDL.Null,
   });
-  const ExternalBlob = IDL.Vec(IDL.Nat8);
+  const Blob = IDL.Vec(IDL.Nat8);
   const Activity = IDL.Record({
     'id' : IDL.Nat,
     'contentFa' : IDL.Text,
@@ -400,7 +399,7 @@ export const idlFactory = ({ IDL }) => {
     'slug' : IDL.Text,
     'isActive' : IDL.Bool,
     'updatedAt' : IDL.Int,
-    'imageUrl' : IDL.Opt(ExternalBlob),
+    'imageUrl' : IDL.Opt(Blob),
     'hasRegistrationForm' : IDL.Bool,
     'titleFa' : IDL.Text,
     'titleSv' : IDL.Text,
@@ -416,11 +415,11 @@ export const idlFactory = ({ IDL }) => {
     'id' : IDL.Nat,
     'order' : IDL.Nat,
     'icon' : IDL.Text,
-    'cardBackground' : IDL.Opt(ExternalBlob),
+    'cardBackground' : IDL.Opt(Blob),
     'subtitleFa' : IDL.Text,
     'subtitleSv' : IDL.Text,
-    'areaBackgroundVideo' : IDL.Opt(ExternalBlob),
-    'areaBackground' : IDL.Opt(ExternalBlob),
+    'areaBackgroundVideo' : IDL.Opt(Blob),
+    'areaBackground' : IDL.Opt(Blob),
     'titleFa' : IDL.Text,
     'titleSv' : IDL.Text,
   });
@@ -437,7 +436,7 @@ export const idlFactory = ({ IDL }) => {
     'topic' : Topic,
     'order' : IDL.Nat,
     'isActive' : IDL.Bool,
-    'imageUrl' : IDL.Opt(ExternalBlob),
+    'imageUrl' : IDL.Opt(Blob),
     'subtitleFa' : IDL.Text,
     'subtitleSv' : IDL.Text,
     'titleFa' : IDL.Text,
@@ -465,7 +464,7 @@ export const idlFactory = ({ IDL }) => {
     'id' : IDL.Nat,
     'activitySlug' : IDL.Opt(IDL.Text),
     'scope' : BackgroundScope,
-    'imageUrl' : IDL.Opt(ExternalBlob),
+    'imageUrl' : IDL.Opt(Blob),
     'mediaType' : IDL.Opt(IDL.Text),
   });
   const ContactInfo = IDL.Record({
@@ -505,12 +504,12 @@ export const idlFactory = ({ IDL }) => {
     'landingSubtitleFa' : IDL.Text,
     'landingSubtitleSv' : IDL.Text,
     'primaryColor' : IDL.Text,
-    'topicsBgVideo' : IDL.Opt(ExternalBlob),
+    'topicsBgVideo' : IDL.Opt(Blob),
     'accentColor' : IDL.Text,
-    'logoUrl' : IDL.Opt(ExternalBlob),
+    'logoUrl' : IDL.Opt(Blob),
     'adminPassword' : IDL.Text,
     'secondaryColor' : IDL.Text,
-    'topicsBgImage' : IDL.Opt(ExternalBlob),
+    'topicsBgImage' : IDL.Opt(Blob),
     'titleFa' : IDL.Text,
     'titleSv' : IDL.Text,
   });
@@ -666,17 +665,17 @@ export const idlFactory = ({ IDL }) => {
     'seedSampleData' : IDL.Func([], [IDL.Bool], []),
     'setAbout' : IDL.Func([IDL.Text, AboutContent], [IDL.Bool], []),
     'setAreaBackground' : IDL.Func(
-        [IDL.Text, IDL.Nat, ExternalBlob],
+        [IDL.Text, IDL.Nat, Blob],
         [IDL.Variant({ 'ok' : IDL.Opt(Area), 'err' : IDL.Text })],
         [],
       ),
     'setAreaBackgroundVideo' : IDL.Func(
-        [IDL.Text, IDL.Nat, ExternalBlob],
+        [IDL.Text, IDL.Nat, Blob],
         [IDL.Variant({ 'ok' : IDL.Opt(Area), 'err' : IDL.Text })],
         [],
       ),
     'setAreaCardBackground' : IDL.Func(
-        [IDL.Text, IDL.Nat, ExternalBlob],
+        [IDL.Text, IDL.Nat, Blob],
         [IDL.Variant({ 'ok' : IDL.Opt(Area), 'err' : IDL.Text })],
         [],
       ),

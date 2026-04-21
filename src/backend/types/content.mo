@@ -1,5 +1,3 @@
-import Storage "mo:caffeineai-object-storage/Storage";
-
 module {
   public type Topic = {
     #Cultural;
@@ -14,7 +12,7 @@ module {
     titleSv : Text;
     subtitleFa : Text;
     subtitleSv : Text;
-    imageUrl : ?Storage.ExternalBlob;
+    imageUrl : ?[Nat8];
     order : Nat;
     isActive : Bool;
   };
@@ -29,7 +27,7 @@ module {
     descriptionSv : Text;
     contentFa : Text;
     contentSv : Text;
-    imageUrl : ?Storage.ExternalBlob;
+    imageUrl : ?[Nat8];
     isActive : Bool;
     hasRegistrationForm : Bool;
     createdAt : Int;
@@ -48,7 +46,7 @@ module {
     id : Nat;
     scope : BackgroundScope;
     activitySlug : ?Text;
-    imageUrl : ?Storage.ExternalBlob;
+    imageUrl : ?[Nat8];
     mediaType : ?Text;
   };
 

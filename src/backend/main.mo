@@ -1,7 +1,4 @@
 import List "mo:core/List";
-import MixinObjectStorage "mo:caffeineai-object-storage/Mixin";
-import MixinAuthorization "mo:caffeineai-authorization/MixinAuthorization";
-import AccessControl "mo:caffeineai-authorization/access-control";
 import AuthLib "lib/auth";
 
 import ContentTypes "types/content";
@@ -16,52 +13,43 @@ import SeedApi "mixins/seed-api";
 import AboutApi "mixins/about-api";
 import ContactApi "mixins/contact-api";
 
-
-
-persistent actor {
-  // --- Object Storage ---
-  include MixinObjectStorage();
-
-  // --- Access Control (required platform mixin) ---
-  transient let accessControlState = AccessControl.initState();
-  include MixinAuthorization(accessControlState);
-
+actor {
   // --- Session / Auth State ---
-  transient let sessionState = AuthLib.newSessionState();
+  let sessionState = AuthLib.newSessionState();
 
   // --- Site Settings ---
-  transient let siteSettingsHolder : { var value : ?SettingsTypes.SiteSettings } = { var value = null };
-  transient let contactInfoHolder : { var value : ?SettingsTypes.ContactInfo } = { var value = null };
+  let siteSettingsHolder : { var value : ?SettingsTypes.SiteSettings } = { var value = null };
+  let contactInfoHolder : { var value : ?SettingsTypes.ContactInfo } = { var value = null };
 
   // --- Content State ---
-  transient let heroSlides = List.empty<ContentTypes.HeroSlide>();
-  transient let activities = List.empty<ContentTypes.Activity>();
-  transient let backgrounds = List.empty<ContentTypes.Background>();
-  transient let footerLinks = List.empty<ContentTypes.FooterLink>();
+  let heroSlides = List.empty<ContentTypes.HeroSlide>();
+  let activities = List.empty<ContentTypes.Activity>();
+  let backgrounds = List.empty<ContentTypes.Background>();
+  let footerLinks = List.empty<ContentTypes.FooterLink>();
 
   // --- Area State ---
-  transient let areas = List.empty<AreaTypes.Area>();
+  let areas = List.empty<AreaTypes.Area>();
 
   // --- Registration State ---
-  transient let submissions = List.empty<RegTypes.RegistrationSubmission>();
+  let submissions = List.empty<RegTypes.RegistrationSubmission>();
 
   // --- About State ---
-  transient let aboutHolder : { var value : ?ContentTypes.AboutContent } = { var value = null };
+  let aboutHolder : { var value : ?ContentTypes.AboutContent } = { var value = null };
 
   // --- Contact Submissions State ---
-  transient let contactSubmissions = List.empty<RegTypes.ContactSubmission>();
+  let contactSubmissions = List.empty<RegTypes.ContactSubmission>();
 
   // --- ID Counters ---
-  transient let nextHeroSlideId : { var value : Nat } = { var value = 1 };
-  transient let nextActivityId : { var value : Nat } = { var value = 1 };
-  transient let nextBackgroundId : { var value : Nat } = { var value = 1 };
-  transient let nextFooterLinkId : { var value : Nat } = { var value = 1 };
-  transient let nextSubmissionId : { var value : Nat } = { var value = 1 };
-  transient let nextAreaId : { var value : Nat } = { var value = 1 };
-  transient let nextContactSubmissionId : { var value : Nat } = { var value = 1 };
+  let nextHeroSlideId : { var value : Nat } = { var value = 1 };
+  let nextActivityId : { var value : Nat } = { var value = 1 };
+  let nextBackgroundId : { var value : Nat } = { var value = 1 };
+  let nextFooterLinkId : { var value : Nat } = { var value = 1 };
+  let nextSubmissionId : { var value : Nat } = { var value = 1 };
+  let nextAreaId : { var value : Nat } = { var value = 1 };
+  let nextContactSubmissionId : { var value : Nat } = { var value = 1 };
 
   // --- Seed Flag ---
-  transient let seededHolder : { var value : Bool } = { var value = false };
+  let seededHolder : { var value : Bool } = { var value = false };
 
   // --- Mixin Includes ---
   include SettingsApi(

@@ -254,13 +254,16 @@ export const mockBackend: backendInterface = {
   setContactInfo: async (_token: string) => ok(true),
   setSiteSettings: async (_token: string) => ok(true),
 
-  updateAdminPassword: async (_token: string, _newPassword: string) => {
+  updateAdminPassword: async (_token: string, _currentPassword: string, _newPassword: string) => {
+    if (_currentPassword !== sampleSettings.adminPassword) {
+      return { __kind__: "err" as const, err: "Current password is incorrect" };
+    }
     sampleSettings.adminPassword = _newPassword;
-    return ok(true);
+    return { __kind__: "ok" as const, ok: true };
   },
 
   emergencyResetPassword: async (_recoverySecret: string): Promise<boolean> => {
-    return true;
+    return false;
   },
 
   resetAdminPassword: async (_token: string) => ok(true),
@@ -317,7 +320,6 @@ export const mockBackend: backendInterface = {
   getRegistrationSubmissions: async () => [sampleSubmission],
   getSiteSettings: async () => sampleSettings,
   getAreas: async () => [...mockAreas],
-  getAdminPasswordHash: async () => "kanonGolYasAdminPassword",
 
   getAbout: async (): Promise<AboutContent> => ({
     id: BigInt(1),

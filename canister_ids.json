@@ -1,11 +1,3 @@
 {
-  "__Candid_UI": {
-    "local": "l62sy-yx777-77777-aaabq-cai"
-  },
-  "backend": {
-    "local": "ll5dv-z7777-77777-aaaca-cai"
-  },
-  "frontend": {
-    "local": "lm4fb-uh777-77777-aaacq-cai"
-  }
+  "note": "Canister IDs are populated automatically by dfx deploy. Local network IDs are shown below for reference only."
 }

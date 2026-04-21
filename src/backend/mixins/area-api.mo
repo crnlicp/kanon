@@ -2,7 +2,6 @@ import List "mo:core/List";
 import AuthLib "../lib/auth";
 import AreaLib "../lib/area";
 import AreaTypes "../types/area";
-import Storage "mo:caffeineai-object-storage/Storage";
 
 mixin (
   sessionState : AuthLib.SessionState,
@@ -33,17 +32,17 @@ mixin (
     #ok(AreaLib.reorderAreas(areas, ids));
   };
 
-  public shared func setAreaCardBackground(token : Text, areaId : Nat, blob : Storage.ExternalBlob) : async { #ok : ?AreaTypes.Area; #err : Text } {
+  public shared func setAreaCardBackground(token : Text, areaId : Nat, blob : [Nat8]) : async { #ok : ?AreaTypes.Area; #err : Text } {
     if (not AuthLib.isValidSession(sessionState, token)) return #err("Unauthorized");
     #ok(AreaLib.setAreaCardBackground(areas, areaId, blob));
   };
 
-  public shared func setAreaBackground(token : Text, areaId : Nat, blob : Storage.ExternalBlob) : async { #ok : ?AreaTypes.Area; #err : Text } {
+  public shared func setAreaBackground(token : Text, areaId : Nat, blob : [Nat8]) : async { #ok : ?AreaTypes.Area; #err : Text } {
     if (not AuthLib.isValidSession(sessionState, token)) return #err("Unauthorized");
     #ok(AreaLib.setAreaBackground(areas, areaId, blob));
   };
 
-  public shared func setAreaBackgroundVideo(token : Text, areaId : Nat, blob : Storage.ExternalBlob) : async { #ok : ?AreaTypes.Area; #err : Text } {
+  public shared func setAreaBackgroundVideo(token : Text, areaId : Nat, blob : [Nat8]) : async { #ok : ?AreaTypes.Area; #err : Text } {
     if (not AuthLib.isValidSession(sessionState, token)) return #err("Unauthorized");
     #ok(AreaLib.setAreaBackgroundVideo(areas, areaId, blob));
   };

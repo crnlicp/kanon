@@ -65,7 +65,7 @@ const resources = {
       // Footer
       footer: {
         tagline: "En digital helgedom för mänskligt arv",
-        copyright: "© {{year}}. Byggd med kärlek med caffeine.ai",
+        copyright: "© {{year}}. Built on the Internet Computer",
         allRights: "Alla rättigheter förbehållna",
       },
       // Admin
@@ -267,7 +267,7 @@ const resources = {
       // Footer
       footer: {
         tagline: "پناهگاهی دیجیتال برای میراث انسانی",
-        copyright: "© {{year}}. ساخته شده با عشق توسط caffeine.ai",
+        copyright: "© {{year}}. Built on the Internet Computer",
         allRights: "تمامی حقوق محفوظ است",
       },
       // Admin

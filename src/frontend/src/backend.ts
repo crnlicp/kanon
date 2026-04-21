@@ -329,7 +329,6 @@ export interface backendInterface {
     getAbout(): Promise<AboutContent>;
     getActivities(topic: Topic | null): Promise<Array<Activity>>;
     getActivityBySlug(slug: string): Promise<Activity | null>;
-    getAdminPasswordHash(): Promise<string>;
     getAllActivitiesAdmin(topic: Topic | null): Promise<Array<Activity>>;
     getAllHeroSlides(): Promise<Array<HeroSlide>>;
     getAreas(): Promise<Array<Area>>;
@@ -429,7 +428,7 @@ export interface backendInterface {
         __kind__: "err";
         err: string;
     }>;
-    updateAdminPassword(token: string, newPassword: string): Promise<{
+    updateAdminPassword(token: string, currentPassword: string, newPassword: string): Promise<{
         __kind__: "ok";
         ok: boolean;
     } | {
@@ -862,20 +861,6 @@ export class Backend implements backendInterface {
         } else {
             const result = await this.actor.getActivityBySlug(arg0);
             return from_candid_opt_n37(this._uploadFile, this._downloadFile, result);
-        }
-    }
-    async getAdminPasswordHash(): Promise<string> {
-        if (this.processError) {
-            try {
-                const result = await this.actor.getAdminPasswordHash();
-                return result;
-            } catch (e) {
-                this.processError(e);
-                throw new Error("unreachable");
-            }
-        } else {
-            const result = await this.actor.getAdminPasswordHash();
-            return result;
         }
     }
     async getAllActivitiesAdmin(arg0: Topic | null): Promise<Array<Activity>> {
@@ -1328,7 +1313,7 @@ export class Backend implements backendInterface {
             return from_candid_variant_n32(this._uploadFile, this._downloadFile, result);
         }
     }
-    async updateAdminPassword(arg0: string, arg1: string): Promise<{
+    async updateAdminPassword(arg0: string, arg1: string, arg2: string): Promise<{
         __kind__: "ok";
         ok: boolean;
     } | {
@@ -1337,14 +1322,14 @@ export class Backend implements backendInterface {
     }> {
         if (this.processError) {
             try {
-                const result = await this.actor.updateAdminPassword(arg0, arg1);
+                const result = await this.actor.updateAdminPassword(arg0, arg1, arg2);
                 return from_candid_variant_n32(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.updateAdminPassword(arg0, arg1);
+            const result = await this.actor.updateAdminPassword(arg0, arg1, arg2);
             return from_candid_variant_n32(this._uploadFile, this._downloadFile, result);
         }
     }
@@ -2375,3 +2360,5 @@ export function createActor(canisterId: string, _uploadFile: (file: ExternalBlob
     });
     return new Backend(actor, _uploadFile, _downloadFile, options.processError);
 }
+
+export const canisterIds: Record<string, string> | undefined = { backend: process.env.CANISTER_ID_BACKEND };

@@ -7,13 +7,7 @@ export interface None {
     __kind__: "None";
 }
 export type Option<T> = Some<T> | None;
-export class ExternalBlob {
-    getBytes(): Promise<Uint8Array<ArrayBuffer>>;
-    getDirectURL(): string;
-    static fromURL(url: string): ExternalBlob;
-    static fromBytes(blob: Uint8Array<ArrayBuffer>): ExternalBlob;
-    withUploadProgress(onProgress: (percentage: number) => void): ExternalBlob;
-}
+export type Blob = Uint8Array;
 export interface AboutContent {
     id: bigint;
     contentFa: string;
@@ -32,7 +26,7 @@ export interface Background {
     id: bigint;
     activitySlug?: string;
     scope: BackgroundScope;
-    imageUrl?: ExternalBlob;
+    imageUrl?: Blob;
     mediaType?: string;
 }
 export interface HeroSlide {
@@ -40,7 +34,7 @@ export interface HeroSlide {
     topic: Topic;
     order: bigint;
     isActive: boolean;
-    imageUrl?: ExternalBlob;
+    imageUrl?: Blob;
     subtitleFa: string;
     subtitleSv: string;
     titleFa: string;
@@ -74,12 +68,12 @@ export interface SiteSettings {
     landingSubtitleFa: string;
     landingSubtitleSv: string;
     primaryColor: string;
-    topicsBgVideo?: ExternalBlob;
+    topicsBgVideo?: Blob;
     accentColor: string;
-    logoUrl?: ExternalBlob;
+    logoUrl?: Blob;
     adminPassword: string;
     secondaryColor: string;
-    topicsBgImage?: ExternalBlob;
+    topicsBgImage?: Blob;
     titleFa: string;
     titleSv: string;
 }
@@ -94,7 +88,7 @@ export interface Activity {
     slug: string;
     isActive: boolean;
     updatedAt: bigint;
-    imageUrl?: ExternalBlob;
+    imageUrl?: Blob;
     hasRegistrationForm: boolean;
     titleFa: string;
     titleSv: string;
@@ -103,11 +97,11 @@ export interface Area {
     id: bigint;
     order: bigint;
     icon: string;
-    cardBackground?: ExternalBlob;
+    cardBackground?: Blob;
     subtitleFa: string;
     subtitleSv: string;
-    areaBackgroundVideo?: ExternalBlob;
-    areaBackground?: ExternalBlob;
+    areaBackgroundVideo?: Blob;
+    areaBackground?: Blob;
     titleFa: string;
     titleSv: string;
 }
@@ -236,7 +230,6 @@ export interface backendInterface {
     getAbout(): Promise<AboutContent>;
     getActivities(topic: Topic | null): Promise<Array<Activity>>;
     getActivityBySlug(slug: string): Promise<Activity | null>;
-    getAdminPasswordHash(): Promise<string>;
     getAllActivitiesAdmin(topic: Topic | null): Promise<Array<Activity>>;
     getAllHeroSlides(): Promise<Array<HeroSlide>>;
     getAreas(): Promise<Array<Area>>;
@@ -285,21 +278,21 @@ export interface backendInterface {
     }>;
     seedSampleData(): Promise<boolean>;
     setAbout(token: string, input: AboutContent): Promise<boolean>;
-    setAreaBackground(token: string, areaId: bigint, blob: ExternalBlob): Promise<{
+    setAreaBackground(token: string, areaId: bigint, blob: Blob): Promise<{
         __kind__: "ok";
         ok: Area | null;
     } | {
         __kind__: "err";
         err: string;
     }>;
-    setAreaBackgroundVideo(token: string, areaId: bigint, blob: ExternalBlob): Promise<{
+    setAreaBackgroundVideo(token: string, areaId: bigint, blob: Blob): Promise<{
         __kind__: "ok";
         ok: Area | null;
     } | {
         __kind__: "err";
         err: string;
     }>;
-    setAreaCardBackground(token: string, areaId: bigint, blob: ExternalBlob): Promise<{
+    setAreaCardBackground(token: string, areaId: bigint, blob: Blob): Promise<{
         __kind__: "ok";
         ok: Area | null;
     } | {
@@ -336,7 +329,7 @@ export interface backendInterface {
         __kind__: "err";
         err: string;
     }>;
-    updateAdminPassword(token: string, newPassword: string): Promise<{
+    updateAdminPassword(token: string, currentPassword: string, newPassword: string): Promise<{
         __kind__: "ok";
         ok: boolean;
     } | {

@@ -1,9 +1,7 @@
-import Storage "mo:caffeineai-object-storage/Storage";
-
 module {
   public type SiteSettings = {
     id : Nat;
-    logoUrl : ?Storage.ExternalBlob;
+    logoUrl : ?[Nat8];
     titleFa : Text;
     titleSv : Text;
     landingSubtitleFa : Text;
@@ -12,8 +10,8 @@ module {
     secondaryColor : Text;
     accentColor : Text;
     adminPassword : Text;
-    topicsBgImage : ?Storage.ExternalBlob;
-    topicsBgVideo : ?Storage.ExternalBlob;
+    topicsBgImage : ?[Nat8];
+    topicsBgVideo : ?[Nat8];
   };
 
   public type ContactInfo = {

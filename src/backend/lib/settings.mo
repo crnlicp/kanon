@@ -35,7 +35,7 @@ module {
         true;
       };
       case null {
-        Runtime.trap("Site settings not initialized");
+        false
       };
     };
   };

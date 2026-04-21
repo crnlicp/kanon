@@ -1,5 +1,3 @@
-import Storage "mo:caffeineai-object-storage/Storage";
-
 module {
   public type Area = {
     id : Nat;
@@ -8,9 +6,9 @@ module {
     titleSv : Text;
     subtitleFa : Text;
     subtitleSv : Text;
-    cardBackground : ?Storage.ExternalBlob;
-    areaBackground : ?Storage.ExternalBlob;
-    areaBackgroundVideo : ?Storage.ExternalBlob;
+    cardBackground : ?[Nat8];
+    areaBackground : ?[Nat8];
+    areaBackgroundVideo : ?[Nat8];
     order : Nat;
   };
 

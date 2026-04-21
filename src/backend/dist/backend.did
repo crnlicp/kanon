@@ -1,22 +1,3 @@
-type _ImmutableObjectStorageRefillResult = 
- record {
-   success: opt bool;
-   topped_up_amount: opt nat;
- };
-type _ImmutableObjectStorageRefillInformation = record {
-                                                  proposed_top_up_amount:
-                                                   opt nat;};
-type _ImmutableObjectStorageCreateCertificateResult = 
- record {
-   blob_hash: text;
-   method: text;
- };
-type UserRole = 
- variant {
-   admin;
-   guest;
-   user;
- };
 type Topic = 
  variant {
    Cultural;
@@ -36,13 +17,13 @@ type SiteSettings =
    id: nat;
    landingSubtitleFa: text;
    landingSubtitleSv: text;
-   logoUrl: opt ExternalBlob;
+   logoUrl: opt vec nat8;
    primaryColor: text;
    secondaryColor: text;
    titleFa: text;
    titleSv: text;
-   topicsBgImage: opt ExternalBlob;
-   topicsBgVideo: opt ExternalBlob;
+   topicsBgImage: opt vec nat8;
+   topicsBgVideo: opt vec nat8;
  };
 type RegistrationSubmission = 
  record {
@@ -68,7 +49,7 @@ type RegistrationInput =
 type HeroSlide = 
  record {
    id: nat;
-   imageUrl: opt ExternalBlob;
+   imageUrl: opt vec nat8;
    isActive: bool;
    order: nat;
    subtitleFa: text;
@@ -86,7 +67,6 @@ type FooterLink =
    order: nat;
    url: text;
  };
-type ExternalBlob = blob;
 type ContactSubmissionInput = 
  record {
    email: text;
@@ -124,7 +104,7 @@ type Background =
  record {
    activitySlug: opt text;
    id: nat;
-   imageUrl: opt ExternalBlob;
+   imageUrl: opt vec nat8;
    mediaType: opt text;
    scope: BackgroundScope;
  };
@@ -138,9 +118,9 @@ type AreaInput =
  };
 type Area = 
  record {
-   areaBackground: opt ExternalBlob;
-   areaBackgroundVideo: opt ExternalBlob;
-   cardBackground: opt ExternalBlob;
+   areaBackground: opt vec nat8;
+   areaBackgroundVideo: opt vec nat8;
+   cardBackground: opt vec nat8;
    icon: text;
    id: nat;
    order: nat;
@@ -158,7 +138,7 @@ type Activity =
    descriptionSv: text;
    hasRegistrationForm: bool;
    id: nat;
-   imageUrl: opt ExternalBlob;
+   imageUrl: opt vec nat8;
    isActive: bool;
    slug: text;
    titleFa: text;
@@ -174,16 +154,6 @@ type AboutContent =
    imagePath: opt text;
  };
 service : {
-  _immutableObjectStorageBlobsAreLive: (hashes: vec blob) -> (vec bool) query;
-  _immutableObjectStorageBlobsToDelete: () -> (vec blob) query;
-  _immutableObjectStorageConfirmBlobDeletion: (blobs: vec blob) -> ();
-  _immutableObjectStorageCreateCertificate: (blobHash: text) ->
-   (_ImmutableObjectStorageCreateCertificateResult);
-  _immutableObjectStorageRefillCashier: (refillInformation:
-   opt _ImmutableObjectStorageRefillInformation) ->
-   (_ImmutableObjectStorageRefillResult);
-  _immutableObjectStorageUpdateGatewayPrincipals: () -> ();
-  _initializeAccessControl: () -> ();
   addActivity: (token: text, input: Activity) ->
    (variant {
       err: text;
@@ -205,7 +175,6 @@ service : {
     });
   adminLogin: (password: text) -> (opt text);
   adminLogout: (token: text) -> ();
-  assignCallerUserRole: (user: principal, role: UserRole) -> ();
   deleteActivity: (token: text, id: nat) -> (variant {
                                                err: text;
                                                ok: bool;
@@ -240,7 +209,6 @@ service : {
   getAllHeroSlides: () -> (vec HeroSlide) query;
   getAreas: () -> (vec Area) query;
   getBackgrounds: () -> (vec Background) query;
-  getCallerUserRole: () -> (UserRole) query;
   getContactInfo: () -> (opt ContactInfo) query;
   getContactSubmissions: (token: text) ->
    (variant {
@@ -252,7 +220,6 @@ service : {
   getRegistrationSubmissions: (activityId: opt nat) ->
    (vec RegistrationSubmission) query;
   getSiteSettings: () -> (opt SiteSettings) query;
-  isCallerAdmin: () -> (bool) query;
   reorderAreas: (token: text, ids: vec nat) ->
    (variant {
       err: text;
@@ -274,17 +241,17 @@ service : {
                                         });
   seedSampleData: () -> (bool);
   setAbout: (token: text, input: AboutContent) -> (bool);
-  setAreaBackground: (token: text, areaId: nat, "blob": ExternalBlob) ->
+  setAreaBackground: (token: text, areaId: nat, "blob": vec nat8) ->
    (variant {
       err: text;
       ok: opt Area;
     });
-  setAreaBackgroundVideo: (token: text, areaId: nat, "blob": ExternalBlob) ->
+  setAreaBackgroundVideo: (token: text, areaId: nat, "blob": vec nat8) ->
    (variant {
       err: text;
       ok: opt Area;
     });
-  setAreaCardBackground: (token: text, areaId: nat, "blob": ExternalBlob) ->
+  setAreaCardBackground: (token: text, areaId: nat, "blob": vec nat8) ->
    (variant {
       err: text;
       ok: opt Area;

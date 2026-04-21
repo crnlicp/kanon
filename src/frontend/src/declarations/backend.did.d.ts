@@ -27,7 +27,7 @@ export interface Activity {
   'slug' : string,
   'isActive' : boolean,
   'updatedAt' : bigint,
-  'imageUrl' : [] | [ExternalBlob],
+  'imageUrl' : [] | [Blob],
   'hasRegistrationForm' : boolean,
   'titleFa' : string,
   'titleSv' : string,
@@ -36,11 +36,11 @@ export interface Area {
   'id' : bigint,
   'order' : bigint,
   'icon' : string,
-  'cardBackground' : [] | [ExternalBlob],
+  'cardBackground' : [] | [Blob],
   'subtitleFa' : string,
   'subtitleSv' : string,
-  'areaBackgroundVideo' : [] | [ExternalBlob],
-  'areaBackground' : [] | [ExternalBlob],
+  'areaBackgroundVideo' : [] | [Blob],
+  'areaBackground' : [] | [Blob],
   'titleFa' : string,
   'titleSv' : string,
 }
@@ -55,7 +55,7 @@ export interface Background {
   'id' : bigint,
   'activitySlug' : [] | [string],
   'scope' : BackgroundScope,
-  'imageUrl' : [] | [ExternalBlob],
+  'imageUrl' : [] | [Blob],
   'mediaType' : [] | [string],
 }
 export type BackgroundScope = { 'Sport' : null } |
@@ -85,7 +85,7 @@ export interface ContactSubmissionInput {
   'message' : string,
   'phone' : [] | [string],
 }
-export type ExternalBlob = Uint8Array;
+export type Blob = Uint8Array;
 export interface FooterLink {
   'id' : bigint,
   'url' : string,
@@ -99,7 +99,7 @@ export interface HeroSlide {
   'topic' : Topic,
   'order' : bigint,
   'isActive' : boolean,
-  'imageUrl' : [] | [ExternalBlob],
+  'imageUrl' : [] | [Blob],
   'subtitleFa' : string,
   'subtitleSv' : string,
   'titleFa' : string,
@@ -129,12 +129,12 @@ export interface SiteSettings {
   'landingSubtitleFa' : string,
   'landingSubtitleSv' : string,
   'primaryColor' : string,
-  'topicsBgVideo' : [] | [ExternalBlob],
+  'topicsBgVideo' : [] | [Blob],
   'accentColor' : string,
-  'logoUrl' : [] | [ExternalBlob],
+  'logoUrl' : [] | [Blob],
   'adminPassword' : string,
   'secondaryColor' : string,
-  'topicsBgImage' : [] | [ExternalBlob],
+  'topicsBgImage' : [] | [Blob],
   'titleFa' : string,
   'titleSv' : string,
 }
@@ -235,7 +235,6 @@ export interface _SERVICE {
   'getAbout' : ActorMethod<[], AboutContent>,
   'getActivities' : ActorMethod<[[] | [Topic]], Array<Activity>>,
   'getActivityBySlug' : ActorMethod<[string], [] | [Activity]>,
-  'getAdminPasswordHash' : ActorMethod<[], string>,
   'getAllActivitiesAdmin' : ActorMethod<[[] | [Topic]], Array<Activity>>,
   'getAllHeroSlides' : ActorMethod<[], Array<HeroSlide>>,
   'getAreas' : ActorMethod<[], Array<Area>>,
@@ -278,17 +277,17 @@ export interface _SERVICE {
   'seedSampleData' : ActorMethod<[], boolean>,
   'setAbout' : ActorMethod<[string, AboutContent], boolean>,
   'setAreaBackground' : ActorMethod<
-    [string, bigint, ExternalBlob],
+    [string, bigint, Blob],
     { 'ok' : [] | [Area] } |
       { 'err' : string }
   >,
   'setAreaBackgroundVideo' : ActorMethod<
-    [string, bigint, ExternalBlob],
+    [string, bigint, Blob],
     { 'ok' : [] | [Area] } |
       { 'err' : string }
   >,
   'setAreaCardBackground' : ActorMethod<
-    [string, bigint, ExternalBlob],
+    [string, bigint, Blob],
     { 'ok' : [] | [Area] } |
       { 'err' : string }
   >,
@@ -321,7 +320,7 @@ export interface _SERVICE {
       { 'err' : string }
   >,
   'updateAdminPassword' : ActorMethod<
-    [string, string],
+    [string, string, string],
     { 'ok' : boolean } |
       { 'err' : string }
   >,

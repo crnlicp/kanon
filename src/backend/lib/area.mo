@@ -1,6 +1,5 @@
 import List "mo:core/List";
 import AreaTypes "../types/area";
-import Storage "mo:caffeineai-object-storage/Storage";
 
 module {
   public func getAreas(areas : List.List<AreaTypes.Area>) : [AreaTypes.Area] {
@@ -85,7 +84,7 @@ module {
   public func setAreaCardBackground(
     areas : List.List<AreaTypes.Area>,
     areaId : Nat,
-    blob : Storage.ExternalBlob,
+    blob : [Nat8],
   ) : ?AreaTypes.Area {
     var result : ?AreaTypes.Area = null;
     areas.mapInPlace(
@@ -103,7 +102,7 @@ module {
   public func setAreaBackground(
     areas : List.List<AreaTypes.Area>,
     areaId : Nat,
-    blob : Storage.ExternalBlob,
+    blob : [Nat8],
   ) : ?AreaTypes.Area {
     var result : ?AreaTypes.Area = null;
     areas.mapInPlace(
@@ -121,7 +120,7 @@ module {
   public func setAreaBackgroundVideo(
     areas : List.List<AreaTypes.Area>,
     areaId : Nat,
-    blob : Storage.ExternalBlob,
+    blob : [Nat8],
   ) : ?AreaTypes.Area {
     var result : ?AreaTypes.Area = null;
     areas.mapInPlace(

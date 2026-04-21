@@ -2,7 +2,6 @@ import List "mo:core/List";
 import Runtime "mo:core/Runtime";
 import Time "mo:core/Time";
 import Types "../types/content";
-import Storage "mo:caffeineai-object-storage/Storage";
 
 module {
   // --- HeroSlide ---
@@ -176,7 +175,7 @@ module {
         b.scope == input.scope and b.activitySlug == input.activitySlug
       })) {
         case (?b) b;
-        case null { Runtime.trap("unreachable") };
+        case null { return input with id = nextId.value; };
       };
       found;
     } else {

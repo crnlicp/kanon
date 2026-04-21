@@ -1,0 +1,5 @@
+# Mainnet domain mapping
+# Format: <canister-name> <domain>
+# Uncomment and fill before mainnet deploy:
+# frontend <your-domain.com>
+# backend <your-domain.com>
