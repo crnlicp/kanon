@@ -13,43 +13,43 @@ import SeedApi "mixins/seed-api";
 import AboutApi "mixins/about-api";
 import ContactApi "mixins/contact-api";
 
-actor {
+persistent actor {
   // --- Session / Auth State ---
-  let sessionState = AuthLib.newSessionState();
+  transient let sessionState = AuthLib.newSessionState();
 
   // --- Site Settings ---
-  let siteSettingsHolder : { var value : ?SettingsTypes.SiteSettings } = { var value = null };
-  let contactInfoHolder : { var value : ?SettingsTypes.ContactInfo } = { var value = null };
+  transient let siteSettingsHolder : { var value : ?SettingsTypes.SiteSettings } = { var value = null };
+  transient let contactInfoHolder : { var value : ?SettingsTypes.ContactInfo } = { var value = null };
 
   // --- Content State ---
-  let heroSlides = List.empty<ContentTypes.HeroSlide>();
-  let activities = List.empty<ContentTypes.Activity>();
-  let backgrounds = List.empty<ContentTypes.Background>();
-  let footerLinks = List.empty<ContentTypes.FooterLink>();
+  transient let heroSlides = List.empty<ContentTypes.HeroSlide>();
+  transient let activities = List.empty<ContentTypes.Activity>();
+  transient let backgrounds = List.empty<ContentTypes.Background>();
+  transient let footerLinks = List.empty<ContentTypes.FooterLink>();
 
   // --- Area State ---
-  let areas = List.empty<AreaTypes.Area>();
+  transient let areas = List.empty<AreaTypes.Area>();
 
   // --- Registration State ---
-  let submissions = List.empty<RegTypes.RegistrationSubmission>();
+  transient let submissions = List.empty<RegTypes.RegistrationSubmission>();
 
   // --- About State ---
-  let aboutHolder : { var value : ?ContentTypes.AboutContent } = { var value = null };
+  transient let aboutHolder : { var value : ?ContentTypes.AboutContent } = { var value = null };
 
   // --- Contact Submissions State ---
-  let contactSubmissions = List.empty<RegTypes.ContactSubmission>();
+  transient let contactSubmissions = List.empty<RegTypes.ContactSubmission>();
 
   // --- ID Counters ---
-  let nextHeroSlideId : { var value : Nat } = { var value = 1 };
-  let nextActivityId : { var value : Nat } = { var value = 1 };
-  let nextBackgroundId : { var value : Nat } = { var value = 1 };
-  let nextFooterLinkId : { var value : Nat } = { var value = 1 };
-  let nextSubmissionId : { var value : Nat } = { var value = 1 };
-  let nextAreaId : { var value : Nat } = { var value = 1 };
-  let nextContactSubmissionId : { var value : Nat } = { var value = 1 };
+  transient let nextHeroSlideId : { var value : Nat } = { var value = 1 };
+  transient let nextActivityId : { var value : Nat } = { var value = 1 };
+  transient let nextBackgroundId : { var value : Nat } = { var value = 1 };
+  transient let nextFooterLinkId : { var value : Nat } = { var value = 1 };
+  transient let nextSubmissionId : { var value : Nat } = { var value = 1 };
+  transient let nextAreaId : { var value : Nat } = { var value = 1 };
+  transient let nextContactSubmissionId : { var value : Nat } = { var value = 1 };
 
   // --- Seed Flag ---
-  let seededHolder : { var value : Bool } = { var value = false };
+  transient let seededHolder : { var value : Bool } = { var value = false };
 
   // --- Mixin Includes ---
   include SettingsApi(

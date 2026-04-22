@@ -13,9 +13,6 @@ module {
   let SESSION_DURATION_NS : Int = 86_400_000_000_000; // 24 hours in nanoseconds
   public let DEFAULT_PASSWORD : Text = "kanonGolYasAdminPassword";
 
-  // Unique counter for session tokens (module-level state)
-  let tokenCounter = { var value : Nat = 0 };
-
   public func newSessionState() : SessionState {
     {
       tokens = Map.empty<Text, Int>();
@@ -23,12 +20,9 @@ module {
     };
   };
 
-  /// Generate a unique session token from time + incrementing counter.
+  /// Generate a unique session token from time.
   func generateToken(now : Int) : Text {
-    tokenCounter.value += 1;
-    let t1 = now.toText();
-    let t2 = tokenCounter.value.toText();
-    t1 # "-" # t2
+    now.toText()
   };
 
   /// Attempt admin login with password. Returns ?token on success, null on failure.

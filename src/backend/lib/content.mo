@@ -175,7 +175,7 @@ module {
         b.scope == input.scope and b.activitySlug == input.activitySlug
       })) {
         case (?b) b;
-        case null { return input with id = nextId.value; };
+        case null { let bg = { input with id = nextId.value }; return bg; };
       };
       found;
     } else {
