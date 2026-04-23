@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { useTranslation } from "react-i18next";
 
 interface LoadingSpinnerProps {
   fullScreen?: boolean;
@@ -15,6 +16,7 @@ export function LoadingSpinner({
   fullScreen = false,
   size = "md",
 }: LoadingSpinnerProps) {
+  const { t } = useTranslation();
   const spinner = (
     <div className="flex flex-col items-center gap-4">
       <motion.div
@@ -33,7 +35,7 @@ export function LoadingSpinner({
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          Loading...
+          {t("common.loading")}
         </motion.p>
       )}
     </div>

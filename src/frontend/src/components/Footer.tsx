@@ -178,7 +178,7 @@ export function Footer() {
               translate="no"
               className="hover:text-foreground transition-smooth"
             >
-              © {year}. t("footer.icPlatform")
+              © {year} {t("footer.icPlatform")}
             </a>
           </div>
         </div>
