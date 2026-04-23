@@ -534,7 +534,7 @@ export default function AdminSubmissions() {
             <p className="text-muted-foreground text-sm font-body">
               {isLoading
                 ? "…"
-                : `${submissions.length} ${isRtl ? "ثبت‌نام" : "st"}`}
+                : `${submissions.length} ${t("admin.submissionCount")}`}
             </p>
           </div>
         </div>

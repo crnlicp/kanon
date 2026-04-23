@@ -7,13 +7,15 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function ContactPage() {
+  const { t, i18n } = useTranslation();
   const { currentLang } = useAppStore();
-  const isRtl = currentLang === "fa";
+  const isRtl = i18n.language === "fa";
 
   const { data: settings } = useQuery({
     queryKey: ["settings"],
@@ -36,18 +38,10 @@ export default function ContactPage() {
       setEmailError("");
       setPhone("");
       setMessage("");
-      toast.success(
-        isRtl
-          ? "پیام شما با موفقیت ارسال شد!"
-          : "Your message was sent successfully!",
-      );
+      toast.success(t("contact.toastSuccess"));
     },
     onError: () => {
-      toast.error(
-        isRtl
-          ? "خطا در ارسال پیام. دوباره تلاش کنید."
-          : "Failed to send message. Please try again.",
-      );
+      toast.error(t("contact.toastError"));
     },
   });
 
@@ -56,21 +50,13 @@ export default function ContactPage() {
 
     // Required fields check
     if (!name.trim() || !email.trim() || !message.trim()) {
-      toast.error(
-        isRtl
-          ? "لطفاً فیلدهای اجباری را پر کنید"
-          : "Please fill in all required fields",
-      );
+      toast.error(t("contact.toastRequired"));
       return;
     }
 
     // Email format validation
     if (!EMAIL_REGEX.test(email.trim())) {
-      setEmailError(
-        isRtl
-          ? "لطفاً یک آدرس ایمیل معتبر وارد کنید"
-          : "Please enter a valid email address",
-      );
+      setEmailError(t("contact.toastInvalidEmail"));
       return;
     }
 
@@ -103,12 +89,10 @@ export default function ContactPage() {
           transition={{ duration: 0.5 }}
         >
           <h1 className="font-display text-4xl md:text-5xl font-black text-foreground mb-4 tracking-tight">
-            {isRtl ? "تماس با ما" : "Kontakta oss"}
+            {t("contact.title")}
           </h1>
           <p className="text-muted-foreground font-body text-lg max-w-xl mx-auto">
-            {isRtl
-              ? "با ما در تماس باشید — پاسخ سریع تضمین شده است"
-              : "Hör av dig — vi svarar snabbt"}
+            {t("contact.subtitle")}
           </p>
         </motion.div>
 
@@ -130,7 +114,7 @@ export default function ContactPage() {
                 </div>
                 <div className="min-w-0">
                   <p className="text-xs font-body font-semibold text-muted-foreground uppercase tracking-wider mb-1">
-                    {isRtl ? "ایمیل" : "E-post"}
+                    {t("contact.email")}
                   </p>
                   <a
                     href={`mailto:${contactInfo.email}`}
@@ -152,7 +136,7 @@ export default function ContactPage() {
                 </div>
                 <div className="min-w-0">
                   <p className="text-xs font-body font-semibold text-muted-foreground uppercase tracking-wider mb-1">
-                    {isRtl ? "تلفن" : "Telefon"}
+                    {t("contact.phone")}
                   </p>
                   <a
                     href={`tel:${contactInfo.phone}`}
@@ -174,7 +158,7 @@ export default function ContactPage() {
                 </div>
                 <div className="min-w-0">
                   <p className="text-xs font-body font-semibold text-muted-foreground uppercase tracking-wider mb-1">
-                    {isRtl ? "آدرس" : "Adress"}
+                    {t("contact.address")}
                   </p>
                   <p className="text-sm font-body text-foreground">
                     {isRtl ? contactInfo.address.fa : contactInfo.address.sv}
@@ -205,12 +189,10 @@ export default function ContactPage() {
                   <Send className="w-8 h-8 text-primary" />
                 </motion.div>
                 <h2 className="font-display text-2xl font-bold text-foreground">
-                  {isRtl ? "پیام ارسال شد!" : "Meddelande skickat!"}
+                  {t("contact.successTitle")}
                 </h2>
                 <p className="text-muted-foreground font-body">
-                  {isRtl
-                    ? "از تماس شما سپاسگزاریم. به زودی پاسخ خواهیم داد."
-                    : "Tack för ditt meddelande. Vi återkommer snart."}
+                  {t("contact.successMessage")}
                 </p>
                 <motion.button
                   type="button"
@@ -220,13 +202,13 @@ export default function ContactPage() {
                   whileTap={{ scale: 0.98 }}
                   data-ocid="contact.send_again_button"
                 >
-                  {isRtl ? "ارسال پیام دیگر" : "Skicka ett till"}
+                  {t("contact.sendAgain")}
                 </motion.button>
               </GlassCard>
             ) : (
               <GlassCard className="p-6 md:p-8">
                 <h2 className="font-display text-xl font-bold text-foreground mb-6">
-                  {isRtl ? "ارسال پیام" : "Skicka meddelande"}
+                  {t("contact.formTitle")}
                 </h2>
                 <form
                   onSubmit={handleSubmit}
@@ -239,14 +221,14 @@ export default function ContactPage() {
                         htmlFor="contact-name"
                         className="text-sm font-body font-medium text-foreground block mb-1.5"
                       >
-                        {isRtl ? "نام *" : "Namn *"}
+                        {t("contact.nameLabel")}
                       </label>
                       <input
                         id="contact-name"
                         type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder={isRtl ? "نام شما" : "Ditt namn"}
+                        placeholder={t("contact.namePlaceholder")}
                         className={inputClass}
                         dir={isRtl ? "rtl" : "ltr"}
                         data-ocid="contact.name_input"
@@ -258,7 +240,7 @@ export default function ContactPage() {
                         htmlFor="contact-email"
                         className="text-sm font-body font-medium text-foreground block mb-1.5"
                       >
-                        {isRtl ? "ایمیل *" : "E-post *"}
+                        {t("contact.emailLabel")}
                       </label>
                       <input
                         id="contact-email"
@@ -270,14 +252,10 @@ export default function ContactPage() {
                         }}
                         onBlur={() => {
                           if (email && !EMAIL_REGEX.test(email.trim())) {
-                            setEmailError(
-                              isRtl
-                                ? "لطفاً یک آدرس ایمیل معتبر وارد کنید"
-                                : "Please enter a valid email address",
-                            );
+                            setEmailError(t("contact.toastInvalidEmail"));
                           }
                         }}
-                        placeholder={isRtl ? "ایمیل شما" : "din@email.se"}
+                        placeholder={t("contact.emailPlaceholder")}
                         className={`${inputClass} ${emailError ? "border-destructive/60" : ""}`}
                         data-ocid="contact.email_input"
                         required
@@ -300,14 +278,14 @@ export default function ContactPage() {
                       htmlFor="contact-phone"
                       className="text-sm font-body font-medium text-foreground block mb-1.5"
                     >
-                      {isRtl ? "تلفن (اختیاری)" : "Telefon (valfritt)"}
+                      {t("contact.phoneLabelOptional")}
                     </label>
                     <input
                       id="contact-phone"
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      placeholder="+46 70 000 00 00"
+                      placeholder={t("contact.phonePlaceholder")}
                       className={inputClass}
                       data-ocid="contact.phone_input"
                     />
@@ -318,17 +296,13 @@ export default function ContactPage() {
                       htmlFor="contact-message"
                       className="text-sm font-body font-medium text-foreground block mb-1.5"
                     >
-                      {isRtl ? "پیام *" : "Meddelande *"}
+                      {t("contact.messageLabel")}
                     </label>
                     <textarea
                       id="contact-message"
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      placeholder={
-                        isRtl
-                          ? "پیام خود را بنویسید..."
-                          : "Skriv ditt meddelande..."
-                      }
+                      placeholder={t("contact.messagePlaceholder")}
                       rows={5}
                       className={`${inputClass} resize-none`}
                       dir={isRtl ? "rtl" : "ltr"}
@@ -346,13 +320,7 @@ export default function ContactPage() {
                     data-ocid="contact.submit_button"
                   >
                     <Send className="w-4 h-4" />
-                    {submitMutation.isPending
-                      ? isRtl
-                        ? "در حال ارسال..."
-                        : "Skickar..."
-                      : isRtl
-                        ? "ارسال پیام"
-                        : "Skicka meddelande"}
+                    {submitMutation.isPending ? t("contact.sending") : t("contact.send")}
                   </motion.button>
                 </form>
               </GlassCard>

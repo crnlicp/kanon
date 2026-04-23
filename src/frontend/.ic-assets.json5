@@ -1,0 +1,14 @@
+{
+  "ignore": [
+    ".ic*",
+    "**/.ic*"
+  ],
+  "resolve_to": "public",
+  "locale": {
+    "fa-IR": "fa",
+    "sv-SE": "sv"
+  },
+  "headers": {
+    "/locale/*": "application/json; charset=utf-8"
+  }
+}

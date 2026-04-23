@@ -1,9 +1,11 @@
 import { useAppStore } from "@/store";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function NotFoundPage() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { currentLang } = useAppStore();
   const isRtl = currentLang === "fa";
 
@@ -48,12 +50,10 @@ export default function NotFoundPage() {
           transition={{ delay: 0.28, duration: 0.4 }}
         >
           <h1 className="font-display text-2xl font-bold text-foreground mb-2">
-            {isRtl ? "صفحه پیدا نشد" : "Sidan hittades inte"}
+            {t("notFound.title")}
           </h1>
           <p className="text-sm font-body text-muted-foreground mb-8">
-            {isRtl
-              ? "آدرسی که دنبال آن هستید وجود ندارد یا جابجا شده است."
-              : "Sidan du letar efter finns inte eller har flyttats."}
+            {t("notFound.subtitle")}
           </p>
         </motion.div>
 
@@ -69,7 +69,7 @@ export default function NotFoundPage() {
           whileTap={{ scale: 0.97 }}
           data-ocid="not_found.home_button"
         >
-          {isRtl ? "بازگشت به صفحه اصلی" : "Gå till startsidan"}
+          {t("notFound.back")}
         </motion.button>
       </motion.div>
     </div>

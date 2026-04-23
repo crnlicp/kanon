@@ -2,427 +2,57 @@ import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 
-const resources = {
-  sv: {
-    translation: {
-      // Nav
-      nav: {
-        home: "Hem",
-        cultural: "Kulturellt",
-        educational: "Utbildning",
-        sport: "Sport",
-        about: "Om oss",
-        contact: "Kontakt",
-        admin: "Admin",
-      },
-      // Topics
-      topics: {
-        title: "Välj ett område",
-        subtitle: "Utforska våra verksamheter",
-        cultural: "Kulturellt",
-        educational: "Utbildning",
-        sport: "Sport",
-        culturalDesc: "Konst, utställningar och kulturella evenemang",
-        educationalDesc: "Kurser, föreläsningar och workshops",
-        sportDesc: "Träning, tävlingar och sportaktiviteter",
-      },
-      // Common
-      common: {
-        readMore: "Läs mer",
-        register: "Anmäl dig",
-        back: "Tillbaka",
-        close: "Stäng",
-        save: "Spara",
-        cancel: "Avbryt",
-        delete: "Ta bort",
-        edit: "Redigera",
-        add: "Lägg till",
-        loading: "Laddar...",
-        error: "Något gick fel",
-        success: "Lyckades!",
-        noResults: "Inga resultat hittades",
-        all: "Alla",
-        seeAll: "Se alla",
-        submit: "Skicka",
-        learnMore: "Lär dig mer",
-      },
-      // Registration form
-      form: {
-        fullName: "Fullständigt namn",
-        email: "E-postadress",
-        phone: "Telefonnummer",
-        message: "Meddelande (valfritt)",
-        fullNamePlaceholder: "Ange ditt namn",
-        emailPlaceholder: "din@email.se",
-        phonePlaceholder: "+46 70 000 00 00",
-        messagePlaceholder: "Övriga kommentarer...",
-        submitRegistration: "Skicka anmälan",
-        registrationSuccess: "Din anmälan har skickats!",
-        registrationError: "Kunde inte skicka anmälan. Försök igen.",
-        requiredField: "Detta fält är obligatoriskt",
-        invalidEmail: "Ogiltig e-postadress",
-      },
-      // Footer
-      footer: {
-        tagline: "En digital helgedom för mänskligt arv",
-        copyright: "© {{year}}. Built on the Internet Computer",
-        allRights: "Alla rättigheter förbehållna",
-      },
-      // Admin
-      admin: {
-        title: "Adminpanel",
-        dashboard: "Översikt",
-        settings: "Inställningar",
-        heroSlides: "Hjältebilder",
-        activities: "Aktiviteter",
-        backgrounds: "Bakgrunder",
-        footerLinks: "Foterlänkar",
-        submissions: "Anmälningar",
-        login: "Logga in",
-        logout: "Logga ut",
-        password: "Lösenord",
-        loginError: "Felaktigt lösenord",
-        loginTitle: "Adminåtkomst",
-        loginSubtitle: "Ange lösenord för att fortsätta",
-        totalActivities: "Totalt aktiviteter",
-        totalSubmissions: "Totalt anmälningar",
-        recentSubmissions: "Senaste anmälningar",
-        language: "Language / زبان",
-        // Areas
-        areas: "Områden",
-        areasTitle: "Hantera Områden",
-        addArea: "Lägg till område",
-        editArea: "Redigera område",
-        areaIcon: "Ikon",
-        areaTitleSv: "Titel (Svenska)",
-        areaTitleFa: "Titel (Persiska)",
-        areaSubtitleSv: "Underrubrik (Svenska)",
-        areaSubtitleFa: "Underrubrik (Persiska)",
-        cardBackground: "Kortbakgrund",
-        areaBackground: "Sidsbakgrund",
-        areaBackgroundVideo: "Sidsbakgrundsvideo",
-        // Password management
-        changePassword: "Byt lösenord",
-        currentPassword: "Nuvarande lösenord",
-        newPassword: "Nytt lösenord",
-        confirmPassword: "Bekräfta lösenord",
-        passwordMismatch: "Lösenorden matchar inte",
-        passwordChanged: "Lösenordet har ändrats",
-        languageToggle: "Byt språk",
-        // Media compression
-        compressionPreview: "Komprimeringsförhandsvisning",
-        originalSize: "Ursprunglig storlek",
-        compressedSize: "Komprimerad storlek",
-        confirmUpload: "Bekräfta uppladdning",
-        cancelUpload: "Avbryt",
-        // Submissions columns
-        submissions_section: {
-          title: "Anmälningar",
-          empty: "Inga anmälningar hittades",
-          activityName: "Aktivitet",
-          visitorName: "Namn",
-          email: "E-post",
-          phone: "Telefon",
-          date: "Datum",
-          status: "Status",
-          actions: "Åtgärder",
-          approve: "Godkänn",
-          reject: "Avvisa",
-          delete: "Ta bort",
-          pending: "Väntande",
-          approved: "Godkänd",
-          rejected: "Avvisad",
-        },
-        // Backgrounds section
-        backgrounds_section: {
-          title: "Bakgrunder",
-          upload: "Ladda upp",
-          uploadImage: "Ladda upp bild",
-          uploadVideo: "Ladda upp video",
-          landing: "Startsida",
-          cultural: "Kulturellt",
-          educational: "Utbildning",
-          sport: "Sport",
-          preview: "Förhandsvisning",
-          noMedia: "Ingen media",
-          delete: "Ta bort",
-        },
-        // Upload UI
-        upload: {
-          dragDrop: "Dra och släpp en fil här",
-          browse: "eller klicka för att bläddra",
-          uploading: "Laddar upp...",
-          progress: "{{pct}}% klart",
-          success: "Uppladdning klar!",
-          error: "Uppladdningen misslyckades. Försök igen.",
-        },
-        // About
-        about: "Om oss",
-        aboutTitle: "Redigera Om oss",
-        aboutContentSv: "Innehåll (Svenska)",
-        aboutContentFa: "Innehåll (Persiska)",
-        aboutImage: "Bild (valfritt)",
-        // Contact submissions
-        contactSubmissions: "Kontaktförfrågningar",
-        contactSubmissionsTitle: "Kontaktförfrågningar",
-        // Topics page background
-        topicsBackground: "Topics Page Bakgrund",
-        topicsBgImage: "Bakgrundsbild",
-        topicsBgVideo: "Bakgrundsvideo",
-      },
-      // Hero
-      hero: {
-        exploreHeritage: "Utforska vårt gemensamma arv",
-        digitalSanctuary: "En digital helgedom för mänskligt arv",
-        bookTickets: "Boka biljetter",
-      },
-      // About page
-      about: {
-        title: "Om oss",
-        subtitle: "Lär känna oss och vår vision",
-        loading: "Laddar om oss...",
-        noContent: "Ingen information tillgänglig ännu.",
-      },
-      // Contact page
-      contact: {
-        title: "Kontakta oss",
-        subtitle: "Vi är alltid redo att hjälpa dig",
-        name: "Ditt namn",
-        namePlaceholder: "Ange ditt fullständiga namn",
-        email: "E-postadress",
-        emailPlaceholder: "din@email.se",
-        phone: "Telefonnummer (valfritt)",
-        phonePlaceholder: "+46 70 000 00 00",
-        message: "Ditt meddelande",
-        messagePlaceholder: "Berätta hur vi kan hjälpa dig...",
-        send: "Skicka meddelande",
-        sending: "Skickar...",
-        successTitle: "Meddelandet skickat!",
-        successMessage: "Vi återkommer så snart som möjligt.",
-        errorMessage: "Kunde inte skicka meddelandet. Försök igen.",
-        required: "Obligatoriskt fält",
-        invalidEmail: "Ogiltig e-postadress",
-      },
-    },
-  },
-  fa: {
-    translation: {
-      // Nav
-      nav: {
-        home: "خانه",
-        cultural: "فرهنگی",
-        educational: "آموزشی",
-        sport: "ورزشی",
-        about: "درباره ما",
-        contact: "تماس",
-        admin: "مدیریت",
-      },
-      // Topics
-      topics: {
-        title: "یک حوزه انتخاب کنید",
-        subtitle: "فعالیت‌های ما را کشف کنید",
-        cultural: "فرهنگی",
-        educational: "آموزشی",
-        sport: "ورزشی",
-        culturalDesc: "هنر، نمایشگاه‌ها و رویدادهای فرهنگی",
-        educationalDesc: "دوره‌ها، سخنرانی‌ها و کارگاه‌ها",
-        sportDesc: "تمرین، مسابقات و فعالیت‌های ورزشی",
-      },
-      // Common
-      common: {
-        readMore: "بیشتر بخوانید",
-        register: "ثبت‌نام",
-        back: "بازگشت",
-        close: "بستن",
-        save: "ذخیره",
-        cancel: "لغو",
-        delete: "حذف",
-        edit: "ویرایش",
-        add: "افزودن",
-        loading: "در حال بارگذاری...",
-        error: "خطایی رخ داد",
-        success: "موفقیت‌آمیز!",
-        noResults: "نتیجه‌ای یافت نشد",
-        all: "همه",
-        seeAll: "مشاهده همه",
-        submit: "ارسال",
-        learnMore: "بیشتر بدانید",
-      },
-      // Registration form
-      form: {
-        fullName: "نام کامل",
-        email: "آدرس ایمیل",
-        phone: "شماره تلفن",
-        message: "پیام (اختیاری)",
-        fullNamePlaceholder: "نام خود را وارد کنید",
-        emailPlaceholder: "email@example.com",
-        phonePlaceholder: "+98 912 000 0000",
-        messagePlaceholder: "توضیحات بیشتر...",
-        submitRegistration: "ارسال ثبت‌نام",
-        registrationSuccess: "ثبت‌نام شما با موفقیت ارسال شد!",
-        registrationError: "ارسال ثبت‌نام انجام نشد. دوباره تلاش کنید.",
-        requiredField: "این فیلد الزامی است",
-        invalidEmail: "آدرس ایمیل نامعتبر است",
-      },
-      // Footer
-      footer: {
-        tagline: "پناهگاهی دیجیتال برای میراث انسانی",
-        copyright: "© {{year}}. Built on the Internet Computer",
-        allRights: "تمامی حقوق محفوظ است",
-      },
-      // Admin
-      admin: {
-        title: "پنل مدیریت",
-        dashboard: "داشبورد",
-        settings: "تنظیمات",
-        heroSlides: "اسلایدهای اصلی",
-        activities: "فعالیت‌ها",
-        backgrounds: "پس‌زمینه‌ها",
-        footerLinks: "لینک‌های فوتر",
-        submissions: "ثبت‌نام‌ها",
-        login: "ورود",
-        logout: "خروج",
-        password: "رمز عبور",
-        loginError: "رمز عبور نادرست است",
-        loginTitle: "دسترسی مدیریت",
-        loginSubtitle: "رمز عبور را برای ادامه وارد کنید",
-        totalActivities: "مجموع فعالیت‌ها",
-        totalSubmissions: "مجموع ثبت‌نام‌ها",
-        recentSubmissions: "ثبت‌نام‌های اخیر",
-        language: "Language / زبان",
-        // Areas
-        areas: "حوزه‌ها",
-        areasTitle: "مدیریت حوزه‌ها",
-        addArea: "افزودن حوزه",
-        editArea: "ویرایش حوزه",
-        areaIcon: "آیکون",
-        areaTitleSv: "عنوان (سوئدی)",
-        areaTitleFa: "عنوان (فارسی)",
-        areaSubtitleSv: "زیرعنوان (سوئدی)",
-        areaSubtitleFa: "زیرعنوان (فارسی)",
-        cardBackground: "تصویر پس‌زمینه کارت",
-        areaBackground: "تصویر پس‌زمینه صفحه",
-        areaBackgroundVideo: "ویدیو پس‌زمینه صفحه",
-        // Password management
-        changePassword: "تغییر رمز عبور",
-        currentPassword: "رمز عبور فعلی",
-        newPassword: "رمز عبور جدید",
-        confirmPassword: "تأیید رمز عبور",
-        passwordMismatch: "رمزهای عبور مطابقت ندارند",
-        passwordChanged: "رمز عبور تغییر یافت",
-        languageToggle: "تغییر زبان",
-        // Media compression
-        compressionPreview: "پیش‌نمایش فشرده‌سازی",
-        originalSize: "اندازه اصلی",
-        compressedSize: "اندازه فشرده‌شده",
-        confirmUpload: "تأیید آپلود",
-        cancelUpload: "لغو",
-        // Submissions columns
-        submissions_section: {
-          title: "ثبت‌نام‌ها",
-          empty: "هیچ ثبت‌نامی یافت نشد",
-          activityName: "نام فعالیت",
-          visitorName: "نام بازدیدکننده",
-          email: "ایمیل",
-          phone: "تلفن",
-          date: "تاریخ ثبت",
-          status: "وضعیت",
-          actions: "عملیات",
-          approve: "تأیید",
-          reject: "رد",
-          delete: "حذف",
-          pending: "در انتظار",
-          approved: "تأیید شده",
-          rejected: "رد شده",
-        },
-        // Backgrounds section
-        backgrounds_section: {
-          title: "پس‌زمینه‌ها",
-          upload: "بارگذاری",
-          uploadImage: "بارگذاری تصویر",
-          uploadVideo: "بارگذاری ویدیو",
-          landing: "صفحه اصلی",
-          cultural: "فرهنگی",
-          educational: "آموزشی",
-          sport: "ورزشی",
-          preview: "پیش‌نمایش",
-          noMedia: "بدون رسانه",
-          delete: "حذف",
-        },
-        // Upload UI
-        upload: {
-          dragDrop: "فایل را اینجا بکشید و رها کنید",
-          browse: "یا برای مرور کلیک کنید",
-          uploading: "در حال بارگذاری...",
-          progress: "{{pct}}٪ انجام شد",
-          success: "بارگذاری با موفقیت انجام شد!",
-          error: "بارگذاری ناموفق بود. دوباره تلاش کنید.",
-        },
-        // About
-        about: "درباره ما",
-        aboutTitle: "ویرایش درباره ما",
-        aboutContentSv: "محتوا (سوئدی)",
-        aboutContentFa: "محتوا (فارسی)",
-        aboutImage: "تصویر (اختیاری)",
-        // Contact submissions
-        contactSubmissions: "پیام‌های تماس",
-        contactSubmissionsTitle: "پیام‌های تماس",
-        // Topics page background
-        topicsBackground: "پس‌زمینه صفحه موضوعات",
-        topicsBgImage: "تصویر پس‌زمینه",
-        topicsBgVideo: "ویدیو پس‌زمینه",
-      },
-      // Hero
-      hero: {
-        exploreHeritage: "میراث مشترک ما را کشف کنید",
-        digitalSanctuary: "پناهگاهی دیجیتال برای میراث انسانی",
-        bookTickets: "رزرو بلیط",
-      },
-      // About page
-      about: {
-        title: "درباره ما",
-        subtitle: "با ما و چشم‌انداز ما آشنا شوید",
-        loading: "در حال بارگذاری...",
-        noContent: "محتوایی در دسترس نیست.",
-      },
-      // Contact page
-      contact: {
-        title: "تماس با ما",
-        subtitle: "آماده‌ایم که به شما کمک کنیم",
-        name: "نام شما",
-        namePlaceholder: "نام کامل خود را وارد کنید",
-        email: "آدرس ایمیل",
-        emailPlaceholder: "email@example.com",
-        phone: "شماره تلفن (اختیاری)",
-        phonePlaceholder: "+98 912 000 0000",
-        message: "پیام شما",
-        messagePlaceholder: "بگویید چطور می‌توانیم کمک کنیم...",
-        send: "ارسال پیام",
-        sending: "در حال ارسال...",
-        successTitle: "پیام ارسال شد!",
-        successMessage: "در اسرع وقت پاسخ خواهیم داد.",
-        errorMessage: "ارسال پیام ناموفق بود. دوباره تلاش کنید.",
-        required: "این فیلد الزامی است",
-        invalidEmail: "آدرس ایمیل نامعتبر است",
-      },
-    },
-  },
-};
+const LANGUAGES = ["sv", "fa"];
+const TRANSLATION_NS = "translation";
 
-i18n
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    resources,
-    fallbackLng: "sv",
-    lng: "sv",
-    interpolation: {
-      escapeValue: false,
-    },
-    detection: {
-      order: ["localStorage", "navigator"],
-      caches: ["localStorage"],
-    },
-  });
+async function loadResources(): Promise<Record<string, Record<string, Record<string, string>>>> {
+  const resources: Record<string, Record<string, Record<string, string>>> = {};
+  for (const lang of LANGUAGES) {
+    try {
+      const res = await fetch(`/locale/${lang}/translation.json`);
+      if (!res.ok) {
+        console.error(`Failed to load i18n resources for ${lang}: ${res.status}`);
+        console.error(`URL: /locale/${lang}/translation.json`);
+        continue;
+      }
+      // Verify the content type
+      const contentType = res.headers.get("content-type");
+      if (contentType && !contentType.includes("application/json")) {
+        console.warn(`Unexpected content-type for ${lang}: ${contentType}`);
+      }
+      const data = await res.json();
+      resources[lang] = { [TRANSLATION_NS]: data };
+    } catch (err) {
+      console.error(`Failed to load i18n resources for ${lang}:`, err);
+    }
+  }
+  if (Object.keys(resources).length === 0) {
+    console.error("No i18n resources loaded — translations will be missing");
+  } else {
+    console.log(`Loaded i18n resources for: ${Object.keys(resources).join(", ")}`);
+  }
+  return resources;
+}
+
+export async function initI18n() {
+  const resources = await loadResources();
+  return i18n
+    .use(LanguageDetector)
+    .use(initReactI18next)
+    .init({
+      resources,
+      lng: undefined,
+      fallbackLng: ["sv"],
+      ns: [TRANSLATION_NS],
+      defaultNS: TRANSLATION_NS,
+      interpolation: {
+        escapeValue: false,
+      },
+      detection: {
+        order: ["localStorage", "navigator"],
+        caches: ["localStorage"],
+      },
+    });
+}
 
 export default i18n;

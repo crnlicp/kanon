@@ -2,10 +2,9 @@ import { ThemeProvider } from "next-themes";
 import { Suspense, lazy, useEffect } from "react";
 import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import { Toaster } from "sonner";
-import "@/lib/i18n";
+import i18n from "@/lib/i18n";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { AdminLayout } from "@/components/admin/AdminLayout";
-import i18n from "@/lib/i18n";
 import { useAppStore } from "@/store";
 
 // Lazy-loaded pages
@@ -35,9 +34,17 @@ function LangSync() {
   useEffect(() => {
     if (!lang) return;
     const locale = lang === "fa" ? "fa" : "sv";
+    const dir: "rtl" | "ltr" = locale === "fa" ? "rtl" : "ltr";
+    document.documentElement.dir = dir;
+    document.documentElement.lang = locale === "fa" ? "fa-IR" : "sv-SE";
+    if (locale === "fa") {
+      document.documentElement.classList.add("font-persian");
+    } else {
+      document.documentElement.classList.remove("font-persian");
+    }
     i18n.changeLanguage(locale);
     setLang(locale);
-  }, [lang, setLang]);
+  }, [lang]);
 
   return null;
 }

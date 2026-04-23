@@ -175,9 +175,10 @@ export function Footer() {
               href={`https://internetcomputer.org`}
               target="_blank"
               rel="noopener noreferrer"
+              translate="no"
               className="hover:text-foreground transition-smooth"
             >
-              © {year}. Built on the Internet Computer
+              © {year}. t("footer.icPlatform")
             </a>
           </div>
         </div>

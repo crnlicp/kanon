@@ -152,7 +152,7 @@ export function Header() {
                   whileTap={{ scale: 0.95 }}
                   data-ocid={`header.lang_${lang}`}
                 >
-                  {lang.toUpperCase()}
+                  {lang === "fa" ? "فارسی" : "Svenska"}
                 </motion.button>
               ))}
             </div>

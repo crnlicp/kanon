@@ -36,6 +36,7 @@ function getLabels(lang: Lang) {
       error: "خطایی رخ داد",
       loading: "در حال بارگذاری...",
       count: (n: number) => `${n} پیام`,
+      delete: "حذف",
     };
   }
   return {
@@ -52,6 +53,7 @@ function getLabels(lang: Lang) {
     error: "Något gick fel",
     loading: "Laddar...",
     count: (n: number) => `${n} st`,
+    delete: "Ta bort",
   };
 }
 
@@ -65,12 +67,14 @@ function SubmissionCard({
   lang,
   onDelete,
   isDeleting,
+  labels,
 }: {
   sub: ContactSubmission;
   index: number;
   lang: Lang;
   onDelete: () => void;
   isDeleting: boolean;
+  labels: ReturnType<typeof getLabels>;
 }) {
   const isRtl = lang === "fa";
   const formattedDate = sub.timestamp
@@ -142,7 +146,7 @@ function SubmissionCard({
             data-ocid={`contact_submissions.delete_button.${index + 1}`}
           >
             <Trash2 className="w-3 h-3" />
-            {isRtl ? "حذف" : "Ta bort"}
+            {labels.delete}
           </motion.button>
         </div>
       </GlassCard>
@@ -160,12 +164,14 @@ function SubmissionRow({
   lang,
   onDelete,
   isDeleting,
+  labels,
 }: {
   sub: ContactSubmission;
   index: number;
   lang: Lang;
   onDelete: () => void;
   isDeleting: boolean;
+  labels: ReturnType<typeof getLabels>;
 }) {
   const isRtl = lang === "fa";
   const formattedDate = sub.timestamp
@@ -225,7 +231,7 @@ function SubmissionRow({
           disabled={isDeleting}
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.94 }}
-          title={isRtl ? "حذف" : "Ta bort"}
+          title={labels.delete}
           className="w-7 h-7 rounded-lg flex items-center justify-center glass border border-white/10 text-muted-foreground hover:text-rose-300 hover:border-rose-400/30 transition-all duration-200 disabled:opacity-40"
           data-ocid={`contact_submissions.delete_button.${index + 1}`}
         >
@@ -388,6 +394,7 @@ export default function AdminContactSubmissions() {
                             index={i}
                             lang={adminLang}
                             isDeleting={deletingIds.has(sub.id)}
+                            labels={labels}
                             onDelete={() =>
                               deleteMutation.mutate({ id: sub.id })
                             }
@@ -410,6 +417,7 @@ export default function AdminContactSubmissions() {
                     index={i}
                     lang={adminLang}
                     isDeleting={deletingIds.has(sub.id)}
+                    labels={labels}
                     onDelete={() => deleteMutation.mutate({ id: sub.id })}
                   />
                 ))}
