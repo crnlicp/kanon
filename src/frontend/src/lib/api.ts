@@ -614,9 +614,6 @@ export async function setSiteSettings(input: {
   const token = getToken();
   const logoUrl =
     input.logoBlob ?? ExternalBlob.fromURL(input.currentLogoUrl ?? "");
-  const currentSettings = await actor.getSiteSettings();
-  const adminPassword =
-    input.adminPassword ?? currentSettings?.adminPassword ?? "";
 
   const settingsPayload: BackendSiteSettings & {
     landingSubtitleFa?: string;
@@ -629,7 +626,7 @@ export async function setSiteSettings(input: {
     accentColor: input.accentColor,
     secondaryColor: input.secondaryColor,
     logoUrl,
-    adminPassword,
+    adminPassword: input.adminPassword ?? "",
     landingSubtitleFa: input.landingSubtitleFa ?? "",
     landingSubtitleSv: input.landingSubtitleSv ?? "",
   };
@@ -934,7 +931,8 @@ export async function setAbout(
     contentSv: input.contentSv,
     imagePath: input.imagePath,
   };
-  return actor.setAbout(token, backendInput);
+  const result = await actor.setAbout(token, backendInput);
+  return unwrap(result);
 }
 
 // ---------------------------------------------------------------------------

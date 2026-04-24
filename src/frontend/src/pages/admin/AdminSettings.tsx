@@ -170,6 +170,7 @@ export default function AdminSettings() {
         secondaryColor,
         logoBlob: logoBlob ?? undefined,
         currentLogoUrl: settings?.logoUrl,
+        adminPassword: settings?.adminPassword ?? "",
         landingSubtitleFa,
         landingSubtitleSv,
         contactEmail: email,

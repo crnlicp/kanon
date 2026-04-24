@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && pnpm copy:env",
+    "build": "vite build && pnpm copy:assets && pnpm copy:env",
+    "copy:assets": "cp .ic-assets.json5 dist/",
     "copy:env": "cp env.json dist/",
     "typecheck": "tsc --noEmit",
     "check": "biome check src",

@@ -240,7 +240,10 @@ service : {
                                           ok: bool;
                                         });
   seedSampleData: () -> (bool);
-  setAbout: (token: text, input: AboutContent) -> (bool);
+  setAbout: (token: text, input: AboutContent) -> (variant {
+      err: text;
+      ok: bool;
+    });
   setAreaBackground: (token: text, areaId: nat, "blob": vec nat8) ->
    (variant {
       err: text;

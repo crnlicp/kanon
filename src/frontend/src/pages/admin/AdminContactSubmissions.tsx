@@ -1,3 +1,4 @@
+import { EmptyState } from "@/components/EmptyState";
 import { GlassCard } from "@/components/GlassCard";
 import { deleteContactSubmission, getContactSubmissions } from "@/lib/api";
 import type { ContactSubmission, Lang } from "@/lib/types";
@@ -340,20 +341,12 @@ export default function AdminContactSubmissions() {
 
         {/* Empty */}
         {!isLoading && !isError && submissions.length === 0 && (
-          <div
-            className="text-center py-16"
-            data-ocid="contact_submissions.empty_state"
-          >
-            <GlassCard className="p-10 max-w-sm mx-auto">
-              <User className="w-12 h-12 text-muted-foreground mx-auto mb-3 opacity-40" />
-              <p className="text-foreground font-body font-semibold mb-1">
-                {labels.empty}
-              </p>
-              <p className="text-muted-foreground text-sm font-body">
-                {labels.emptyDesc}
-              </p>
-            </GlassCard>
-          </div>
+          <EmptyState
+            title={labels.empty}
+            description={labels.emptyDesc}
+            icon={User}
+            dataOcid="contact_submissions.empty_state"
+          />
         )}
 
         {/* Desktop table */}

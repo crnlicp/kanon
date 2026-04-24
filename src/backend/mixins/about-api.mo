@@ -10,9 +10,9 @@ mixin (
     AboutLib.getAbout(aboutHolder);
   };
 
-  public shared func setAbout(token : Text, input : ContentTypes.AboutContent) : async Bool {
-    if (not AuthLib.isValidSession(sessionState, token)) return false;
+  public shared func setAbout(token : Text, input : ContentTypes.AboutContent) : async { #ok : Bool; #err : Text } {
+    if (not AuthLib.isValidSession(sessionState, token)) return #err("Unauthorized");
     AboutLib.setAbout(aboutHolder, input);
-    true;
+    #ok(true);
   };
 };

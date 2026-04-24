@@ -1,4 +1,5 @@
 import type { ExternalBlob } from "@/backend";
+import { EmptyState } from "@/components/EmptyState";
 import { GlassCard } from "@/components/GlassCard";
 import { MediaUpload } from "@/components/admin/MediaUpload";
 import {
@@ -855,12 +856,10 @@ export default function AdminActivities() {
             ))}
 
             {activities.length === 0 && !noAreas && (
-              <div
-                className="col-span-full text-center py-12 text-muted-foreground font-body"
-                data-ocid="activities.empty_state"
-              >
-                {t("common.noResults")}
-              </div>
+              <EmptyState
+                title={t("common.noResults")}
+                dataOcid="activities.empty_state"
+              />
             )}
           </div>
         )}

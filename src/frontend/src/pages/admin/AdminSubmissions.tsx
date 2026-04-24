@@ -1,3 +1,4 @@
+import { EmptyState } from "@/components/EmptyState";
 import { GlassCard } from "@/components/GlassCard";
 import {
   deleteSubmission,
@@ -593,9 +594,7 @@ export default function AdminSubmissions() {
                 {t("common.error")}
               </p>
               <p className="text-muted-foreground text-sm font-body">
-                {isRtl
-                  ? "بارگذاری ثبت‌نام‌ها ناموفق بود"
-                  : "Det gick inte att hämta anmälningar"}
+                {t("admin.loadingSubmissionsError")}
               </p>
             </GlassCard>
           </div>
@@ -603,22 +602,12 @@ export default function AdminSubmissions() {
 
         {/* Empty state */}
         {!isLoading && !isError && filtered.length === 0 && (
-          <div
-            className="text-center py-16"
-            data-ocid="submissions.empty_state"
-          >
-            <GlassCard className="p-10 max-w-sm mx-auto">
-              <User className="w-12 h-12 text-muted-foreground mx-auto mb-3 opacity-40" />
-              <p className="text-foreground font-body font-semibold mb-1">
-                {t("admin.submissions_section.empty")}
-              </p>
-              <p className="text-muted-foreground text-sm font-body">
-                {isRtl
-                  ? "هنوز هیچ ثبت‌نامی دریافت نشده است"
-                  : "Inga anmälningar har inkommit ännu"}
-              </p>
-            </GlassCard>
-          </div>
+          <EmptyState
+            title={t("admin.submissions_section.empty")}
+            description={t("admin.noSubmissionsYet")}
+            icon={User}
+            dataOcid="submissions.empty_state"
+          />
         )}
 
         {/* Desktop table */}

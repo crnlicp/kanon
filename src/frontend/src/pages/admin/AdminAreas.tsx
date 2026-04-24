@@ -1,4 +1,5 @@
 import type { ExternalBlob } from "@/backend";
+import { EmptyState } from "@/components/EmptyState";
 import { GlassCard } from "@/components/GlassCard";
 import { MediaUpload } from "@/components/admin/MediaUpload";
 import {
@@ -1832,35 +1833,18 @@ export default function AdminAreas() {
 
         {/* Empty state */}
         {!isLoading && areas.length === 0 && (
-          <div
-            className="flex flex-col items-center justify-center py-20 gap-4"
-            data-ocid="areas.empty_state"
-          >
-            <div className="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-              <LayoutGrid className="w-8 h-8 text-primary/50" />
-            </div>
-            <div className="text-center">
-              <p className="font-display font-semibold text-foreground mb-1">
-                {isRtl ? "هیچ حوزه‌ای یافت نشد" : "No areas found"}
-              </p>
-              <p className="text-sm font-body text-muted-foreground">
-                {isRtl
-                  ? "اولین حوزه خود را اضافه کنید"
-                  : "Add your first area to get started"}
-              </p>
-            </div>
-            <motion.button
-              type="button"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.97 }}
-              className={`flex items-center gap-2 glass px-5 py-2.5 rounded-xl border border-primary/30 text-primary text-sm font-body font-medium hover:bg-primary/10 transition-smooth ${isRtl ? "flex-row-reverse" : ""}`}
-              onClick={() => setEditTarget(null)}
-              data-ocid="areas.empty_add_button"
-            >
-              <Plus className="w-4 h-4" />
-              {t("admin.addArea")}
-            </motion.button>
-          </div>
+          <EmptyState
+            title={isRtl ? "هیچ حوزه‌ای یافت نشد" : "No areas found"}
+            description={
+              isRtl
+                ? "اولین حوزه خود را اضافه کنید"
+                : "Add your first area to get started"
+            }
+            icon={LayoutGrid}
+            actionLabel={t("admin.addArea")}
+            onAction={() => setEditTarget(null)}
+            dataOcid="areas.empty_state"
+          />
         )}
 
         {/* Area cards grid */}

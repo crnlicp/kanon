@@ -1,3 +1,4 @@
+import { EmptyState } from "@/components/EmptyState";
 import { GlassCard } from "@/components/GlassCard";
 import {
   addFooterLink,
@@ -385,12 +386,10 @@ export default function AdminFooterLinks() {
               </motion.div>
             ))}
             {links.length === 0 && (
-              <div
-                className="text-center py-12 text-muted-foreground font-body"
-                data-ocid="footer_links.empty_state"
-              >
-                {t("common.noResults")}
-              </div>
+              <EmptyState
+                title={t("common.noResults")}
+                dataOcid="footer_links.empty_state"
+              />
             )}
           </div>
         )}

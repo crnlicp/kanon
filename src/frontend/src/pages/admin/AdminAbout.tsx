@@ -2,6 +2,7 @@ import type { ExternalBlob } from "@/backend";
 import { GlassCard } from "@/components/GlassCard";
 import { MediaUpload } from "@/components/admin/MediaUpload";
 import { getAbout, setAbout } from "@/lib/api";
+import i18n from "@/lib/i18n";
 import type { AboutContent } from "@/lib/types";
 import { useAppStore } from "@/store";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -11,37 +12,28 @@ import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 function getAdminT(lang: "fa" | "sv") {
-  const labels = {
-    sv: {
-      title: "Redigera Om oss",
-      contentSv: "Innehåll (Svenska)",
-      contentFa: "Innehåll (Persiska)",
-      image: "Bild (valfritt)",
-      save: "Spara",
-      saving: "Sparar...",
-      success: "Sparat!",
-      error: "Något gick fel",
-      loading: "Laddar...",
-      contentSvPlaceholder:
-        "Skriv om organisationens historia, uppdrag och värderingar...",
-      contentFaPlaceholder: "تاریخچه، ماموریت و ارزش‌های سازمان را بنویسید...",
-    },
-    fa: {
-      title: "ویرایش درباره ما",
-      contentSv: "محتوا (سوئدی)",
-      contentFa: "محتوا (فارسی)",
-      image: "تصویر (اختیاری)",
-      save: "ذخیره",
-      saving: "در حال ذخیره...",
-      success: "ذخیره شد!",
-      error: "خطایی رخ داد",
-      loading: "در حال بارگذاری...",
-      contentSvPlaceholder:
-        "Skriv om organisationens historia, uppdrag och värderingar...",
-      contentFaPlaceholder: "تاریخچه، ماموریت و ارزش‌های سازمان را بنویسید...",
-    },
+  const resources = i18n.getResourceBundle(lang, "translation") as Record<
+    string,
+    Record<string, Record<string, string>>
+  >;
+  const admin = resources?.["admin"] ?? ({} as Record<string, string>);
+  const about = admin?.["about"] ?? ({} as Record<string, string>);
+  const backgrounds = admin?.["backgrounds_section"] ?? ({} as Record<string, string>);
+  const upload = admin?.["upload"] ?? ({} as Record<string, string>);
+  return {
+    title: about["aboutTitle"] || "ویرایش درباره ما",
+    contentSv: about["aboutContentSv"] || "محتوا (سوئدی)",
+    contentFa: about["aboutContentFa"] || "محتوا (فارسی)",
+    image: about["aboutImage"] || "تصویر (اختیاری)",
+    imageOptional: about["aboutImage"] || "تصویر (اختیاری)",
+    save: admin["saving"] || "ذخیره",
+    saving: admin["saving"] || "در حال ذخیره...",
+    success: admin["areaCreated"] || "ذخیره شد!",
+    error: admin["deleteArea"] || "خطایی رخ داد",
+    loading: admin["saving"] || "در حال بارگذاری...",
+    contentSvPlaceholder: "تاریخچه، ماموریت و ارزش‌های سازمان را بنویسید...",
+    contentFaPlaceholder: "تاریخچه، ماموریت و ارزش‌های سازمان را بنویسید...",
   };
-  return labels[lang];
 }
 
 export default function AdminAbout() {
@@ -195,7 +187,7 @@ export default function AdminAbout() {
             </h2>
             <MediaUpload
               accept="image"
-              label={isRtl ? "تصویر (اختیاری)" : "Image (optional)"}
+              label={t.imageOptional}
               currentUrl={currentImageUrl}
               onUpload={(blob) => {
                 setImageBlob(blob);
@@ -215,9 +207,7 @@ export default function AdminAbout() {
             data-ocid="admin_about.save_button"
           >
             {isImageUploading
-              ? isRtl
-                ? "در حال آپلود..."
-                : "Uploading..."
+              ? t.uploading
               : saveMutation.isPending
                 ? t.saving
                 : t.save}
