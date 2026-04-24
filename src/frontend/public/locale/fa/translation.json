@@ -18,7 +18,16 @@
     "educationalDesc": "دوره‌ها، سخنرانی‌ها و کارگاه‌ها",
     "sportDesc": "تمرین، مسابقات و فعالیت‌های ورزشی",
     "emptyTitle": "هنوز بخشی اضافه نشده",
-    "emptySubtitle": "به زودی بخش‌های جدید اضافه می‌شوند"
+    "emptySubtitle": "به زودی بخش‌های جدید اضافه می‌شوند",
+    "iconType": {
+      "cultural": "فرهنگی",
+      "educational": "آموزشی",
+      "sport": "ورزشی"
+    },
+    "noAreas": {
+      "title": "هنوز بخشی اضافه نشده",
+      "subtitle": "به زودی بخشهای جدید اضافه میشوند"
+    }
   },
   "common": {
     "readMore": "بیشتر بخوانید",
@@ -58,15 +67,18 @@
   "footer": {
     "tagline": "پناهگاهی دیجیتال برای میراث انسانی",
     "copyright": "© {{year}}. ",
+    "copyrightC": "©",
     "icPlatform": "ساخته شده بر بستر اینترنت کامپیوتر",
     "allRights": "تمامی حقوق محفوظ است"
   },
   "admin": {
-    "title": "پنل مدیریت",
+    "title": "عنوان",
     "dashboard": "داشبورد",
     "settings": "تنظیمات",
     "heroSlides": "اسلایدهای اصلی",
-    "activities": "فعالیت‌ها",
+    "activities": {
+      "confirmText": "به‌طور دائم حذف خواهد شد."
+    },
     "backgrounds": "پس‌زمینه‌ها",
     "footerLinks": "لینک‌های فوتر",
     "submissions": "ثبت‌نام‌ها",
@@ -119,7 +131,9 @@
       "delete": "حذف",
       "pending": "در انتظار",
       "approved": "تأیید شده",
-      "rejected": "رد شده"
+      "rejected": "رد شده",
+      "count": "ثبتنام",
+      "activity": "فعالیت"
     },
     "backgrounds_section": {
       "title": "پس‌زمینه‌ها",
@@ -142,12 +156,10 @@
       "success": "بارگذاری با موفقیت انجام شد!",
       "error": "بارگذاری ناموفق بود. دوباره تلاش کنید."
     },
-    "about": "درباره ما",
     "aboutTitle": "ویرایش درباره ما",
     "aboutContentSv": "محتوا (سوئدی)",
     "aboutContentFa": "محتوا (فارسی)",
     "aboutImage": "تصویر (اختیاری)",
-    "title": "عنوان",
     "subtitle": "زیرعنوان",
     "delete": "حذف",
     "contactSubmissions": "پیام‌های تماس",
@@ -176,28 +188,113 @@
     "creatingArea": "ایجاد حوزه",
     "back": "قبلی",
     "skip": "رد کردن",
+    "finish": "اتمام",
     "swedishTitleRequired": "عنوان سوئدی الزامی است",
     "deleteArea": "حذف حوزه؟",
     "noAreasFound": "هیچ حوزه‌ای یافت نشد",
     "saving": "در حال ذخیره...",
     "uploading": "در حال آپلود...",
     "areaPageSubtitle": "مدیریت حوزه‌های فرهنگی، آموزشی و ورزشی",
-    "areaPageBackground": "پس‌زمینه صفحه",
     "addFirstArea": "اولین حوزه خود را اضافه کنید",
     "imageOptional": "تصویر (اختیاری)",
     "noSlidesAddedYet": "اسلایدی اضافه نشده",
     "heroSliders": "اسلایدهای اصلی",
+    "createArea": "ایجاد حوزه",
+    "noSubmissionsYet": "هنوز هیچ ثبت‌نامی دریافت نشده است",
+    "loadingSubmissionsError": "بارگذاری ثبت‌نام‌ها ناموفق بود",
+    "noSubmissions": "هیچ ثبت‌نامی یافت نشد",
     "image": "تصویر",
     "video": "ویدیو",
     "cardImage": "تصویر کارت",
     "areaCreatedMsg": "حوزه «{{name}}» ایجاد شد. اکنون می‌توانید تصویر کارت اضافه کنید.",
-    "noSubmissionsYet": "هنوز هیچ ثبت‌نامی دریافت نشده است",
-    "loadingSubmissionsError": "بارگذاری ثبت‌نام‌ها ناموفق بود"
+    "areaPage": "پس‌زمینه صفحه",
+    "iconType": {
+      "image": "تصویر",
+      "video": "ویدیو",
+      "cardImage": "تصویر کارت"
+    },
+    "tab": {
+      "dashboard": "داشبورد",
+      "settings": "تنظیمات",
+      "heroSlides": "اسلایدهای اصلی",
+      "activities": "فعالیت‌ها",
+      "backgrounds": "پس‌زمینه‌ها",
+      "footerLinks": "لینک‌های فوتر",
+      "submissions": "ثبت‌نام‌ها",
+      "about": "درباره ما",
+      "contactSubmissions": "پیام‌های تماس",
+      "areas": "حوزه‌ها"
+    },
+    "createWizard": {
+      "basicInfo": "اطلاعات پایه",
+      "cardImage": "تصویر کارت",
+      "heroSlides": "اسلایدها",
+      "background": "پس‌زمینه"
+    },
+    "about": {
+      "noContent": "محتوایی موجود نیست"
+    },
+    "form": {
+      "activity": "فعالیت",
+      "link": "لینک",
+      "enableRegistrationForm": "فعال‌سازی فرم ثبت‌نام",
+      "slugLabel": "اسلاگ",
+      "slugPlaceholder": "فعالیت-اسلاگ",
+      "titleSvLabel": "عنوان (سوئدی)",
+      "titleSvPlaceholder": "عنوان سوئدی",
+      "titleFaLabel": "عنوان (فارسی)",
+      "titleFaPlaceholder": "عنوان فارسی",
+      "descriptionSvLabel": "توضیحات (سوئدی)",
+      "descriptionSvPlaceholder": "توضیحات سوئدی",
+      "descriptionFaLabel": "توضیحات (فارسی)",
+      "descriptionFaPlaceholder": "توضیحات فارسی",
+      "shortDescriptionSvLabel": "توضیح کوتاه (سوئدی)",
+      "shortDescriptionSvPlaceholder": "خلاصه سوئدی",
+      "shortDescriptionFaLabel": "توضیح کوتاه (فارسی)",
+      "shortDescriptionFaPlaceholder": "خلاصه فارسی",
+      "dateLabel": "تاریخ",
+      "capacityLabel": "ظرفیت",
+      "orderLabel": "ترتیب",
+      "locationSvLabel": "مکان (سوئدی)",
+      "locationSvPlaceholder": "مکان",
+      "locationFaLabel": "مکان (فارسی)",
+      "locationFaPlaceholder": "مکان",
+      "tagsLabel": "برچسب‌ها (با کاما جدا شده)",
+      "tagsPlaceholder": "برچسب۱، برچسب۲، برچسب۳",
+      "imageLabel": "تصویر فعالیت"
+    },
+    "category": "دسته‌بندی",
+    "linkPlaceholder": "https://...",
+    "ctaUrlPlaceholder": "#",
+    "noAreasAdded": "هنوز بخشی اضافه نشده",
+    "noAreasDescription": "شما باید حداقل یک حوزه ایجاد کنید قبل از افزودن فعالیت.",
+    "goToAreas": "رفتن به صفحه حوزه‌ها →",
+    "backgroundImage": "تصویر پس‌زمینه",
+    "backgroundVideo": "ویدیوی پس‌زمینه",
+    "contactEmailPlaceholder": "info@example.se",
+    "contactPhonePlaceholder": "+46 8 000 000",
+    "contactAddressPlaceholder": "خیابان نمونه ۱، استکهلم",
+    "contactAddressPlaceholderFa": "خیابان نمونه ۱، استکهلم",
+    "passwordPlaceholder": "••••••••",
+    "togglePasswordVisibility": "نمایش/پنهان کردن رمز عبور",
+    "switchToPersian": "تغییر به فارسی",
+    "switchToSwedish": "تغییر به سوئدی",
+    "closeMenu": "بستن منو",
+    "openSidebar": "باز کردن نوار کناری"
+  },
+  "landing": {
+    "langLabelSv": "Svenska",
+    "langLabelFa": "فارسی"
   },
   "hero": {
     "exploreHeritage": "میراث مشترک ما را کشف کنید",
     "digitalSanctuary": "پناهگاهی دیجیتال برای میراث انسانی",
-    "bookTickets": "رزرو بلیط"
+    "bookTickets": "رزرو بلیط",
+    "prevSlide": "اسلاید قبلی",
+    "nextSlide": "اسلاید بعدی",
+    "slideTo": "برو به اسلاید {{num}}",
+    "prevSlideTitle": "پرچم سوئد",
+    "nextSlideTitle": "پرچم ایران"
   },
   "about": {
     "title": "درباره ما",

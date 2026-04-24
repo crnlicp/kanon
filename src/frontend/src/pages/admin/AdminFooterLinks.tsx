@@ -169,8 +169,8 @@ function LinkModal({ link, onClose, onSave, nextOrder }: LinkModalProps) {
               </label>
               <input
                 id="fl-label-sv"
-                {...register("labelSv", { required: "Required" })}
-                placeholder="Om oss"
+                {...register("labelSv", { required: t("common.required") })}
+                placeholder={t("about.title")}
                 className={inputClass}
                 data-ocid="footer_links.label_sv_input"
               />
@@ -181,9 +181,9 @@ function LinkModal({ link, onClose, onSave, nextOrder }: LinkModalProps) {
               </label>
               <input
                 id="fl-label-fa"
-                {...register("labelFa", { required: "Required" })}
+                {...register("labelFa", { required: t("common.required") })}
                 dir="rtl"
-                placeholder="درباره ما"
+                placeholder={t("about.title")}
                 className={inputClass}
                 data-ocid="footer_links.label_fa_input"
               />
@@ -196,8 +196,8 @@ function LinkModal({ link, onClose, onSave, nextOrder }: LinkModalProps) {
             </label>
             <input
               id="fl-url"
-              {...register("url", { required: "Required" })}
-              placeholder="/about or https://..."
+              {...register("url", { required: t("common.required") })}
+              placeholder={t("admin.linkPlaceholder") or "https://..."}
               className={inputClass}
               data-ocid="footer_links.url_input"
             />
@@ -206,7 +206,7 @@ function LinkModal({ link, onClose, onSave, nextOrder }: LinkModalProps) {
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label htmlFor="fl-category" className={labelClass}>
-                {adminLang === "fa" ? "دسته‌بندی" : "Category"}
+                t("admin.category")
               </label>
               <select
                 id="fl-category"

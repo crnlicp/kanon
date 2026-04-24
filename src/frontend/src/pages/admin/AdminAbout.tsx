@@ -2,44 +2,21 @@ import type { ExternalBlob } from "@/backend";
 import { GlassCard } from "@/components/GlassCard";
 import { MediaUpload } from "@/components/admin/MediaUpload";
 import { getAbout, setAbout } from "@/lib/api";
-import i18n from "@/lib/i18n";
 import type { AboutContent } from "@/lib/types";
 import { useAppStore } from "@/store";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { BookOpen } from "lucide-react";
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 
-function getAdminT(lang: "fa" | "sv") {
-  const resources = i18n.getResourceBundle(lang, "translation") as Record<
-    string,
-    Record<string, Record<string, string>>
-  >;
-  const admin = resources?.["admin"] ?? ({} as Record<string, string>);
-  const about = admin?.["about"] ?? ({} as Record<string, string>);
-  const backgrounds = admin?.["backgrounds_section"] ?? ({} as Record<string, string>);
-  const upload = admin?.["upload"] ?? ({} as Record<string, string>);
-  return {
-    title: about["aboutTitle"] || "ویرایش درباره ما",
-    contentSv: about["aboutContentSv"] || "محتوا (سوئدی)",
-    contentFa: about["aboutContentFa"] || "محتوا (فارسی)",
-    image: about["aboutImage"] || "تصویر (اختیاری)",
-    imageOptional: about["aboutImage"] || "تصویر (اختیاری)",
-    save: admin["saving"] || "ذخیره",
-    saving: admin["saving"] || "در حال ذخیره...",
-    success: admin["areaCreated"] || "ذخیره شد!",
-    error: admin["deleteArea"] || "خطایی رخ داد",
-    loading: admin["saving"] || "در حال بارگذاری...",
-    contentSvPlaceholder: "تاریخچه، ماموریت و ارزش‌های سازمان را بنویسید...",
-    contentFaPlaceholder: "تاریخچه، ماموریت و ارزش‌های سازمان را بنویسید...",
-  };
 }
 
 export default function AdminAbout() {
   const { adminAuth, adminLang } = useAppStore();
   const queryClient = useQueryClient();
-  const t = getAdminT(adminLang);
+  const { t } = useTranslation();
   const isRtl = adminLang === "fa";
 
   const [contentSv, setContentSv] = useState("");

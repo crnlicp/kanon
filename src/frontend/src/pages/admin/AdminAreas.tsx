@@ -91,7 +91,7 @@ function IconComponent({
 
 const TOPIC_KEYWORDS: { fa: string[]; sv: string[]; topic: TopicType }[] = [
   {
-    fa: ["فرهنگ", "فرهنگی", "هنر", "موسیقی"],
+    fa: ["فرهنگ", t("topics.iconType.cultural"), "هنر", "موسیقی"],
     sv: ["kultur", "kulturell", "konst"],
     topic: "cultural",
   },
@@ -194,23 +194,24 @@ function GlassInput({
 // ---------------------------------------------------------------------------
 
 const WIZARD_STEPS = () => [
-  { id: 1, labelSv: "Basic Info", labelFa: "اطلاعات پایه", icon: Edit2 },
-  { id: 2, labelSv: "Card Image", labelFa: "تصویر کارت", icon: ImageIcon },
+  { id: 1, labelKey: "admin.createWizard.basicInfo", icon: Edit2 },
+  { id: 2, labelKey: "admin.createWizard.cardImage", icon: ImageIcon },
   {
     id: 3,
-    labelSv: "Hero Slides",
-    labelFa: "اسلایدها",
+    labelKey: "admin.createWizard.heroSlides",
     icon: SlidersHorizontal,
   },
-  { id: 4, labelSv: "Background", labelFa: "پس‌زمینه", icon: Film },
+  { id: 4, labelKey: "admin.createWizard.background", icon: Film },
 ];
 
 function WizardStepIndicator({
   currentStep,
   isRtl,
+  t,
 }: {
   currentStep: number;
   isRtl: boolean;
+  t: ReturnType<typeof useTranslation>["t"];
 }) {
   const steps = WIZARD_STEPS();
   return (
@@ -252,7 +253,7 @@ function WizardStepIndicator({
                       : "text-muted-foreground"
                 }`}
               >
-                {isRtl ? step.labelFa : step.labelSv}
+                {t(step.labelKey)}
               </span>
             </div>
             {!isLast && (
@@ -346,7 +347,7 @@ function HeroSlideRow({
           <p className="text-sm font-body font-medium text-foreground truncate">
             {displayTitle || (
               <span className="text-muted-foreground italic">
-                {isRtl ? "بدون عنوان" : "Untitled"}
+                {t("admin.noSlidesAddedYet")}
               </span>
             )}
           </p>
@@ -386,22 +387,22 @@ function HeroSlideRow({
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <span className="text-xs font-body font-medium text-muted-foreground block mb-1">
-                    {isRtl ? "عنوان (سوئدی)" : "Title (Swedish)"}
+                    {t("admin.areaTitleSv")}
                   </span>
                   <GlassInput
                     value={titleSv}
                     onChange={setTitleSv}
-                    placeholder="Rubrik"
+                    placeholder={t("admin.areasTitle") or "Rubrik"}
                   />
                 </div>
                 <div>
                   <span className="text-xs font-body font-medium text-muted-foreground block mb-1">
-                    {isRtl ? "عنوان (فارسی)" : "Title (Persian)"}
+                    {t("admin.areaTitleFa")}
                   </span>
                   <GlassInput
                     value={titleFa}
                     onChange={setTitleFa}
-                    placeholder="عنوان"
+                    placeholder={t("admin.areasTitle") or "عنوان"}
                     dir="rtl"
                   />
                 </div>
@@ -409,29 +410,29 @@ function HeroSlideRow({
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <span className="text-xs font-body font-medium text-muted-foreground block mb-1">
-                    {isRtl ? "زیرعنوان (سوئدی)" : "Subtitle (Swedish)"}
+                    {t("admin.areaSubtitleSv")}
                   </span>
                   <GlassInput
                     value={subtitleSv}
                     onChange={setSubtitleSv}
-                    placeholder="Underrubrik"
+                    placeholder={t("admin.areaSubtitleSv") or "Underrubrik"}
                   />
                 </div>
                 <div>
                   <span className="text-xs font-body font-medium text-muted-foreground block mb-1">
-                    {isRtl ? "زیرعنوان (فارسی)" : "Subtitle (Persian)"}
+                    {t("admin.areaSubtitleFa")}
                   </span>
                   <GlassInput
                     value={subtitleFa}
                     onChange={setSubtitleFa}
-                    placeholder="زیرعنوان"
+                    placeholder={t("admin.areaSubtitleFa") or "زیرعنوان"}
                     dir="rtl"
                   />
                 </div>
               </div>
               <MediaUpload
                 accept="image"
-                label={isRtl ? "تصویر اسلاید" : "Slide Image"}
+                label={t("admin.slideImage")}
                 currentUrl={slide.imageUrl}
                 onUpload={(blob) => setNewImage(blob)}
                 onUploadingChange={(v) => {
@@ -515,7 +516,7 @@ function AddHeroSlideForm({
         className={`flex items-center justify-between ${isRtl ? "flex-row-reverse" : ""}`}
       >
         <span className="text-sm font-body font-semibold text-primary">
-          {isRtl ? "افزودن اسلاید جدید" : "Add New Slide"}
+          {t("admin.newSlide")}
         </span>
         <button
           type="button"
@@ -528,22 +529,22 @@ function AddHeroSlideForm({
       <div className="grid grid-cols-2 gap-3">
         <div>
           <span className="text-xs font-body font-medium text-muted-foreground block mb-1">
-            {isRtl ? "عنوان (سوئدی)" : "Title (Swedish)"}
+            {t("admin.areaTitleSv")}
           </span>
           <GlassInput
             value={titleSv}
             onChange={setTitleSv}
-            placeholder="Rubrik"
+            placeholder={t("admin.areasTitle") or "Rubrik"}
           />
         </div>
         <div>
           <span className="text-xs font-body font-medium text-muted-foreground block mb-1">
-            {isRtl ? "عنوان (فارسی)" : "Title (Persian)"}
+            {t("admin.areaTitleFa")}
           </span>
           <GlassInput
             value={titleFa}
             onChange={setTitleFa}
-            placeholder="عنوان"
+            placeholder={t("admin.areasTitle") or "عنوان"}
             dir="rtl"
           />
         </div>
@@ -551,29 +552,29 @@ function AddHeroSlideForm({
       <div className="grid grid-cols-2 gap-3">
         <div>
           <span className="text-xs font-body font-medium text-muted-foreground block mb-1">
-            {isRtl ? "زیرعنوان (سوئدی)" : "Subtitle (Swedish)"}
+            {t("admin.areaSubtitleSv")}
           </span>
           <GlassInput
             value={subtitleSv}
             onChange={setSubtitleSv}
-            placeholder="Underrubrik"
+            placeholder={t("admin.areaSubtitleSv") or "Underrubrik"}
           />
         </div>
         <div>
           <span className="text-xs font-body font-medium text-muted-foreground block mb-1">
-            {isRtl ? "زیرعنوان (فارسی)" : "Subtitle (Persian)"}
+            {t("admin.areaSubtitleFa")}
           </span>
           <GlassInput
             value={subtitleFa}
             onChange={setSubtitleFa}
-            placeholder="زیرعنوان"
+            placeholder={t("admin.areaSubtitleFa") or "زیرعنوان"}
             dir="rtl"
           />
         </div>
       </div>
       <MediaUpload
         accept="image"
-        label={isRtl ? "تصویر اسلاید *" : "Slide Image *"}
+        label={t("admin.slideImageRequired")}
         onUpload={(blob) => setImageBlob(blob)}
       />
       <motion.button
@@ -642,7 +643,7 @@ function HeroSlidesSection({
         >
           <ImageIcon className="w-8 h-8 text-muted-foreground/40" />
           <p className="text-sm font-body text-muted-foreground">
-            {isRtl ? "اسلایدی اضافه نشده" : "No slides added yet"}
+            {t("admin.noSlidesAddedYet")}
           </p>
         </div>
       )}
@@ -675,7 +676,7 @@ function HeroSlidesSection({
           data-ocid="areas.add_slide_button"
         >
           <Plus className="w-4 h-4" />
-          {isRtl ? "افزودن اسلاید" : "Add Slide"}
+          {t("admin.addSlide")}
         </button>
       )}
     </div>
@@ -755,7 +756,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
       queryClient.invalidateQueries({ queryKey: ["areas"] });
       setSavedArea(created);
       toast.success(
-        isRtl ? "حوزه با موفقیت ایجاد شد!" : "Area created successfully!",
+        t("admin.areaCreated"),
       );
       setStep(2);
     } catch {
@@ -778,7 +779,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
         setSavedArea(updated);
         queryClient.invalidateQueries({ queryKey: ["areas"] });
       }
-      toast.success(isRtl ? "تصویر کارت ذخیره شد" : "Card background saved");
+      toast.success(t("admin.cardBgSaved"));
     } catch {
       toast.error(t("common.error"));
     }
@@ -842,7 +843,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
             </div>
             <div>
               <h2 className="font-display text-base font-bold text-foreground">
-                {isRtl ? "ایجاد حوزه جدید" : "Create New Area"}
+                {t("admin.createNewArea")}
               </h2>
               <p className="text-xs font-body text-muted-foreground mt-0.5">
                 {isRtl
@@ -863,7 +864,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
 
         {/* Step indicator */}
         <div className="px-6 py-4 border-b border-white/10 flex-shrink-0 flex justify-center">
-          <WizardStepIndicator currentStep={step} isRtl={isRtl} />
+          <WizardStepIndicator currentStep={step} isRtl={isRtl} t={t} />
         </div>
 
         {/* Scrollable step content */}
@@ -890,7 +891,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                 </div>
 
                 <SectionDivider
-                  label={isRtl ? "آیکون حوزه" : "Area Icon"}
+                  label={t("admin.areaIcon")}
                   icon={LayoutGrid}
                   isRtl={isRtl}
                 />
@@ -913,7 +914,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                 </div>
 
                 <SectionDivider
-                  label={isRtl ? "عنوان" : "Title"}
+                  label={t("admin.title")}
                   icon={Edit2}
                   isRtl={isRtl}
                 />
@@ -934,7 +935,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                         if (v.trim())
                           setErrors((e) => ({ ...e, titleSv: false }));
                       }}
-                      placeholder="Kulturellt"
+                      placeholder=t("topics.iconType.cultural")
                       hasError={errors.titleSv}
                       data-ocid="areas.title_sv_input"
                     />
@@ -943,7 +944,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                         className="text-destructive text-xs mt-1 font-body"
                         data-ocid="areas.title_sv_field_error"
                       >
-                        {isRtl ? "الزامی است" : "Required"}
+                        {t("admin.required")}
                       </p>
                     )}
                   </div>
@@ -963,7 +964,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                         if (v.trim())
                           setErrors((e) => ({ ...e, titleFa: false }));
                       }}
-                      placeholder="فرهنگی"
+                      placeholder=t("topics.iconType.cultural")
                       dir="rtl"
                       hasError={errors.titleFa}
                       data-ocid="areas.title_fa_input"
@@ -973,14 +974,14 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                         className="text-destructive text-xs mt-1 font-body"
                         data-ocid="areas.title_fa_field_error"
                       >
-                        {isRtl ? "الزامی است" : "Required"}
+                        {t("admin.required")}
                       </p>
                     )}
                   </div>
                 </div>
 
                 <SectionDivider
-                  label={isRtl ? "زیرعنوان" : "Subtitle"}
+                  label={t("admin.subtitle")}
                   icon={Edit2}
                   isRtl={isRtl}
                 />
@@ -996,7 +997,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                       id="wiz-subtitle-sv"
                       value={subtitleSv}
                       onChange={setSubtitleSv}
-                      placeholder="Konst & evenemang"
+                      placeholder=t("topics.culturalDesc")
                       data-ocid="areas.subtitle_sv_input"
                     />
                   </div>
@@ -1011,7 +1012,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                       id="wiz-subtitle-fa"
                       value={subtitleFa}
                       onChange={setSubtitleFa}
-                      placeholder="هنر و رویدادها"
+                      placeholder=t("topics.culturalDesc")
                       dir="rtl"
                       data-ocid="areas.subtitle_fa_input"
                     />
@@ -1083,7 +1084,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                 className="flex flex-col gap-5"
               >
                 <SectionDivider
-                  label={isRtl ? "اسلایدهای اصلی" : "Hero Sliders"}
+                  label={t("admin.heroSliders")}
                   icon={SlidersHorizontal}
                   isRtl={isRtl}
                 />
@@ -1139,7 +1140,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                     }`}
                   >
                     <ImageIcon className="w-3.5 h-3.5" />
-                    {isRtl ? "تصویر" : "Image"}
+                    {t("admin.iconType.image")}
                   </button>
                   <button
                     type="button"
@@ -1152,7 +1153,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                     }`}
                   >
                     <Film className="w-3.5 h-3.5" />
-                    {isRtl ? "ویدیو" : "Video"}
+                    {t("admin.iconType.video")}
                   </button>
                 </div>
 
@@ -1174,7 +1175,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                 {isSavingBg && (
                   <p className="text-xs font-body text-primary flex items-center gap-1">
                     <span className="animate-spin">⟳</span>
-                    {isRtl ? "در حال ذخیره..." : "Saving..."}
+                    {t("admin.saving")}
                   </p>
                 )}
               </motion.div>
@@ -1198,7 +1199,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                 ) : (
                   <ChevronLeft className="w-4 h-4" />
                 )}
-                {isRtl ? "قبلی" : "Back"}
+                {t("admin.back")}
               </button>
             ) : (
               <button
@@ -1243,7 +1244,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                   className={`px-4 py-2.5 rounded-xl glass border border-white/10 text-sm font-body text-muted-foreground hover:text-foreground transition-smooth flex items-center gap-1.5 disabled:opacity-60 ${isRtl ? "flex-row-reverse" : ""}`}
                   data-ocid="areas.skip_step_button"
                 >
-                  {isRtl ? "رد کردن" : "Skip"}
+                  {t("common.skip")}
                 </button>
                 <motion.button
                   type="button"
@@ -1279,7 +1280,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                   className={`px-4 py-2.5 rounded-xl glass border border-white/10 text-sm font-body text-muted-foreground hover:text-foreground transition-smooth flex items-center gap-1.5 disabled:opacity-60 ${isRtl ? "flex-row-reverse" : ""}`}
                   data-ocid="areas.skip_step_button"
                 >
-                  {isRtl ? "رد کردن" : "Skip"}
+                  {t("common.skip")}
                 </button>
                 <motion.button
                   type="button"
@@ -1376,7 +1377,7 @@ function EditAreaPanel({ area, allAreas, onClose }: EditAreaPanelProps) {
   const handleSave = () => {
     if (!titleSv.trim()) {
       toast.error(
-        isRtl ? "عنوان سوئدی الزامی است" : "Swedish title is required",
+        t("admin.swedishTitleRequired"),
       );
       return;
     }
@@ -1442,7 +1443,7 @@ function EditAreaPanel({ area, allAreas, onClose }: EditAreaPanelProps) {
             {/* Icon */}
             <div className="flex flex-col gap-3">
               <SectionDivider
-                label={isRtl ? "آیکون حوزه" : "Area Icon"}
+                label={t("admin.areaIcon")}
                 icon={LayoutGrid}
                 isRtl={isRtl}
               />
@@ -1467,7 +1468,7 @@ function EditAreaPanel({ area, allAreas, onClose }: EditAreaPanelProps) {
             {/* Titles */}
             <div className="flex flex-col gap-3">
               <SectionDivider
-                label={isRtl ? "عنوان" : "Title"}
+                label={t("admin.title")}
                 icon={Edit2}
                 isRtl={isRtl}
               />
@@ -1483,7 +1484,7 @@ function EditAreaPanel({ area, allAreas, onClose }: EditAreaPanelProps) {
                     id="edit-title-sv"
                     value={titleSv}
                     onChange={setTitleSv}
-                    placeholder="Kulturellt"
+                    placeholder=t("topics.iconType.cultural")
                     data-ocid="areas.title_sv_input"
                   />
                 </div>
@@ -1498,7 +1499,7 @@ function EditAreaPanel({ area, allAreas, onClose }: EditAreaPanelProps) {
                     id="edit-title-fa"
                     value={titleFa}
                     onChange={setTitleFa}
-                    placeholder="فرهنگی"
+                    placeholder=t("topics.iconType.cultural")
                     dir="rtl"
                     data-ocid="areas.title_fa_input"
                   />
@@ -1509,7 +1510,7 @@ function EditAreaPanel({ area, allAreas, onClose }: EditAreaPanelProps) {
             {/* Subtitles */}
             <div className="flex flex-col gap-3">
               <SectionDivider
-                label={isRtl ? "زیرعنوان" : "Subtitle"}
+                label={t("admin.subtitle")}
                 icon={Edit2}
                 isRtl={isRtl}
               />
@@ -1525,7 +1526,7 @@ function EditAreaPanel({ area, allAreas, onClose }: EditAreaPanelProps) {
                     id="edit-subtitle-sv"
                     value={subtitleSv}
                     onChange={setSubtitleSv}
-                    placeholder="Konst & evenemang"
+                    placeholder=t("topics.culturalDesc")
                     data-ocid="areas.subtitle_sv_input"
                   />
                 </div>
@@ -1540,7 +1541,7 @@ function EditAreaPanel({ area, allAreas, onClose }: EditAreaPanelProps) {
                     id="edit-subtitle-fa"
                     value={subtitleFa}
                     onChange={setSubtitleFa}
-                    placeholder="هنر و رویدادها"
+                    placeholder=t("topics.culturalDesc")
                     dir="rtl"
                     data-ocid="areas.subtitle_fa_input"
                   />
@@ -1551,7 +1552,7 @@ function EditAreaPanel({ area, allAreas, onClose }: EditAreaPanelProps) {
             {/* Card Background */}
             <div className="flex flex-col gap-3">
               <SectionDivider
-                label={isRtl ? "تصویر کارت" : "Card Background Image"}
+                label={t("admin.cardImage")}
                 icon={ImageIcon}
                 isRtl={isRtl}
               />
@@ -1583,7 +1584,7 @@ function EditAreaPanel({ area, allAreas, onClose }: EditAreaPanelProps) {
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-body font-medium transition-smooth ${bgMode === "image" ? "bg-primary/30 text-foreground border border-primary/30" : "text-muted-foreground hover:text-foreground"}`}
                 >
                   <ImageIcon className="w-3.5 h-3.5" />{" "}
-                  {isRtl ? "تصویر" : "Image"}
+                  {t("admin.iconType.image")}
                 </button>
                 <button
                   type="button"
@@ -1591,7 +1592,7 @@ function EditAreaPanel({ area, allAreas, onClose }: EditAreaPanelProps) {
                   data-ocid="areas.bg_mode_video"
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-body font-medium transition-smooth ${bgMode === "video" ? "bg-accent/30 text-foreground border border-accent/30" : "text-muted-foreground hover:text-foreground"}`}
                 >
-                  <Film className="w-3.5 h-3.5" /> {isRtl ? "ویدیو" : "Video"}
+                  <Film className="w-3.5 h-3.5" /> {t("admin.iconType.video")}
                 </button>
               </div>
               <MediaUpload
@@ -1617,7 +1618,7 @@ function EditAreaPanel({ area, allAreas, onClose }: EditAreaPanelProps) {
             {/* Hero Slides */}
             <div className="flex flex-col gap-3">
               <SectionDivider
-                label={isRtl ? "اسلایدهای اصلی" : "Hero Sliders"}
+                label={t("admin.heroSliders")}
                 icon={SlidersHorizontal}
                 isRtl={isRtl}
               />
@@ -1704,7 +1705,7 @@ function DeleteConfirm({
           </div>
           <div>
             <h3 className="font-display text-base font-bold text-foreground mb-1">
-              {isRtl ? "حذف حوزه؟" : "Delete Area?"}
+              {t("admin.deleteArea")}
             </h3>
             <p className="text-muted-foreground text-sm font-body">
               «{title}»{" "}

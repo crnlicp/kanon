@@ -204,7 +204,7 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
               <input
                 id="sf-title-sv"
                 {...register("titleSv", { required: "Required" })}
-                placeholder="Swedish title"
+                placeholder={t("admin.titleSv") or "Swedish title"}
                 className="w-full glass rounded-lg border border-white/10 px-3 py-2 text-sm font-body text-foreground placeholder:text-muted-foreground bg-transparent focus:outline-none focus:border-primary/50"
                 data-ocid="hero_slides.title_sv_input"
               />
@@ -220,7 +220,7 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
                 id="sf-title-fa"
                 {...register("titleFa", { required: "Required" })}
                 dir="rtl"
-                placeholder="عنوان فارسی"
+                placeholder={t("admin.titleFa") or "عنوان فارسی"}
                 className="w-full glass rounded-lg border border-white/10 px-3 py-2 text-sm font-body text-foreground placeholder:text-muted-foreground bg-transparent focus:outline-none focus:border-primary/50"
                 data-ocid="hero_slides.title_fa_input"
               />
@@ -239,7 +239,7 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
               <input
                 id="sf-subtitle-sv"
                 {...register("subtitleSv")}
-                placeholder="Swedish subtitle"
+                placeholder={t("admin.subtitleSv") or "Swedish subtitle"}
                 className="w-full glass rounded-lg border border-white/10 px-3 py-2 text-sm font-body text-foreground placeholder:text-muted-foreground bg-transparent focus:outline-none focus:border-primary/50"
               />
             </div>
@@ -254,7 +254,7 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
                 id="sf-subtitle-fa"
                 {...register("subtitleFa")}
                 dir="rtl"
-                placeholder="زیرعنوان فارسی"
+                placeholder={t("admin.subtitleFa") or "زیرعنوان فارسی"}
                 className="w-full glass rounded-lg border border-white/10 px-3 py-2 text-sm font-body text-foreground placeholder:text-muted-foreground bg-transparent focus:outline-none focus:border-primary/50"
               />
             </div>
@@ -272,7 +272,7 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
               <input
                 id="sf-cta-sv"
                 {...register("ctaLabelSv")}
-                placeholder="Läs mer"
+                placeholder={t("common.learnMore") or "Läs mer"}
                 className="w-full glass rounded-lg border border-white/10 px-3 py-2 text-sm font-body text-foreground placeholder:text-muted-foreground bg-transparent focus:outline-none focus:border-primary/50"
               />
             </div>
@@ -287,7 +287,7 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
                 id="sf-cta-fa"
                 {...register("ctaLabelFa")}
                 dir="rtl"
-                placeholder="بیشتر بخوانید"
+                placeholder={t("common.learnMore") or "بیشتر بخوانید"}
                 className="w-full glass rounded-lg border border-white/10 px-3 py-2 text-sm font-body text-foreground placeholder:text-muted-foreground bg-transparent focus:outline-none focus:border-primary/50"
               />
             </div>
@@ -305,7 +305,7 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
               <input
                 id="sf-cta-url"
                 {...register("ctaUrl")}
-                placeholder="#"
+                placeholder={t("admin.ctaUrlPlaceholder") or "#"}
                 className="w-full glass rounded-lg border border-white/10 px-3 py-2 text-sm font-body text-foreground placeholder:text-muted-foreground bg-transparent focus:outline-none focus:border-primary/50"
               />
             </div>

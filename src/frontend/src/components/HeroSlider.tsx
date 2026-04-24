@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface HeroSliderProps {
   slides: HeroSlide[];
@@ -14,6 +15,7 @@ interface HeroSliderProps {
 export function HeroSlider({ slides, lang, className }: HeroSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1);
+  const { t } = useTranslation();
 
   const goTo = useCallback((index: number, dir: number) => {
     setDirection(dir);
@@ -110,7 +112,7 @@ export function HeroSlider({ slides, lang, className }: HeroSliderProps) {
               backgroundColor: "rgba(255,255,255,0.15)",
             }}
             whileTap={{ scale: 0.9 }}
-            aria-label="Previous slide"
+            aria-label={t("hero.prevSlide")}
             data-ocid="hero.prev_button"
           >
             <ChevronLeft className="w-4 h-4" />
@@ -123,7 +125,7 @@ export function HeroSlider({ slides, lang, className }: HeroSliderProps) {
               backgroundColor: "rgba(255,255,255,0.15)",
             }}
             whileTap={{ scale: 0.9 }}
-            aria-label="Next slide"
+            aria-label={t("hero.nextSlide")}
             data-ocid="hero.next_button"
           >
             <ChevronRight className="w-4 h-4" />
@@ -141,7 +143,7 @@ export function HeroSlider({ slides, lang, className }: HeroSliderProps) {
                     : "w-2 h-2 bg-white/40 hover:bg-white/60",
                 )}
                 onClick={() => goTo(i, i > currentIndex ? 1 : -1)}
-                aria-label={`Go to slide ${i + 1}`}
+                aria-label={t("hero.slideTo", { num: i + 1 })}
                 data-ocid={`hero.dot.${i + 1}`}
               />
             ))}

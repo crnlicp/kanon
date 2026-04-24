@@ -171,7 +171,7 @@ function LangToggle({ compact = false }: { compact?: boolean }) {
         type="button"
         onClick={() => switchTo("fa")}
         data-ocid="admin.lang_fa_button"
-        aria-label="Switch admin to Persian"
+        aria-label="t("admin.switchToPersian")"
         className={cn(
           "flex items-center gap-1.5 px-2.5 py-1 rounded-full font-body font-medium transition-smooth",
           adminLang === "fa"
@@ -190,7 +190,7 @@ function LangToggle({ compact = false }: { compact?: boolean }) {
         type="button"
         onClick={() => switchTo("sv")}
         data-ocid="admin.lang_sv_button"
-        aria-label="Switch admin to Swedish"
+        aria-label="t("admin.switchToSwedish")"
         className={cn(
           "flex items-center gap-1.5 px-2.5 py-1 rounded-full font-body font-medium transition-smooth",
           adminLang === "sv"
@@ -237,7 +237,7 @@ function Sidebar({
             type="button"
             onClick={onClose}
             className="text-muted-foreground hover:text-foreground transition-smooth"
-            aria-label="Close menu"
+            aria-label="t("admin.closeMenu")"
           >
             <X className="w-5 h-5" />
           </button>
@@ -362,7 +362,7 @@ export function AdminLayout() {
             type="button"
             className="lg:hidden glass w-8 h-8 rounded-lg flex items-center justify-center border border-white/10 text-muted-foreground hover:text-foreground transition-smooth"
             onClick={() => setMobileSidebarOpen(true)}
-            aria-label="Open sidebar"
+            aria-label="t("admin.openSidebar")"
             data-ocid="admin.mobile_menu_button"
           >
             <Menu className="w-4 h-4" />

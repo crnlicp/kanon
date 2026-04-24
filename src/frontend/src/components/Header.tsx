@@ -8,6 +8,7 @@ import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function areaToSlug(area: Area): string {
   const title = area.titleSv.toLowerCase().trim();
@@ -28,6 +29,7 @@ export function Header() {
   const { currentLang, setLang } = useAppStore();
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const { data: areas } = useQuery<Area[]>({
     queryKey: ["areas"],
@@ -77,12 +79,12 @@ export function Header() {
 
   const staticNavItems: NavItem[] = [
     {
-      label: currentLang === "fa" ? "درباره ما" : "Om oss",
+      label: t("nav.about"),
       href: `/${currentLang}/about`,
       key: "about",
     },
     {
-      label: currentLang === "fa" ? "تماس" : "Kontakt",
+      label: t("nav.contact"),
       href: `/${currentLang}/contact`,
       key: "contact",
     },
@@ -152,7 +154,7 @@ export function Header() {
                   whileTap={{ scale: 0.95 }}
                   data-ocid={`header.lang_${lang}`}
                 >
-                  {lang === "fa" ? "فارسی" : "Svenska"}
+                  {lang === "fa" ? t("landing.langLabelFa") : t("landing.langLabelSv")}
                 </motion.button>
               ))}
             </div>

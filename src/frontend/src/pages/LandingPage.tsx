@@ -37,9 +37,9 @@ const SwedenFlag = () => (
     viewBox="0 0 200 200"
     className="w-36 h-36 drop-shadow-lg rounded-sm"
     role="img"
-    aria-label="Swedish flag"
+    aria-label=t("hero.prevSlideTitle")
   >
-    <title>Swedish flag</title>
+    <title>{t("hero.prevSlideTitle")}</title>
     <defs>
       <clipPath id="sv-wave-clip">
         <path d={WAVE_INITIAL_D}>
@@ -84,9 +84,9 @@ const IranFlag = () => (
     viewBox="0 0 200 200"
     className="w-36 h-36 drop-shadow-lg rounded-sm"
     role="img"
-    aria-label="Iranian flag"
+    aria-label=t("hero.nextSlideTitle")
   >
-    <title>Iranian flag</title>
+    <title>{t("hero.nextSlideTitle")}</title>
     <defs>
       <clipPath id="ir-wave-clip">
         <path d={WAVE_INITIAL_D}>

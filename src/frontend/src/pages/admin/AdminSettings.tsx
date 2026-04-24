@@ -540,7 +540,7 @@ export default function AdminSettings() {
 
                   {topicsBgMode === "image" ? (
                     <div>
-                      <p className={`${labelClass} mb-2`}>Background Image</p>
+                      <p className={`${labelClass} mb-2`}>t("admin.backgroundImage")</p>
                       <MediaUpload
                         accept="image"
                         label=""
@@ -551,7 +551,7 @@ export default function AdminSettings() {
                     </div>
                   ) : (
                     <div>
-                      <p className={`${labelClass} mb-2`}>Background Video</p>
+                      <p className={`${labelClass} mb-2`}>t("admin.backgroundVideo")</p>
                       <MediaUpload
                         accept="video"
                         label=""
@@ -641,7 +641,7 @@ export default function AdminSettings() {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="info@example.se"
+                      placeholder="t("admin.contactEmailPlaceholder")"
                       className={inputClass}
                       data-ocid="settings.email_input"
                     />
@@ -655,7 +655,7 @@ export default function AdminSettings() {
                       id="settings-phone"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      placeholder="+46 8 000 000"
+                      placeholder="t("admin.contactPhonePlaceholder")"
                       className={inputClass}
                       data-ocid="settings.phone_input"
                     />
@@ -673,7 +673,7 @@ export default function AdminSettings() {
                         id="settings-address-sv"
                         value={addressSv}
                         onChange={(e) => setAddressSv(e.target.value)}
-                        placeholder="Exempelgatan 1, Stockholm"
+                        placeholder="t("admin.contactAddressPlaceholder")"
                         className={inputClass}
                         data-ocid="settings.address_sv_input"
                       />
@@ -690,7 +690,7 @@ export default function AdminSettings() {
                         value={addressFa}
                         onChange={(e) => setAddressFa(e.target.value)}
                         dir="rtl"
-                        placeholder="خیابان نمونه ۱، استکهلم"
+                        placeholder="t("admin.contactAddressPlaceholderFa")"
                         className={inputClass}
                         data-ocid="settings.address_fa_input"
                       />
@@ -756,7 +756,7 @@ export default function AdminSettings() {
                         setPwError("");
                       }}
                       autoComplete="current-password"
-                      placeholder="••••••••"
+                      placeholder="t("admin.passwordPlaceholder")"
                       className={`${inputClass} ps-9 pe-10`}
                       data-ocid="settings.current_password_input"
                     />
@@ -764,7 +764,7 @@ export default function AdminSettings() {
                       type="button"
                       onClick={() => setShowCurrent((v) => !v)}
                       className="absolute end-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-smooth"
-                      aria-label="Toggle current password visibility"
+                      aria-label="t("admin.togglePasswordVisibility")"
                     >
                       {showCurrent ? (
                         <EyeOff className="w-4 h-4" />
@@ -790,7 +790,7 @@ export default function AdminSettings() {
                         setPwError("");
                       }}
                       autoComplete="new-password"
-                      placeholder="••••••••"
+                      placeholder="t("admin.passwordPlaceholder")"
                       className={`${inputClass} ps-9 pe-10`}
                       data-ocid="settings.new_password_input"
                     />
@@ -798,7 +798,7 @@ export default function AdminSettings() {
                       type="button"
                       onClick={() => setShowNew((v) => !v)}
                       className="absolute end-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-smooth"
-                      aria-label="Toggle new password visibility"
+                      aria-label="t("admin.togglePasswordVisibility")"
                     >
                       {showNew ? (
                         <EyeOff className="w-4 h-4" />
@@ -824,7 +824,7 @@ export default function AdminSettings() {
                         setPwError("");
                       }}
                       autoComplete="new-password"
-                      placeholder="••••••••"
+                      placeholder="t("admin.passwordPlaceholder")"
                       className={`${inputClass} ps-9 pe-10`}
                       data-ocid="settings.confirm_password_input"
                     />
@@ -832,7 +832,7 @@ export default function AdminSettings() {
                       type="button"
                       onClick={() => setShowConfirm((v) => !v)}
                       className="absolute end-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-smooth"
-                      aria-label="Toggle confirm password visibility"
+                      aria-label="t("admin.togglePasswordVisibility")"
                     >
                       {showConfirm ? (
                         <EyeOff className="w-4 h-4" />

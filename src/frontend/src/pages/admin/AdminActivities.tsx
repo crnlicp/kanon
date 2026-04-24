@@ -267,7 +267,7 @@ function ActivityModal({
       >
         <div className="flex items-center justify-between mb-5">
           <h2 className="font-display text-lg font-bold text-foreground">
-            {activity ? t("common.edit") : t("common.add")} Activity
+            {activity ? t("common.edit") : t("common.add")} {t("admin.form.activity")}
           </h2>
           <button
             type="button"
@@ -432,7 +432,7 @@ function ActivityModal({
           {/* Image Upload */}
           <MediaUpload
             accept="image"
-            label="Activity Image"
+            label={t("admin.form.imageLabel")}
             currentUrl={activity?.imageUrl}
             onUpload={(blob) => setImageBlob(blob)}
             onUploadingChange={(v) => setIsMediaUploading(v)}
@@ -671,7 +671,7 @@ export default function AdminActivities() {
               <div className="absolute right-0 top-full mt-2 z-10 w-56 glass rounded-xl border border-white/10 p-3 text-xs font-body text-muted-foreground shadow-lg opacity-0 group-hover:opacity-100 transition-smooth pointer-events-none">
                 {adminLang === "fa"
                   ? "ابتدا یک حوزه اضافه کنید"
-                  : "Add areas first before adding activities"}
+                  : t("admin.addFirstArea")}
               </div>
             )}
           </div>
@@ -693,7 +693,7 @@ export default function AdminActivities() {
                 <p className="font-body font-semibold text-foreground text-sm mb-1">
                   {adminLang === "fa"
                     ? "هیچ حوزه‌ای اضافه نشده است"
-                    : "No areas added yet"}
+                    : t("admin.noAreasAdded")}
                 </p>
                 <p className="font-body text-muted-foreground text-xs mb-3">
                   {adminLang === "fa"
@@ -707,7 +707,7 @@ export default function AdminActivities() {
                 >
                   {adminLang === "fa"
                     ? "رفتن به صفحه حوزه‌ها ←"
-                    : "Go to Areas page →"}
+                    : t("admin.goToAreas")}
                 </Link>
               </div>
             </GlassCard>
@@ -731,7 +731,7 @@ export default function AdminActivities() {
               }`}
               data-ocid="activities.filter_all"
             >
-              {adminLang === "fa" ? "همه" : "All"}
+              {t("common.all")}
             </button>
 
             {/* Per-area filters */}
@@ -897,11 +897,11 @@ export default function AdminActivities() {
               exit={{ opacity: 0, scale: 0.95 }}
             >
               <h3 className="font-display text-lg font-bold text-foreground mb-2">
-                {t("common.delete")} Activity?
+                {t("common.delete")} {t("admin.form.activity")}?
               </h3>
               <p className="text-muted-foreground text-sm font-body mb-5">
                 "{deleteTarget.title.sv}"{" "}
-                {t("common.deleteConfirm") ?? "will be permanently removed."}
+                {t("admin.activities.confirmText")}
               </p>
               <div className="flex gap-3">
                 <button

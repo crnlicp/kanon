@@ -29,9 +29,9 @@ import { useState } from "react";
 // Types & constants
 // ---------------------------------------------------------------------------
 
-type FilterStatus = "all" | "Pending" | "Approved" | "Rejected";
+type FilterStatus = "all" | t("admin.submissions_section.pending") | t("admin.submissions_section.approved") | t("admin.submissions_section.rejected");
 
-type StatusKey = "Pending" | "Approved" | "Rejected";
+type StatusKey = t("admin.submissions_section.pending") | t("admin.submissions_section.approved") | t("admin.submissions_section.rejected");
 
 interface StatusCfg {
   labelSv: string;
@@ -171,7 +171,7 @@ function SubmissionCard({
       ? (sub.nameFa ?? sub.nameSv ?? sub.email)
       : (sub.nameSv ?? sub.nameFa ?? sub.email);
 
-  const status = (sub.status ?? "Pending") as StatusKey;
+  const status = (sub.status ?? t("admin.submissions_section.pending")) as StatusKey;
   const formattedDate = sub.submittedAt
     ? new Date(
         typeof sub.submittedAt === "number"
@@ -240,7 +240,7 @@ function SubmissionCard({
         <div
           className={`flex gap-2 mt-3 pt-3 border-t border-white/10 ${lang === "fa" ? "flex-row-reverse justify-end" : "flex-row justify-end"}`}
         >
-          {status !== "Approved" && (
+          {status !== t("admin.submissions_section.approved") && (
             <motion.button
               type="button"
               onClick={onApprove}
@@ -254,7 +254,7 @@ function SubmissionCard({
               {t("admin.submissions_section.approve")}
             </motion.button>
           )}
-          {status !== "Rejected" && (
+          {status !== t("admin.submissions_section.rejected") && (
             <motion.button
               type="button"
               onClick={onReject}
@@ -323,7 +323,7 @@ function SubmissionRow({
       ? (sub.nameFa ?? sub.nameSv ?? sub.email)
       : (sub.nameSv ?? sub.nameFa ?? sub.email);
 
-  const status = (sub.status ?? "Pending") as StatusKey;
+  const status = (sub.status ?? t("admin.submissions_section.pending")) as StatusKey;
   const formattedDate = sub.submittedAt
     ? new Date(
         typeof sub.submittedAt === "number"
@@ -381,7 +381,7 @@ function SubmissionRow({
       {/* Actions */}
       <td className="px-4 py-3">
         <div className="flex items-center gap-1.5">
-          {status !== "Approved" && (
+          {status !== t("admin.submissions_section.approved") && (
             <motion.button
               type="button"
               onClick={onApprove}
@@ -395,7 +395,7 @@ function SubmissionRow({
               <CheckCircle className="w-3.5 h-3.5" />
             </motion.button>
           )}
-          {status !== "Rejected" && (
+          {status !== t("admin.submissions_section.rejected") && (
             <motion.button
               type="button"
               onClick={onReject}
@@ -503,13 +503,13 @@ export default function AdminSubmissions() {
   const filtered =
     filter === "all"
       ? submissions
-      : submissions.filter((s) => (s.status ?? "Pending") === filter);
+      : submissions.filter((s) => (s.status ?? t("admin.submissions_section.pending")) === filter);
 
   const FILTERS: { key: FilterStatus; label: string; labelFa: string }[] = [
     { key: "all", label: "Alla", labelFa: "همه" },
-    { key: "Pending", label: "Väntande", labelFa: "در انتظار" },
-    { key: "Approved", label: "Godkänd", labelFa: "تأیید شده" },
-    { key: "Rejected", label: "Avvisad", labelFa: "رد شده" },
+    { key: t("admin.submissions_section.pending"), label: "Väntande", labelFa: "در انتظار" },
+    { key: t("admin.submissions_section.approved"), label: "Godkänd", labelFa: "تأیید شده" },
+    { key: t("admin.submissions_section.rejected"), label: "Avvisad", labelFa: "رد شده" },
   ];
 
   const filterLabel = (f: (typeof FILTERS)[0]) => (isRtl ? f.labelFa : f.label);
@@ -557,7 +557,7 @@ export default function AdminSubmissions() {
                 <span className="ml-1.5 opacity-60 text-xs">
                   (
                   {
-                    submissions.filter((s) => (s.status ?? "Pending") === f.key)
+                    submissions.filter((s) => (s.status ?? t("admin.submissions_section.pending")) === f.key)
                       .length
                   }
                   )
@@ -655,13 +655,13 @@ export default function AdminSubmissions() {
                             onApprove={() =>
                               statusMutation.mutate({
                                 id: sub.id,
-                                status: "Approved",
+                                status: t("admin.submissions_section.approved"),
                               })
                             }
                             onReject={() =>
                               statusMutation.mutate({
                                 id: sub.id,
-                                status: "Rejected",
+                                status: t("admin.submissions_section.rejected"),
                               })
                             }
                             onDelete={() =>
@@ -689,10 +689,10 @@ export default function AdminSubmissions() {
                     t={t}
                     isPending={mutatingIds.has(sub.id)}
                     onApprove={() =>
-                      statusMutation.mutate({ id: sub.id, status: "Approved" })
+                      statusMutation.mutate({ id: sub.id, status: t("admin.submissions_section.approved") })
                     }
                     onReject={() =>
-                      statusMutation.mutate({ id: sub.id, status: "Rejected" })
+                      statusMutation.mutate({ id: sub.id, status: t("admin.submissions_section.rejected") })
                     }
                     onDelete={() => deleteMutation.mutate({ id: sub.id })}
                   />
