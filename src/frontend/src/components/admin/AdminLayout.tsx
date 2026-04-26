@@ -148,7 +148,7 @@ function PersianFlag({ className }: { className?: string }) {
 
 function LangToggle({ compact = false }: { compact?: boolean }) {
   const { adminLang, setAdminLang } = useAppStore();
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const switchTo = (lang: "fa" | "sv") => {
     setAdminLang(lang);
@@ -171,7 +171,7 @@ function LangToggle({ compact = false }: { compact?: boolean }) {
         type="button"
         onClick={() => switchTo("fa")}
         data-ocid="admin.lang_fa_button"
-        aria-label="t("admin.switchToPersian")"
+        aria-label={t("admin.switchToPersian")}
         className={cn(
           "flex items-center gap-1.5 px-2.5 py-1 rounded-full font-body font-medium transition-smooth",
           adminLang === "fa"
@@ -190,7 +190,7 @@ function LangToggle({ compact = false }: { compact?: boolean }) {
         type="button"
         onClick={() => switchTo("sv")}
         data-ocid="admin.lang_sv_button"
-        aria-label="t("admin.switchToSwedish")"
+        aria-label={t("admin.switchToSwedish")}
         className={cn(
           "flex items-center gap-1.5 px-2.5 py-1 rounded-full font-body font-medium transition-smooth",
           adminLang === "sv"
@@ -229,7 +229,7 @@ function Sidebar({
             <BarChart3 className="w-4 h-4 text-primary" />
           </div>
           <span className="font-display text-sm font-bold text-foreground">
-            Admin
+            {t("admin.badge")}
           </span>
         </div>
         {mobile && onClose && (
@@ -237,7 +237,7 @@ function Sidebar({
             type="button"
             onClick={onClose}
             className="text-muted-foreground hover:text-foreground transition-smooth"
-            aria-label="t("admin.closeMenu")"
+            aria-label={t("admin.closeMenu")}
           >
             <X className="w-5 h-5" />
           </button>
@@ -362,7 +362,7 @@ export function AdminLayout() {
             type="button"
             className="lg:hidden glass w-8 h-8 rounded-lg flex items-center justify-center border border-white/10 text-muted-foreground hover:text-foreground transition-smooth"
             onClick={() => setMobileSidebarOpen(true)}
-            aria-label="t("admin.openSidebar")"
+            aria-label={t("admin.openSidebar")}
             data-ocid="admin.mobile_menu_button"
           >
             <Menu className="w-4 h-4" />
@@ -373,7 +373,7 @@ export function AdminLayout() {
           <div className="ms-auto flex items-center gap-2">
             <LangToggle />
             <div className="glass px-3 py-1 rounded-full border border-white/10 text-xs font-body text-muted-foreground">
-              Admin
+              {t("admin.badge")}
             </div>
           </div>
         </header>

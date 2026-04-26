@@ -286,7 +286,7 @@ function ActivityModal({
               htmlFor="af-area"
               className="text-sm font-body font-medium text-foreground block mb-1"
             >
-              {adminLang === "fa" ? "حوزه" : "Area"}
+              {t("admin_areas.areaLabel")}
             </label>
             <select
               id="af-area"
@@ -335,7 +335,7 @@ function ActivityModal({
               </label>
               <input
                 id="af-title-sv"
-                {...register("titleSv", { required: "Required" })}
+                {...register("titleSv", { required: t("common.required") })}
                 placeholder="Swedish title"
                 className={inputClass}
                 data-ocid="activities.title_sv_input"
@@ -350,7 +350,7 @@ function ActivityModal({
               </label>
               <input
                 id="af-title-fa"
-                {...register("titleFa", { required: "Required" })}
+                {...register("titleFa", { required: t("common.required") })}
                 dir="rtl"
                 placeholder="عنوان فارسی"
                 className={inputClass}
@@ -370,7 +370,7 @@ function ActivityModal({
               </label>
               <textarea
                 id="af-desc-sv"
-                {...register("descriptionSv", { required: "Required" })}
+                {...register("descriptionSv", { required: t("common.required") })}
                 rows={3}
                 placeholder="Swedish description"
                 className={`${inputClass} resize-none`}
@@ -386,7 +386,7 @@ function ActivityModal({
               </label>
               <textarea
                 id="af-desc-fa"
-                {...register("descriptionFa", { required: "Required" })}
+                {...register("descriptionFa", { required: t("common.required") })}
                 rows={3}
                 dir="rtl"
                 placeholder="توضیح فارسی"
@@ -450,7 +450,7 @@ function ActivityModal({
               <input
                 id="af-date"
                 type="date"
-                {...register("date", { required: "Required" })}
+                {...register("date", { required: t("common.required") })}
                 className={inputClass}
                 data-ocid="activities.date_input"
               />
@@ -465,7 +465,7 @@ function ActivityModal({
               <input
                 id="af-capacity"
                 type="number"
-                {...register("capacity", { required: "Required", min: 1 })}
+                {...register("capacity", { required: t("common.required"), min: 1 })}
                 className={inputClass}
                 data-ocid="activities.capacity_input"
               />
@@ -480,7 +480,7 @@ function ActivityModal({
               <input
                 id="af-order"
                 type="number"
-                {...register("order", { required: "Required", min: 1 })}
+                {...register("order", { required: t("common.required"), min: 1 })}
                 className={inputClass}
                 data-ocid="activities.order_input"
               />
@@ -844,7 +844,7 @@ export default function AdminActivities() {
                         type="button"
                         className="glass py-1.5 px-3 rounded-lg text-xs font-body text-muted-foreground hover:text-destructive border border-white/10 transition-smooth"
                         onClick={() => setDeleteTarget(activity)}
-                        aria-label="Delete"
+                        aria-label={t("common.delete")}
                         data-ocid={`activities.delete_button.${i + 1}`}
                       >
                         <Trash2 className="w-3.5 h-3.5" />

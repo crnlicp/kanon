@@ -6,7 +6,8 @@
     "sport": "ورزشی",
     "about": "درباره ما",
     "contact": "تماس",
-    "admin": "مدیریت"
+    "admin": "مدیریت",
+    "toggleMenu": "تغییر منو"
   },
   "topics": {
     "title": "یک حوزه انتخاب کنید",
@@ -47,7 +48,17 @@
     "seeAll": "مشاهده همه",
     "submit": "ارسال",
     "learnMore": "بیشتر بدانید",
-    "deleteConfirm": "مطمئنم"
+    "deleteConfirm": "مطمئنم",
+    "quickAccess": "دسترسی سریع",
+    "imageRequired": "تصویر مورد نیاز است",
+    "slide": "اسلاید",
+    "deleteSlide": "حذف اسلاید؟",
+    "untitled": "بدون عنوان",
+    "deleteLink": "حذف لینک؟",
+    "link": "لینک",
+    "editSlide": "ویرایش اسلاید",
+    "addSlide": "افزودن اسلاید",
+    "required": "این فیلد الزامی است"
   },
   "form": {
     "fullName": "نام کامل",
@@ -80,7 +91,16 @@
       "confirmText": "به‌طور دائم حذف خواهد شد."
     },
     "backgrounds": "پس‌زمینه‌ها",
-    "footerLinks": "لینک‌های فوتر",
+    "footerLinks": {
+      "editLink": "ویرایش لینک",
+      "addLink": "افزودن لینک",
+      "link": "لینک",
+      "labelSv": "برچسب (سوئدی)",
+      "labelFa": "برچسب (فارسی)",
+      "urlLabel": "URL",
+      "categoryLabel": "دسته‌بندی",
+      "orderLabel": "ترتیب"
+    },
     "submissions": "ثبت‌نام‌ها",
     "login": "ورود",
     "logout": "خروج",
@@ -110,6 +130,7 @@
     "confirmPassword": "تأیید رمز عبور",
     "passwordMismatch": "رمزهای عبور مطابقت ندارند",
     "passwordChanged": "رمز عبور تغییر یافت",
+    "passwordMinLength": "رمز عبور باید حداقل ۸ کاراکتر باشد",
     "languageToggle": "تغییر زبان",
     "compressionPreview": "پیش‌نمایش فشرده‌سازی",
     "originalSize": "اندازه اصلی",
@@ -137,6 +158,8 @@
     },
     "backgrounds_section": {
       "title": "پس‌زمینه‌ها",
+      "sectionTitle": "پس‌زمینه‌ها",
+      "noMedia": "بدون رسانه",
       "upload": "بارگذاری",
       "uploadImage": "بارگذاری تصویر",
       "uploadVideo": "بارگذاری ویدیو",
@@ -145,7 +168,6 @@
       "educational": "آموزشی",
       "sport": "ورزشی",
       "preview": "پیش‌نمایش",
-      "noMedia": "بدون رسانه",
       "delete": "حذف"
     },
     "upload": {
@@ -155,6 +177,9 @@
       "progress": "{{pct}}٪ انجام شد",
       "success": "بارگذاری با موفقیت انجام شد!",
       "error": "بارگذاری ناموفق بود. دوباره تلاش کنید."
+    },
+    "about": {
+      "noContent": "محتوایی موجود نیست"
     },
     "aboutTitle": "ویرایش درباره ما",
     "aboutContentSv": "محتوا (سوئدی)",
@@ -199,7 +224,11 @@
     "imageOptional": "تصویر (اختیاری)",
     "noSlidesAddedYet": "اسلایدی اضافه نشده",
     "heroSliders": "اسلایدهای اصلی",
-    "createArea": "ایجاد حوزه",
+    "createArea": {
+      "requiredFields": "لطفاً تمام فیلدهای الزامی را پر کنید",
+      "failed": "ایجاد حوزه ناموفق بود. لطفاً دوباره تلاش کنید.",
+      "backgroundSaved": "پس‌زمینه ذخیره شد!"
+    },
     "noSubmissionsYet": "هنوز هیچ ثبت‌نامی دریافت نشده است",
     "loadingSubmissionsError": "بارگذاری ثبت‌نام‌ها ناموفق بود",
     "noSubmissions": "هیچ ثبت‌نامی یافت نشد",
@@ -229,10 +258,13 @@
       "basicInfo": "اطلاعات پایه",
       "cardImage": "تصویر کارت",
       "heroSlides": "اسلایدها",
-      "background": "پس‌زمینه"
-    },
-    "about": {
-      "noContent": "محتوایی موجود نیست"
+      "background": "پس‌زمینه",
+      "step1Hint": "این مرحله حوزه را ایجاد می‌کند. مراحل بعدی برای افزودن تصاویر و اسلایدها هستند.",
+      "step2Hint": "تصویری که در کارت حوزه در صفحه اصلی نمایش داده می‌شود. می‌توانید این مرحله را رد کنید.",
+      "step3Hint": "اسلایدهای بنری صفحه اختصاصی این حوزه را اضافه کنید. می‌توانید این مرحله را رد کنید.",
+      "step4Hint": "پس‌زمینه صفحه اختصاصی این حوزه. می‌توانید تصویر یا ویدیو انتخاب کنید.",
+      "requiredFields": "لطفاً فیلدهای اجباری را پر کنید",
+      "failed": "خطا در ایجاد حوزه. لطفاً دوباره تلاش کنید."
     },
     "form": {
       "activity": "فعالیت",
@@ -280,7 +312,99 @@
     "switchToPersian": "تغییر به فارسی",
     "switchToSwedish": "تغییر به سوئدی",
     "closeMenu": "بستن منو",
-    "openSidebar": "باز کردن نوار کناری"
+    "openSidebar": "باز کردن نوار کناری",
+    "settingsTab": {
+      "identity": "هویت سایت",
+      "landing": "صفحه اصلی",
+      "topics": "صفحه موضوعات",
+      "colors": "رنگ‌های برند",
+      "contact": "اطلاعات تماس",
+      "password": "رمز عبور"
+    },
+    "settingsLabels": {
+      "siteIdentity": "هویت سایت",
+      "logo": "آرم",
+      "titleSv": "عنوان (سوئدی)",
+      "titleFa": "عنوان (فارسی)",
+      "subtitleSv": "زیرعنوان (سوئدی)",
+      "subtitleFa": "زیرعنوان (فارسی)",
+      "landingBg": "پس‌زمینه صفحه اصلی",
+      "topicsBg": "پس‌زمینه صفحه موضوعات",
+      "topicsBgDescription": "تصویر یا ویدیوی پس‌زمینه برای صفحه انتخاب موضوعات تنظیم کنید.",
+      "image": "تصویر",
+      "video": "ویدیو",
+      "brandColors": "رنگ‌های برند",
+      "primaryColor": "رنگ اصلی",
+      "accentColor": "رنگ تأکیدی",
+      "secondaryColor": "رنگ ثانویه",
+      "contactInfo": "اطلاعات تماس",
+      "emailLabel": "ایمیل",
+      "phoneLabel": "تلفن",
+      "addressSv": "آدرس (سوئدی)",
+      "addressFa": "آدرس (فارسی)",
+      "passwordPlaceholder": "رمز عبور"
+    },
+    "aboutPage": {
+      "cardImage": "تصویر کارت",
+      "title": "درباره ما",
+      "contentSv": "محتوا (سوئدی)",
+      "contentFa": "محتوا (فارسی)",
+      "contentSvPlaceholder": "محتوای درباره ما را به سوئدی بنویسید...",
+      "contentFaPlaceholder": "محتوای درباره ما را به فارسی بنویسید...",
+      "image": "تصویر",
+      "imageOptional": "تصویر (اختیاری)",
+      "uploading": "در حال آپلود...",
+      "save": "ذخیره"
+    },
+    "footer_links": {
+      "labelSvLabel": "برچسب (سوئدی)",
+      "labelFaLabel": "برچسب (فارسی)",
+      "urlLabel": "نشانی",
+      "categoryLabel": "دسته‌بندی",
+      "orderLabel": "ترتیب",
+      "categoryOptionMain": "اصلی",
+      "categoryOptionSocial": "اجتماعی",
+      "categoryOptionLegal": "قانونی",
+      "categoryOptionContact": "تماس"
+    },
+    "slides": {
+      "titleSvPlaceholder": "عنوان سوئدی",
+      "titleFaPlaceholder": "عنوان فارسی",
+      "subtitleSvPlaceholder": "زیرمتن سوئدی",
+      "subtitleFaPlaceholder": "زیرمتن فارسی",
+      "ctaLabelSvPlaceholder": "بیشتر بخوانید",
+      "ctaLabelFaPlaceholder": "Läs mer",
+      "ctaUrlPlaceholder": "#",
+      "deleteConfirm": "به طور دائم حذف خواهد شد."
+    },
+    "noAreas": {
+      "manage": "مدیریت حوزه‌های فرهنگی، آموزشی و ورزشی",
+      "title": "هیچ حوزه‌ای یافت نشد",
+      "action": "اولین حوزه خود را اضافه کنید"
+    },
+    "htmlHint": "تگ‌های HTML پشتیبانی می‌شوند (مانند <p>, <h2>, <ul>)",
+    "badge": "مدیریت",
+    "deleteSlide": "حذف اسلاید؟",
+    "untitled": "بدون عنوان",
+    "admin_areas": {
+      "untitled": "بدون عنوان",
+      "cardLabel": "کارت",
+      "bgLabel": "پس‌زمینه",
+      "videoLabel": "ویدیو",
+      "areaLabel": "ناحیه",
+      "next": "بعدی",
+      "finish": "اتمام",
+      "bgSaved": "پس‌زمینه ذخیره شد",
+      "cardBgLabel": "تصویر پس‌زمینه کارت",
+      "areaPageBgLabel": "پس‌زمینه صفحه حوزه",
+      "createAreaBtn": "ایجاد حوزه",
+      "noAreasFound": "هیچ حوزه‌ای یافت نشد",
+      "addFirstArea": "اولین حوزه خود را اضافه کنید",
+      "areaCreatedMsg": "ناحیه \"{{name}}\" ایجاد شد. اکنون می‌توانید تصویر کارت اضافه کنید."
+    },
+    "order": "ترتیب",
+    "areasPageSubtitle": "مدیریت حوزه‌های فرهنگی، آموزشی و ورزشی",
+    "linkLabel": "لینک"
   },
   "landing": {
     "langLabelSv": "Svenska",
@@ -336,6 +460,10 @@
   },
   "notFound": {
     "title": "صفحه پیدا نشد",
+    "subtitle": "متأسفانه صفحه‌ای که به دنبال آن هستید پیدا نشد.",
     "back": "بازگشت به صفحه اصلی"
+  },
+  "mediaUpload": {
+    "removePreview": "حذف پیش‌نمایش"
   }
 }

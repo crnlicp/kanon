@@ -164,7 +164,7 @@ export function Header() {
               className="md:hidden glass w-9 h-9 rounded-lg flex items-center justify-center border border-white/10"
               onClick={() => setMobileOpen((v) => !v)}
               whileTap={{ scale: 0.9 }}
-              aria-label="Toggle menu"
+              aria-label={t("nav.toggleMenu")}
               data-ocid="header.mobile_menu_button"
             >
               <AnimatePresence mode="wait">

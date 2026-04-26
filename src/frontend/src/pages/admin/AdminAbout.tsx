@@ -11,7 +11,6 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 
-}
 
 export default function AdminAbout() {
   const { adminAuth, adminLang } = useAppStore();
@@ -60,9 +59,9 @@ export default function AdminAbout() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["about"] });
-      toast.success(t.success);
+      toast.success(t("admin.aboutPage.save"));
     },
-    onError: () => toast.error(t.error),
+    onError: () => toast.error(t("common.error")),
   });
 
   const isSaveDisabled = saveMutation.isPending || isImageUploading;
@@ -74,7 +73,7 @@ export default function AdminAbout() {
   if (isLoading) {
     return (
       <div className="text-muted-foreground font-body animate-pulse py-8 text-center">
-        {t.loading}
+        {t("common.loading")}
       </div>
     );
   }
@@ -96,7 +95,7 @@ export default function AdminAbout() {
             <BookOpen className="w-5 h-5 text-primary" />
           </div>
           <h1 className="font-display text-2xl font-bold text-foreground">
-            {t.title}
+            {t("admin.aboutPage.title")}
           </h1>
         </div>
 
@@ -110,24 +109,24 @@ export default function AdminAbout() {
           {/* Content SV */}
           <GlassCard className="p-6 flex flex-col gap-4">
             <h2 className="font-display text-base font-semibold text-foreground border-b border-white/10 pb-3">
-              {t.contentSv}
+              {t("admin.aboutPage.contentSv")}
             </h2>
             <div>
               <label htmlFor="about-content-sv" className={labelClass}>
-                {t.contentSv}
+                {t("admin.aboutPage.contentSv")}
               </label>
               <textarea
                 id="about-content-sv"
                 value={contentSv}
                 onChange={(e) => setContentSv(e.target.value)}
-                placeholder={t.contentSvPlaceholder}
+                placeholder={t("admin.aboutPage.contentSvPlaceholder")}
                 rows={8}
                 dir="ltr"
                 className={`${inputClass} resize-y`}
                 data-ocid="admin_about.content_sv_textarea"
               />
               <p className="text-xs text-muted-foreground mt-1 font-body">
-                HTML tags are supported (e.g. &lt;p&gt;, &lt;h2&gt;, &lt;ul&gt;)
+                {t("admin.htmlHint")}
               </p>
             </div>
           </GlassCard>
@@ -135,24 +134,24 @@ export default function AdminAbout() {
           {/* Content FA */}
           <GlassCard className="p-6 flex flex-col gap-4">
             <h2 className="font-display text-base font-semibold text-foreground border-b border-white/10 pb-3">
-              {t.contentFa}
+              {t("admin.aboutPage.contentFa")}
             </h2>
             <div>
               <label htmlFor="about-content-fa" className={labelClass}>
-                {t.contentFa}
+                {t("admin.aboutPage.contentFa")}
               </label>
               <textarea
                 id="about-content-fa"
                 value={contentFa}
                 onChange={(e) => setContentFa(e.target.value)}
-                placeholder={t.contentFaPlaceholder}
+                placeholder={t("admin.aboutPage.contentFaPlaceholder")}
                 rows={8}
                 dir="rtl"
                 className={`${inputClass} resize-y`}
                 data-ocid="admin_about.content_fa_textarea"
               />
               <p className="text-xs text-muted-foreground mt-1 font-body">
-                HTML tags are supported (e.g. &lt;p&gt;, &lt;h2&gt;, &lt;ul&gt;)
+                {t("admin.htmlHint")}
               </p>
             </div>
           </GlassCard>
@@ -160,11 +159,11 @@ export default function AdminAbout() {
           {/* Image upload */}
           <GlassCard className="p-6 flex flex-col gap-4">
             <h2 className="font-display text-base font-semibold text-foreground border-b border-white/10 pb-3">
-              {t.image}
+              {t("admin.aboutPage.image")}
             </h2>
             <MediaUpload
               accept="image"
-              label={t.imageOptional}
+              label={t("admin.aboutPage.imageOptional")}
               currentUrl={currentImageUrl}
               onUpload={(blob) => {
                 setImageBlob(blob);
@@ -184,10 +183,10 @@ export default function AdminAbout() {
             data-ocid="admin_about.save_button"
           >
             {isImageUploading
-              ? t.uploading
+              ? t("admin.aboutPage.uploading")
               : saveMutation.isPending
-                ? t.saving
-                : t.save}
+                ? t("admin.aboutPage.saving")
+                : t("admin.aboutPage.save")}
           </motion.button>
         </form>
       </motion.div>

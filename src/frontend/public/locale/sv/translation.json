@@ -6,7 +6,8 @@
     "sport": "Sport",
     "about": "Om oss",
     "contact": "Kontakt",
-    "admin": "Admin"
+    "admin": "Admin",
+    "toggleMenu": "Växla meny"
   },
   "topics": {
     "title": "Välj ett område",
@@ -48,7 +49,17 @@
     "seeAll": "Se alla",
     "submit": "Skicka",
     "learnMore": "Lär dig mer",
-    "deleteConfirm": "Bekräftar att den"
+    "deleteConfirm": "Bekräftar att den",
+    "quickAccess": "Snabbåtkomst",
+    "imageRequired": "Bild krävs",
+    "slide": "Svejk",
+    "deleteSlide": "Ta bort svejk?",
+    "untitled": "Utan titel",
+    "deleteLink": "Ta bort länk?",
+    "link": "Länk",
+    "editSlide": "Redigera svejk",
+    "addSlide": "Lägg till svejk",
+    "required": "Detta fält är obligatoriskt"
   },
   "form": {
     "fullName": "Fullständigt namn",
@@ -73,7 +84,7 @@
     "allRights": "Alla rättigheter förbehållna"
   },
   "admin": {
-    "title": "Title",
+    "title": "Titel",
     "dashboard": "Översikt",
     "settings": "Inställningar",
     "heroSlides": "Hjältebilder",
@@ -81,7 +92,16 @@
       "confirmText": "kommer att tas bort permanent."
     },
     "backgrounds": "Bakgrunder",
-    "footerLinks": "Foterlänkar",
+    "footerLinks": {
+      "editLink": "Edit Link",
+      "addLink": "Add Link",
+      "link": "Link",
+      "labelSv": "Label (SV)",
+      "labelFa": "Label (FA)",
+      "urlLabel": "URL",
+      "categoryLabel": "Category",
+      "orderLabel": "Order"
+    },
     "submissions": "Anmälningar",
     "login": "Logga in",
     "logout": "Logga ut",
@@ -111,6 +131,7 @@
     "confirmPassword": "Bekräfta lösenord",
     "passwordMismatch": "Lösenorden matchar inte",
     "passwordChanged": "Lösenordet har ändrats",
+    "passwordMinLength": "Lösenordet måste vara minst 8 tecken",
     "languageToggle": "Byt språk",
     "compressionPreview": "Komprimeringsförhandsvisning",
     "originalSize": "Ursprunglig storlek",
@@ -138,6 +159,8 @@
     },
     "backgrounds_section": {
       "title": "Bakgrunder",
+      "sectionTitle": "Bakgrunder",
+      "noMedia": "Ingen media",
       "upload": "Ladda upp",
       "uploadImage": "Ladda upp bild",
       "uploadVideo": "Ladda upp video",
@@ -146,7 +169,6 @@
       "educational": "Utbildning",
       "sport": "Sport",
       "preview": "Förhandsvisning",
-      "noMedia": "Ingen media",
       "delete": "Ta bort"
     },
     "upload": {
@@ -158,10 +180,6 @@
       "error": "Uppladdningen misslyckades. Försök igen."
     },
     "about": {
-      "aboutTitle": "Redigera Om oss",
-      "aboutContentSv": "Innehåll (Svenska)",
-      "aboutContentFa": "Innehåll (Persiska)",
-      "aboutImage": "Bild (valfritt)",
       "noContent": "Inget innehåll tillgängligt"
     },
     "aboutTitle": "Redigera Om oss",
@@ -183,7 +201,7 @@
     "subtitleFa": "Underrubrik (Persiska)",
     "areaPageBackground": "Sidbakgrundsbild",
     "areaPage": "Sidbakgrund",
-    "slideImage": "Bildtext för bild",
+    "slideImage": "Svejk-bild",
     "slideImageRequired": "Bildtext för bild *",
     "noSlidesYet": "Ingen bildtext ännu",
     "noSlidesAdded": "Inga bilder tillagda än",
@@ -206,10 +224,20 @@
       "basicInfo": "Grundläggande info",
       "cardImage": "Kortbild",
       "heroSlides": "Hero-Swipes",
-      "background": "Bakgrund"
+      "background": "Bakgrund",
+      "step1Hint": "Detta steg skapar området. Nästa steg låter dig lägga till bilder och slides.",
+      "step2Hint": "Bilden som visas på områdekortet på ämnessidan. Du kan hoppa över och lägga till det senare.",
+      "step3Hint": "Lägg till hero-banner-slides för detta områdes dedikerade sida. Du kan hoppa över det här steget.",
+      "step4Hint": "Bakgrund för detta områdes dedikerade sida. Välj bild eller video. Du kan hoppa över och lägga till senare.",
+      "requiredFields": "Vänligen fyll i alla obligatoriska fält",
+      "failed": "Det gick inte att skapa området. Försök igen."
     },
     "heroSliders": "Hero-Swipes",
-    "createArea": "Skapa område",
+    "createArea": {
+      "requiredFields": "Vänligen fyll i alla obligatoriska fält",
+      "failed": "Det gick inte att skapa området. Försök igen.",
+      "backgroundSaved": "Bakgrund sparad!"
+    },
     "areaPageSubtitle": "Hantera kulturella, utbildnings- och sportområden",
     "addFirstArea": "Lägg till ditt första område för att komma igång",
     "imageOptional": "Bild (valfritt)",
@@ -279,13 +307,105 @@
     "contactEmailPlaceholder": "info@example.se",
     "contactPhonePlaceholder": "+46 8 000 000",
     "contactAddressPlaceholder": "Exempelgatan 1, Stockholm",
-    "contactAddressPlaceholderFa": "خیابان exempel 1, Stockholm",
+    "contactAddressPlaceholderFa": "خیابان نمونه ۱، استکهلم",
     "passwordPlaceholder": "••••••••",
     "togglePasswordVisibility": "Visa/dölj lösenord",
     "switchToPersian": "Växla till persiska",
     "switchToSwedish": "Växla till svenska",
     "closeMenu": "Stäng menyn",
-    "openSidebar": "Öppna sidofältet"
+    "openSidebar": "Öppna sidofältet",
+    "settingsTab": {
+      "identity": "Site Identity",
+      "landing": "Landing Page",
+      "topics": "Topics Page",
+      "colors": "Brand Colors",
+      "contact": "Contact Info",
+      "password": "Password"
+    },
+    "settingsLabels": {
+      "siteIdentity": "Site Identity",
+      "logo": "Logo",
+      "titleSv": "Title (SV)",
+      "titleFa": "Title (FA)",
+      "subtitleSv": "Subtitle (SV)",
+      "subtitleFa": "Subtitle (FA)",
+      "landingBg": "Landing Page Background",
+      "topicsBg": "Topics Page Background",
+      "topicsBgDescription": "Set a background image or video for the topics selector page.",
+      "image": "Image",
+      "video": "Video",
+      "brandColors": "Brand Colors",
+      "primaryColor": "Primary Color",
+      "accentColor": "Accent Color",
+      "secondaryColor": "Secondary Color",
+      "contactInfo": "Contact Information",
+      "emailLabel": "Email",
+      "phoneLabel": "Phone",
+      "addressSv": "Address (SV)",
+      "addressFa": "Address (FA)",
+      "passwordPlaceholder": "Password"
+    },
+    "aboutPage": {
+      "cardImage": "Card Image",
+      "title": "Om oss",
+      "contentSv": "Innehåll (svenska)",
+      "contentFa": "Innehåll (persiska)",
+      "contentSvPlaceholder": "Skriv om-innehåll på svenska...",
+      "contentFaPlaceholder": "Skriv om-innehåll på persiska...",
+      "image": "Bild",
+      "imageOptional": "Bild (valfritt)",
+      "uploading": "Laddar upp...",
+      "save": "Spara"
+    },
+    "footer_links": {
+      "labelSvLabel": "Etikett (SV)",
+      "labelFaLabel": "Etikett (FA)",
+      "urlLabel": "URL",
+      "categoryLabel": "Kategori",
+      "orderLabel": "Ordning",
+      "categoryOptionMain": "Huvud",
+      "categoryOptionSocial": "Socialt",
+      "categoryOptionLegal": "Juridiskt",
+      "categoryOptionContact": "Kontakt"
+    },
+    "slides": {
+      "titleSvPlaceholder": "Svensk titel",
+      "titleFaPlaceholder": "Persisk titel",
+      "subtitleSvPlaceholder": "Svensk undertext",
+      "subtitleFaPlaceholder": "Persisk undertext",
+      "ctaLabelSvPlaceholder": "Läs mer",
+      "ctaLabelFaPlaceholder": "بیشتر بخوانید",
+      "ctaUrlPlaceholder": "#",
+      "deleteConfirm": "kommer att tas bort permanent."
+    },
+    "noAreas": {
+      "manage": "Hantera kulturella, utbildnings- och sportområden",
+      "title": "Inga områden hittades",
+      "action": "Lägg till ditt första område för att komma igång"
+    },
+    "htmlHint": "HTML-taggar stöds (t.ex. <p>, <h2>, <ul>)",
+    "badge": "Admin",
+    "deleteSlide": "Ta bort svejk?",
+    "untitled": "Utan titel",
+    "admin_areas": {
+      "untitled": "Utan titel",
+      "cardLabel": "Kort",
+      "bgLabel": "Bakgrund",
+      "videoLabel": "Video",
+      "areaLabel": "Area",
+      "next": "Nästa",
+      "finish": "Avsluta",
+      "bgSaved": "Bakgrund sparad",
+      "cardBgLabel": "Card Background Image",
+      "areaPageBgLabel": "Area Page Background",
+      "createAreaBtn": "Create Area",
+      "noAreasFound": "No areas found",
+      "addFirstArea": "Add your first area to get started",
+      "areaCreatedMsg": "Area \"{name}\" created! Now add a card background image (optional)."
+    },
+    "order": "Ordning",
+    "areasPageSubtitle": "Hantera kulturella, utbildnings- och sportområden",
+    "linkLabel": "Länk"
   },
   "landing": {
     "langLabelSv": "Svenska",
@@ -339,6 +459,10 @@
   },
   "notFound": {
     "title": "Sidan hittades inte",
+    "subtitle": "Tyvärr kan vi inte hitta sidan du letar efter.",
     "back": "Gå till startsidan"
+  },
+  "mediaUpload": {
+    "removePreview": "Ta bort förhandsgranskning"
   }
 }

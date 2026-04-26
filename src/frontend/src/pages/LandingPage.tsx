@@ -7,6 +7,7 @@ import { useAppStore } from "@/store";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 // ---------------------------------------------------------------------------
 // Shared wave animation path values (cloth-wave morph)
@@ -31,13 +32,15 @@ const WAVE_INITIAL_D =
 // ---------------------------------------------------------------------------
 // Animated waving cloth flag — Sweden
 // ---------------------------------------------------------------------------
-const SwedenFlag = () => (
+const SwedenFlag = () => {
+  const { t } = useTranslation();
+  return (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 200 200"
     className="w-36 h-36 drop-shadow-lg rounded-sm"
     role="img"
-    aria-label=t("hero.prevSlideTitle")
+    aria-label={t("hero.prevSlideTitle")}
   >
     <title>{t("hero.prevSlideTitle")}</title>
     <defs>
@@ -73,18 +76,21 @@ const SwedenFlag = () => (
       </g>
     </g>
   </svg>
-);
+  );
+};
 
 // ---------------------------------------------------------------------------
 // Animated waving cloth flag — Iran
 // ---------------------------------------------------------------------------
-const IranFlag = () => (
+const IranFlag = () => {
+  const { t } = useTranslation();
+  return (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 200 200"
     className="w-36 h-36 drop-shadow-lg rounded-sm"
     role="img"
-    aria-label=t("hero.nextSlideTitle")
+    aria-label={t("hero.nextSlideTitle")}
   >
     <title>{t("hero.nextSlideTitle")}</title>
     <defs>
@@ -115,7 +121,8 @@ const IranFlag = () => (
       </g>
     </g>
   </svg>
-);
+  );
+};
 
 // Language cards in FIXED order: Swedish (sv) always LEFT, Persian (fa) always RIGHT.
 // This array must never be reordered — it is not derived from state.

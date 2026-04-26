@@ -123,7 +123,7 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
       });
     } else {
       if (!imageBlob) {
-        toast.error("Please upload an image");
+        toast.error(t("admin.slideImageRequired"));
         return;
       }
       addMutation.mutate({
@@ -157,7 +157,7 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
       >
         <div className="flex items-center justify-between mb-5">
           <h2 className="font-display text-lg font-bold text-foreground">
-            {slide ? t("common.edit") : t("common.add")} Slide
+            {slide ? t("common.editSlide") : t("common.addSlide")}
           </h2>
           <button
             type="button"
@@ -203,8 +203,8 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
               </label>
               <input
                 id="sf-title-sv"
-                {...register("titleSv", { required: "Required" })}
-                placeholder={t("admin.titleSv") or "Swedish title"}
+                {...register("titleSv", { required: t("common.required") })}
+                placeholder={t("admin.titleSv") || "Swedish title"}
                 className="w-full glass rounded-lg border border-white/10 px-3 py-2 text-sm font-body text-foreground placeholder:text-muted-foreground bg-transparent focus:outline-none focus:border-primary/50"
                 data-ocid="hero_slides.title_sv_input"
               />
@@ -218,9 +218,9 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
               </label>
               <input
                 id="sf-title-fa"
-                {...register("titleFa", { required: "Required" })}
+                {...register("titleFa", { required: t("common.required") })}
                 dir="rtl"
-                placeholder={t("admin.titleFa") or "عنوان فارسی"}
+                placeholder={t("admin.titleFa") || "عنوان فارسی"}
                 className="w-full glass rounded-lg border border-white/10 px-3 py-2 text-sm font-body text-foreground placeholder:text-muted-foreground bg-transparent focus:outline-none focus:border-primary/50"
                 data-ocid="hero_slides.title_fa_input"
               />
@@ -239,7 +239,7 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
               <input
                 id="sf-subtitle-sv"
                 {...register("subtitleSv")}
-                placeholder={t("admin.subtitleSv") or "Swedish subtitle"}
+                placeholder={t("admin.subtitleSv") || "Swedish subtitle"}
                 className="w-full glass rounded-lg border border-white/10 px-3 py-2 text-sm font-body text-foreground placeholder:text-muted-foreground bg-transparent focus:outline-none focus:border-primary/50"
               />
             </div>
@@ -254,7 +254,7 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
                 id="sf-subtitle-fa"
                 {...register("subtitleFa")}
                 dir="rtl"
-                placeholder={t("admin.subtitleFa") or "زیرعنوان فارسی"}
+                placeholder={t("admin.subtitleFa") || "زیرعنوان فارسی"}
                 className="w-full glass rounded-lg border border-white/10 px-3 py-2 text-sm font-body text-foreground placeholder:text-muted-foreground bg-transparent focus:outline-none focus:border-primary/50"
               />
             </div>
@@ -272,7 +272,7 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
               <input
                 id="sf-cta-sv"
                 {...register("ctaLabelSv")}
-                placeholder={t("common.learnMore") or "Läs mer"}
+                placeholder={t("common.learnMore") || "Läs mer"}
                 className="w-full glass rounded-lg border border-white/10 px-3 py-2 text-sm font-body text-foreground placeholder:text-muted-foreground bg-transparent focus:outline-none focus:border-primary/50"
               />
             </div>
@@ -287,7 +287,7 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
                 id="sf-cta-fa"
                 {...register("ctaLabelFa")}
                 dir="rtl"
-                placeholder={t("common.learnMore") or "بیشتر بخوانید"}
+                placeholder={t("common.learnMore") || "بیشتر بخوانید"}
                 className="w-full glass rounded-lg border border-white/10 px-3 py-2 text-sm font-body text-foreground placeholder:text-muted-foreground bg-transparent focus:outline-none focus:border-primary/50"
               />
             </div>
@@ -305,7 +305,7 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
               <input
                 id="sf-cta-url"
                 {...register("ctaUrl")}
-                placeholder={t("admin.ctaUrlPlaceholder") or "#"}
+                placeholder={t("admin.ctaUrlPlaceholder") || "#"}
                 className="w-full glass rounded-lg border border-white/10 px-3 py-2 text-sm font-body text-foreground placeholder:text-muted-foreground bg-transparent focus:outline-none focus:border-primary/50"
               />
             </div>
@@ -319,7 +319,7 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
               <input
                 id="sf-order"
                 type="number"
-                {...register("order", { required: "Required", min: 1 })}
+                {...register("order", { required: t("common.required"), min: 1 })}
                 className="w-full glass rounded-lg border border-white/10 px-3 py-2 text-sm font-body text-foreground bg-transparent focus:outline-none focus:border-primary/50"
                 data-ocid="hero_slides.order_input"
               />
@@ -329,7 +329,7 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
           {/* Image Upload */}
           <MediaUpload
             accept="image"
-            label="Slide Image"
+            label={t("admin.slideImage")}
             currentUrl={slide?.imageUrl}
             onUpload={(blob) => setImageBlob(blob)}
           />
@@ -462,7 +462,7 @@ export default function AdminHeroSlides() {
                     {slide.subtitle.sv}
                   </div>
                   <div className="text-xs text-muted-foreground font-body">
-                    Order: {slide.order}
+                    t("admin.order"): {slide.order}
                   </div>
                 </div>
                 <div className="flex gap-2 flex-shrink-0">
@@ -480,7 +480,7 @@ export default function AdminHeroSlides() {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => setDeleteTarget(slide)}
-                    aria-label="Delete slide"
+                    aria-label={t("common.deleteSlide")}
                     data-ocid={`hero_slides.delete_button.${i + 1}`}
                   >
                     <Trash2 className="w-4 h-4" />
@@ -532,7 +532,7 @@ export default function AdminHeroSlides() {
               exit={{ opacity: 0, scale: 0.95 }}
             >
               <h3 className="font-display text-lg font-bold text-foreground mb-2">
-                {t("common.delete")} Slide?
+                {t("admin.deleteSlide")}
               </h3>
               <p className="text-muted-foreground text-sm font-body mb-5">
                 "{deleteTarget.title.sv}"{" "}

@@ -149,7 +149,7 @@ function LinkModal({ link, onClose, onSave, nextOrder }: LinkModalProps) {
       >
         <div className="flex items-center justify-between mb-5">
           <h2 className="font-display text-lg font-bold text-foreground">
-            {link ? t("common.edit") : t("common.add")} Link
+            {t(link ? "admin.footerLinks.editLink" : "admin.footerLinks.addLink")} {t("admin.linkLabel")}
           </h2>
           <button
             type="button"
@@ -165,7 +165,7 @@ function LinkModal({ link, onClose, onSave, nextOrder }: LinkModalProps) {
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label htmlFor="fl-label-sv" className={labelClass}>
-                Label (SV)
+                {t("admin.footer_links.labelSvLabel")}
               </label>
               <input
                 id="fl-label-sv"
@@ -177,7 +177,7 @@ function LinkModal({ link, onClose, onSave, nextOrder }: LinkModalProps) {
             </div>
             <div>
               <label htmlFor="fl-label-fa" className={labelClass}>
-                Label (FA)
+                {t("admin.footer_links.labelFaLabel")}
               </label>
               <input
                 id="fl-label-fa"
@@ -192,12 +192,12 @@ function LinkModal({ link, onClose, onSave, nextOrder }: LinkModalProps) {
 
           <div>
             <label htmlFor="fl-url" className={labelClass}>
-              URL
+              {t("admin.footer_links.urlLabel")}
             </label>
             <input
               id="fl-url"
               {...register("url", { required: t("common.required") })}
-              placeholder={t("admin.linkPlaceholder") or "https://..."}
+              placeholder={t("admin.linkPlaceholder") || "https://..."}
               className={inputClass}
               data-ocid="footer_links.url_input"
             />
@@ -206,7 +206,7 @@ function LinkModal({ link, onClose, onSave, nextOrder }: LinkModalProps) {
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label htmlFor="fl-category" className={labelClass}>
-                t("admin.category")
+                {t("admin.category")}
               </label>
               <select
                 id="fl-category"
@@ -376,7 +376,7 @@ export default function AdminFooterLinks() {
                       type="button"
                       className="text-muted-foreground hover:text-destructive transition-smooth"
                       onClick={() => setDeleteTarget(link)}
-                      aria-label="Delete link"
+                      aria-label={t("common.deleteLink")}
                       data-ocid={`footer_links.delete_button.${i + 1}`}
                     >
                       <Trash2 className="w-4 h-4" />

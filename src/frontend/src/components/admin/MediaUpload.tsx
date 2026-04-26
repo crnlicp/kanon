@@ -171,7 +171,7 @@ function CompressionPreviewModal({
           type="button"
           onClick={onCancel}
           className="absolute top-3 right-3 text-muted-foreground hover:text-foreground transition-smooth"
-          aria-label="Close"
+          aria-label={t("common.close")}
           data-ocid="media_upload.close_button"
         >
           <X className="w-4 h-4" />
@@ -460,7 +460,7 @@ export function MediaUpload({
                 type="button"
                 onClick={clearPreview}
                 className="absolute top-2 right-2 glass w-7 h-7 rounded-full flex items-center justify-center border border-white/20 text-white/80 hover:text-white transition-smooth"
-                aria-label="Remove preview"
+                aria-label={t("mediaUpload.removePreview")}
                 data-ocid="media_upload.close_button"
               >
                 <X className="w-3.5 h-3.5" />
@@ -469,7 +469,7 @@ export function MediaUpload({
             {isVideo && (
               <div className="absolute top-2 left-2 glass px-2 py-0.5 rounded-full border border-white/20 flex items-center gap-1 text-white text-xs font-body pointer-events-none">
                 <Film className="w-3 h-3" />
-                Video
+                {t("admin.backgroundVideo")}
               </div>
             )}
           </div>

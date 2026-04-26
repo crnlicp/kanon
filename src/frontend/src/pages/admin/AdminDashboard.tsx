@@ -104,7 +104,7 @@ export default function AdminDashboard() {
 
         {/* Quick links */}
         <h2 className="font-display text-lg font-semibold text-foreground mb-4">
-          Quick Access
+          {t("common.quickAccess")}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {STAT_CARDS.map(({ key, icon: Icon, path, color }, i) => (

@@ -91,7 +91,7 @@ function IconComponent({
 
 const TOPIC_KEYWORDS: { fa: string[]; sv: string[]; topic: TopicType }[] = [
   {
-    fa: ["فرهنگ", t("topics.iconType.cultural"), "هنر", "موسیقی"],
+    fa: ["فرهنگ", "cultural", "هنر", "موسیقی"],
     sv: ["kultur", "kulturell", "konst"],
     topic: "cultural",
   },
@@ -392,7 +392,7 @@ function HeroSlideRow({
                   <GlassInput
                     value={titleSv}
                     onChange={setTitleSv}
-                    placeholder={t("admin.areasTitle") or "Rubrik"}
+                    placeholder={t("admin.areasTitle") || "Rubrik"}
                   />
                 </div>
                 <div>
@@ -402,7 +402,7 @@ function HeroSlideRow({
                   <GlassInput
                     value={titleFa}
                     onChange={setTitleFa}
-                    placeholder={t("admin.areasTitle") or "عنوان"}
+                    placeholder={t("admin.areasTitle") || "عنوان"}
                     dir="rtl"
                   />
                 </div>
@@ -415,7 +415,7 @@ function HeroSlideRow({
                   <GlassInput
                     value={subtitleSv}
                     onChange={setSubtitleSv}
-                    placeholder={t("admin.areaSubtitleSv") or "Underrubrik"}
+                    placeholder={t("admin.areaSubtitleSv") || "Underrubrik"}
                   />
                 </div>
                 <div>
@@ -425,7 +425,7 @@ function HeroSlideRow({
                   <GlassInput
                     value={subtitleFa}
                     onChange={setSubtitleFa}
-                    placeholder={t("admin.areaSubtitleFa") or "زیرعنوان"}
+                    placeholder={t("admin.areaSubtitleFa") || "زیرعنوان"}
                     dir="rtl"
                   />
                 </div>
@@ -534,7 +534,7 @@ function AddHeroSlideForm({
           <GlassInput
             value={titleSv}
             onChange={setTitleSv}
-            placeholder={t("admin.areasTitle") or "Rubrik"}
+            placeholder={t("admin.areasTitle") || "Rubrik"}
           />
         </div>
         <div>
@@ -544,7 +544,7 @@ function AddHeroSlideForm({
           <GlassInput
             value={titleFa}
             onChange={setTitleFa}
-            placeholder={t("admin.areasTitle") or "عنوان"}
+            placeholder={t("admin.areasTitle") || "عنوان"}
             dir="rtl"
           />
         </div>
@@ -557,7 +557,7 @@ function AddHeroSlideForm({
           <GlassInput
             value={subtitleSv}
             onChange={setSubtitleSv}
-            placeholder={t("admin.areaSubtitleSv") or "Underrubrik"}
+            placeholder={t("admin.areaSubtitleSv") || "Underrubrik"}
           />
         </div>
         <div>
@@ -567,7 +567,7 @@ function AddHeroSlideForm({
           <GlassInput
             value={subtitleFa}
             onChange={setSubtitleFa}
-            placeholder={t("admin.areaSubtitleFa") or "زیرعنوان"}
+            placeholder={t("admin.areaSubtitleFa") || "زیرعنوان"}
             dir="rtl"
           />
         </div>
@@ -589,9 +589,7 @@ function AddHeroSlideForm({
         <Plus className="w-4 h-4" />
         {addMutation.isPending
           ? t("common.loading")
-          : isRtl
-            ? "افزودن اسلاید"
-            : "Add Slide"}
+          : t("admin.addSlide")}
       </motion.button>
     </motion.div>
   );
@@ -735,11 +733,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      toast.error(
-        isRtl
-          ? "لطفاً فیلدهای اجباری را پر کنید"
-          : "Please fill in all required fields",
-      );
+      toast.error(t("admin.createWizard.requiredFields"));
       return;
     }
     setErrors({});
@@ -761,9 +755,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
       setStep(2);
     } catch {
       setCreateError(
-        isRtl
-          ? "خطا در ایجاد حوزه. لطفاً دوباره تلاش کنید."
-          : "Failed to create area. Please try again.",
+        t("admin.createWizard.failed"),
       );
     } finally {
       setIsCreating(false);
@@ -797,7 +789,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
         setSavedArea(updated);
         queryClient.invalidateQueries({ queryKey: ["areas"] });
       }
-      toast.success(isRtl ? "پس‌زمینه ذخیره شد" : "Background saved");
+      toast.success(t("admin_areas.bgSaved"));
     } catch {
       toast.error(t("common.error"));
     } finally {
@@ -884,9 +876,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                 <div className="glass rounded-xl border border-primary/20 bg-primary/5 px-4 py-3 text-xs font-body text-primary flex items-start gap-2">
                   <span className="mt-0.5">ℹ️</span>
                   <span>
-                    {isRtl
-                      ? "این مرحله حوزه را ایجاد می‌کند. مراحل بعدی برای افزودن تصاویر و اسلایدها هستند."
-                      : "This step creates the area. The next steps let you add images and slides."}
+                    {t("admin.createWizard.step1Hint")}
                   </span>
                 </div>
 
@@ -935,7 +925,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                         if (v.trim())
                           setErrors((e) => ({ ...e, titleSv: false }));
                       }}
-                      placeholder=t("topics.iconType.cultural")
+                      placeholder={t("topics.iconType.cultural")}
                       hasError={errors.titleSv}
                       data-ocid="areas.title_sv_input"
                     />
@@ -964,7 +954,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                         if (v.trim())
                           setErrors((e) => ({ ...e, titleFa: false }));
                       }}
-                      placeholder=t("topics.iconType.cultural")
+                      placeholder={t("topics.iconType.cultural")}
                       dir="rtl"
                       hasError={errors.titleFa}
                       data-ocid="areas.title_fa_input"
@@ -997,7 +987,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                       id="wiz-subtitle-sv"
                       value={subtitleSv}
                       onChange={setSubtitleSv}
-                      placeholder=t("topics.culturalDesc")
+                      placeholder={t("topics.culturalDesc")}
                       data-ocid="areas.subtitle_sv_input"
                     />
                   </div>
@@ -1012,7 +1002,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                       id="wiz-subtitle-fa"
                       value={subtitleFa}
                       onChange={setSubtitleFa}
-                      placeholder=t("topics.culturalDesc")
+                      placeholder={t("topics.culturalDesc")}
                       dir="rtl"
                       data-ocid="areas.subtitle_fa_input"
                     />
@@ -1047,21 +1037,17 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                 <div className="glass rounded-xl border border-primary/20 bg-primary/5 px-4 py-3 text-xs font-body text-primary flex items-center gap-2">
                   <Check className="w-3.5 h-3.5 flex-shrink-0" />
                   <span>
-                    {isRtl
-                      ? `حوزه «${savedArea ? (isRtl ? savedArea.titleFa : savedArea.titleSv) : ""}» ایجاد شد. اکنون می‌توانید تصویر کارت اضافه کنید.`
-                      : `Area "${savedArea?.titleSv ?? ""}" created! Now add a card background image (optional).`}
+                    {t("admin_areas.areaCreatedMsg", { name: savedArea?.titleSv ?? savedArea?.titleFa ?? "" })}
                   </span>
                 </div>
 
                 <SectionDivider
-                  label={isRtl ? "تصویر پس‌زمینه کارت" : "Card Background Image"}
+                  label={t("admin_areas.cardBgLabel")}
                   icon={ImageIcon}
                   isRtl={isRtl}
                 />
                 <p className="text-sm font-body text-muted-foreground">
-                  {isRtl
-                    ? "تصویری که در کارت حوزه در صفحه اصلی نمایش داده می‌شود. می‌توانید این مرحله را رد کنید."
-                    : "The image shown on the area card on the topics page. You can skip this and add it later."}
+                  {t("admin.createWizard.step2Hint")}
                 </p>
                 <MediaUpload
                   accept="image"
@@ -1089,9 +1075,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                   isRtl={isRtl}
                 />
                 <p className="text-sm font-body text-muted-foreground">
-                  {isRtl
-                    ? "اسلایدهای بنری صفحه اختصاصی این حوزه را اضافه کنید. می‌توانید این مرحله را رد کنید."
-                    : "Add hero banner slides for this area's dedicated page. You can skip this step."}
+                  {t("admin.createWizard.step3Hint")}
                 </p>
                 {savedArea && (
                   <HeroSlidesSection
@@ -1114,14 +1098,12 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                 className="flex flex-col gap-5"
               >
                 <SectionDivider
-                  label={isRtl ? "پس‌زمینه صفحه حوزه" : "Area Page Background"}
+                  label={t("admin_areas.areaPageBgLabel")}
                   icon={Film}
                   isRtl={isRtl}
                 />
                 <p className="text-sm font-body text-muted-foreground">
-                  {isRtl
-                    ? "پس‌زمینه صفحه اختصاصی این حوزه. می‌توانید تصویر یا ویدیو انتخاب کنید."
-                    : "Background for this area's dedicated page. Choose image or video. You can skip and add later."}
+                  {t("admin.createWizard.step4Hint")}
                 </p>
 
                 {/* Media type toggle */}
@@ -1228,7 +1210,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                 ) : (
                   <>
                     <Plus className="w-4 h-4" />
-                    {isRtl ? "ایجاد حوزه" : "Create Area"}
+                    {t("admin_areas.createAreaBtn")}
                   </>
                 )}
               </motion.button>
@@ -1257,9 +1239,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                 >
                   {isMediaUploading
                     ? t("admin.upload.uploading")
-                    : isRtl
-                      ? "بعدی"
-                      : "Next"}
+                    : t("admin_areas.next")}
                   {!isMediaUploading &&
                     (isRtl ? (
                       <ChevronLeft className="w-4 h-4" />
@@ -1294,9 +1274,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                   <Check className="w-4 h-4" />
                   {isMediaUploading
                     ? t("admin.upload.uploading")
-                    : isRtl
-                      ? "اتمام"
-                      : "Finish"}
+                    : t("admin_areas.finish")}
                 </motion.button>
               </>
             )}
@@ -1484,7 +1462,7 @@ function EditAreaPanel({ area, allAreas, onClose }: EditAreaPanelProps) {
                     id="edit-title-sv"
                     value={titleSv}
                     onChange={setTitleSv}
-                    placeholder=t("topics.iconType.cultural")
+                    placeholder={t("topics.iconType.cultural")}
                     data-ocid="areas.title_sv_input"
                   />
                 </div>
@@ -1499,7 +1477,7 @@ function EditAreaPanel({ area, allAreas, onClose }: EditAreaPanelProps) {
                     id="edit-title-fa"
                     value={titleFa}
                     onChange={setTitleFa}
-                    placeholder=t("topics.iconType.cultural")
+                    placeholder={t("topics.iconType.cultural")}
                     dir="rtl"
                     data-ocid="areas.title_fa_input"
                   />
@@ -1526,7 +1504,7 @@ function EditAreaPanel({ area, allAreas, onClose }: EditAreaPanelProps) {
                     id="edit-subtitle-sv"
                     value={subtitleSv}
                     onChange={setSubtitleSv}
-                    placeholder=t("topics.culturalDesc")
+                    placeholder={t("topics.culturalDesc")}
                     data-ocid="areas.subtitle_sv_input"
                   />
                 </div>
@@ -1541,7 +1519,7 @@ function EditAreaPanel({ area, allAreas, onClose }: EditAreaPanelProps) {
                     id="edit-subtitle-fa"
                     value={subtitleFa}
                     onChange={setSubtitleFa}
-                    placeholder=t("topics.culturalDesc")
+                    placeholder={t("topics.culturalDesc")}
                     dir="rtl"
                     data-ocid="areas.subtitle_fa_input"
                   />
@@ -1569,7 +1547,7 @@ function EditAreaPanel({ area, allAreas, onClose }: EditAreaPanelProps) {
             {/* Area Page Background */}
             <div className="flex flex-col gap-3">
               <SectionDivider
-                label={isRtl ? "پس‌زمینه صفحه" : "Area Page Background"}
+                label={t("admin_areas.areaPageBgLabel")}
                 icon={Film}
                 isRtl={isRtl}
               />
@@ -1709,9 +1687,7 @@ function DeleteConfirm({
             </h3>
             <p className="text-muted-foreground text-sm font-body">
               «{title}»{" "}
-              {isRtl
-                ? "برای همیشه حذف خواهد شد."
-                : "will be permanently removed."}
+              {t("admin.activities.confirmText")}
             </p>
           </div>
         </div>
@@ -1794,9 +1770,7 @@ export default function AdminAreas() {
                 {t("admin.areasTitle")}
               </h1>
               <p className="text-sm font-body text-muted-foreground mt-0.5">
-                {isRtl
-                  ? "مدیریت حوزه‌های فرهنگی، آموزشی و ورزشی"
-                  : "Manage cultural, educational and sport areas"}
+                {t("admin.areasPageSubtitle")}
               </p>
             </div>
           </div>
@@ -1835,12 +1809,8 @@ export default function AdminAreas() {
         {/* Empty state */}
         {!isLoading && areas.length === 0 && (
           <EmptyState
-            title={isRtl ? "هیچ حوزه‌ای یافت نشد" : "No areas found"}
-            description={
-              isRtl
-                ? "اولین حوزه خود را اضافه کنید"
-                : "Add your first area to get started"
-            }
+            title={t("admin_areas.noAreasFound")}
+            description={t("admin_areas.addFirstArea")}
             icon={LayoutGrid}
             actionLabel={t("admin.addArea")}
             onAction={() => setEditTarget(null)}
@@ -1899,7 +1869,7 @@ export default function AdminAreas() {
                       <div className="font-body font-semibold text-foreground text-sm mb-0.5 truncate">
                         {displayTitle || (
                           <span className="text-muted-foreground italic">
-                            Untitled
+                            t("common.untitled")
                           </span>
                         )}
                       </div>

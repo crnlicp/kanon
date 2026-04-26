@@ -29,9 +29,9 @@ import { useState } from "react";
 // Types & constants
 // ---------------------------------------------------------------------------
 
-type FilterStatus = "all" | t("admin.submissions_section.pending") | t("admin.submissions_section.approved") | t("admin.submissions_section.rejected");
+type FilterStatus = "all" | "Pending" | "Approved" | "Rejected";
 
-type StatusKey = t("admin.submissions_section.pending") | t("admin.submissions_section.approved") | t("admin.submissions_section.rejected");
+type StatusKey = "Pending" | "Approved" | "Rejected";
 
 interface StatusCfg {
   labelSv: string;
@@ -240,7 +240,7 @@ function SubmissionCard({
         <div
           className={`flex gap-2 mt-3 pt-3 border-t border-white/10 ${lang === "fa" ? "flex-row-reverse justify-end" : "flex-row justify-end"}`}
         >
-          {status !== t("admin.submissions_section.approved") && (
+          {status !== "Approved" && (
             <motion.button
               type="button"
               onClick={onApprove}
@@ -254,7 +254,7 @@ function SubmissionCard({
               {t("admin.submissions_section.approve")}
             </motion.button>
           )}
-          {status !== t("admin.submissions_section.rejected") && (
+          {status !== "Rejected" && (
             <motion.button
               type="button"
               onClick={onReject}
@@ -381,7 +381,7 @@ function SubmissionRow({
       {/* Actions */}
       <td className="px-4 py-3">
         <div className="flex items-center gap-1.5">
-          {status !== t("admin.submissions_section.approved") && (
+          {status !== "Approved" && (
             <motion.button
               type="button"
               onClick={onApprove}
@@ -395,7 +395,7 @@ function SubmissionRow({
               <CheckCircle className="w-3.5 h-3.5" />
             </motion.button>
           )}
-          {status !== t("admin.submissions_section.rejected") && (
+          {status !== "Rejected" && (
             <motion.button
               type="button"
               onClick={onReject}
@@ -507,9 +507,9 @@ export default function AdminSubmissions() {
 
   const FILTERS: { key: FilterStatus; label: string; labelFa: string }[] = [
     { key: "all", label: "Alla", labelFa: "همه" },
-    { key: t("admin.submissions_section.pending"), label: "Väntande", labelFa: "در انتظار" },
-    { key: t("admin.submissions_section.approved"), label: "Godkänd", labelFa: "تأیید شده" },
-    { key: t("admin.submissions_section.rejected"), label: "Avvisad", labelFa: "رد شده" },
+    { key: "Pending", label: "Väntande", labelFa: "در انتظار" },
+    { key: "Approved", label: "Godkänd", labelFa: "تأیید شده" },
+    { key: "Rejected", label: "Avvisad", labelFa: "رد شده" },
   ];
 
   const filterLabel = (f: (typeof FILTERS)[0]) => (isRtl ? f.labelFa : f.label);
@@ -655,13 +655,13 @@ export default function AdminSubmissions() {
                             onApprove={() =>
                               statusMutation.mutate({
                                 id: sub.id,
-                                status: t("admin.submissions_section.approved"),
+                                status: "Approved",
                               })
                             }
                             onReject={() =>
                               statusMutation.mutate({
                                 id: sub.id,
-                                status: t("admin.submissions_section.rejected"),
+                                status: "Rejected",
                               })
                             }
                             onDelete={() =>
@@ -689,10 +689,10 @@ export default function AdminSubmissions() {
                     t={t}
                     isPending={mutatingIds.has(sub.id)}
                     onApprove={() =>
-                      statusMutation.mutate({ id: sub.id, status: t("admin.submissions_section.approved") })
+                      statusMutation.mutate({ id: sub.id, status: "Approved" })
                     }
                     onReject={() =>
-                      statusMutation.mutate({ id: sub.id, status: t("admin.submissions_section.rejected") })
+                      statusMutation.mutate({ id: sub.id, status: "Rejected" })
                     }
                     onDelete={() => deleteMutation.mutate({ id: sub.id })}
                   />
