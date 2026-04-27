@@ -486,7 +486,11 @@ function AddHeroSlideForm({
 
   const addMutation = useMutation({
     mutationFn: () => {
-      if (!imageBlob) toast.error(t("admin.images.imageRequired"));
+      if (!imageBlob) {
+        toast.error(t("admin.images.imageRequired"));
+        return Promise.reject(new Error("Image is required"));
+      }
+
       return addHeroSlide({
         topic,
         titleFa,
