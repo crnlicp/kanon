@@ -286,7 +286,7 @@ function ActivityModal({
               htmlFor="af-area"
               className="text-sm font-body font-medium text-foreground block mb-1"
             >
-              {t("admin_areas.areaLabel")}
+              {t("admin.admin_areas.areaLabel")}
             </label>
             <select
               id="af-area"

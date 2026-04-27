@@ -789,7 +789,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
         setSavedArea(updated);
         queryClient.invalidateQueries({ queryKey: ["areas"] });
       }
-      toast.success(t("admin_areas.bgSaved"));
+      toast.success(t("admin.admin_areas.bgSaved"));
     } catch {
       toast.error(t("common.error"));
     } finally {
@@ -1037,12 +1037,12 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                 <div className="glass rounded-xl border border-primary/20 bg-primary/5 px-4 py-3 text-xs font-body text-primary flex items-center gap-2">
                   <Check className="w-3.5 h-3.5 flex-shrink-0" />
                   <span>
-                    {t("admin_areas.areaCreatedMsg", { name: savedArea?.titleSv ?? savedArea?.titleFa ?? "" })}
+                    {t("admin.admin_areas.areaCreatedMsg", { name: savedArea?.titleSv ?? savedArea?.titleFa ?? "" })}
                   </span>
                 </div>
 
                 <SectionDivider
-                  label={t("admin_areas.cardBgLabel")}
+                  label={t("admin.admin_areas.cardBgLabel")}
                   icon={ImageIcon}
                   isRtl={isRtl}
                 />
@@ -1098,7 +1098,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                 className="flex flex-col gap-5"
               >
                 <SectionDivider
-                  label={t("admin_areas.areaPageBgLabel")}
+                  label={t("admin.admin_areas.areaPageBgLabel")}
                   icon={Film}
                   isRtl={isRtl}
                 />
@@ -1210,7 +1210,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                 ) : (
                   <>
                     <Plus className="w-4 h-4" />
-                    {t("admin_areas.createAreaBtn")}
+                    {t("admin.admin_areas.createAreaBtn")}
                   </>
                 )}
               </motion.button>
@@ -1239,7 +1239,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                 >
                   {isMediaUploading
                     ? t("admin.upload.uploading")
-                    : t("admin_areas.next")}
+                    : t("admin.admin_areas.next")}
                   {!isMediaUploading &&
                     (isRtl ? (
                       <ChevronLeft className="w-4 h-4" />
@@ -1274,7 +1274,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                   <Check className="w-4 h-4" />
                   {isMediaUploading
                     ? t("admin.upload.uploading")
-                    : t("admin_areas.finish")}
+                    : t("admin.admin_areas.finish")}
                 </motion.button>
               </>
             )}
@@ -1547,7 +1547,7 @@ function EditAreaPanel({ area, allAreas, onClose }: EditAreaPanelProps) {
             {/* Area Page Background */}
             <div className="flex flex-col gap-3">
               <SectionDivider
-                label={t("admin_areas.areaPageBgLabel")}
+                label={t("admin.admin_areas.areaPageBgLabel")}
                 icon={Film}
                 isRtl={isRtl}
               />
@@ -1809,8 +1809,8 @@ export default function AdminAreas() {
         {/* Empty state */}
         {!isLoading && areas.length === 0 && (
           <EmptyState
-            title={t("admin_areas.noAreasFound")}
-            description={t("admin_areas.addFirstArea")}
+            title={t("admin.admin_areas.noAreasFound")}
+            description={t("admin.admin_areas.addFirstArea")}
             icon={LayoutGrid}
             actionLabel={t("admin.addArea")}
             onAction={() => setEditTarget(null)}
