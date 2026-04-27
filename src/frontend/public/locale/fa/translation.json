@@ -404,7 +404,19 @@
     },
     "order": "ترتیب",
     "areasPageSubtitle": "مدیریت حوزه‌های فرهنگی، آموزشی و ورزشی",
-    "linkLabel": "لینک"
+    "linkLabel": "لینک",
+    "activitySlugPlaceholder": "اسلگ-فعالیت",
+    "titleSvPlaceholder": "فعالیت عنوان سوئدی",
+    "titleFaPlaceholder": "عنوان فعالیت",
+    "descSvPlaceholder": "توضیح سوئدی",
+    "descFaPlaceholder": "توضیح فارسی",
+    "shortDescSvPlaceholder": "خلاصه سوئدی",
+    "shortDescFaPlaceholder": "خلاصه فارسی",
+    "locationSvPlaceholder": "مکان (سوئدی)",
+    "locationFaPlaceholder": "مکان (فارسی)",
+    "tagsPlaceholder": "تگ۱، تگ۲، تگ۳",
+    "landingSubtitleSvPlaceholder": "پلی میان دو فرهنگ",
+    "landingSubtitleFaPlaceholder": "پلی میان دو فرهنگ"
   },
   "landing": {
     "langLabelSv": "Svenska",

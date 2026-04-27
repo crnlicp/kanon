@@ -390,7 +390,7 @@ export default function AdminSettings() {
                         id="settings-subtitle-sv"
                         value={landingSubtitleSv}
                         onChange={(e) => setLandingSubtitleSv(e.target.value)}
-                        placeholder="En bro mellan två kulturer"
+                        placeholder={t("admin.landingSubtitleSvPlaceholder")}
                         className={inputClass}
                         data-ocid="settings.landing_subtitle_sv_input"
                       />
@@ -407,7 +407,7 @@ export default function AdminSettings() {
                         value={landingSubtitleFa}
                         onChange={(e) => setLandingSubtitleFa(e.target.value)}
                         dir="rtl"
-                        placeholder="پلی میان دو فرهنگ"
+                        placeholder={t("admin.landingSubtitleFaPlaceholder")}
                         className={inputClass}
                         data-ocid="settings.landing_subtitle_fa_input"
                       />

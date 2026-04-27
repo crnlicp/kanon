@@ -92,7 +92,7 @@ export function AdminLogin() {
                     error &&
                       "border-destructive/50 focus:border-destructive/70",
                   )}
-                  placeholder="••••••••"
+                  placeholder={t("admin.passwordPlaceholder")}
                   autoComplete="current-password"
                   data-ocid="admin.password_input"
                 />

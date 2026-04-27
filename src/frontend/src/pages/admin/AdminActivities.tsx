@@ -313,7 +313,7 @@ function ActivityModal({
             <input
               id="af-slug"
               {...register("slug", { required: "Slug is required" })}
-              placeholder="activity-slug"
+              placeholder={t("admin.activitySlugPlaceholder")}
               className={inputClass}
               data-ocid="activities.slug_input"
             />
@@ -336,7 +336,7 @@ function ActivityModal({
               <input
                 id="af-title-sv"
                 {...register("titleSv", { required: t("common.required") })}
-                placeholder="Swedish title"
+                placeholder={t("admin.form.titleSvPlaceholder")}
                 className={inputClass}
                 data-ocid="activities.title_sv_input"
               />
@@ -352,7 +352,7 @@ function ActivityModal({
                 id="af-title-fa"
                 {...register("titleFa", { required: t("common.required") })}
                 dir="rtl"
-                placeholder="عنوان فارسی"
+                placeholder={t("admin.form.titleFaPlaceholder")}
                 className={inputClass}
                 data-ocid="activities.title_fa_input"
               />
@@ -372,7 +372,7 @@ function ActivityModal({
                 id="af-desc-sv"
                 {...register("descriptionSv", { required: t("common.required") })}
                 rows={3}
-                placeholder="Swedish description"
+                placeholder={t("admin.form.descriptionSvPlaceholder")}
                 className={`${inputClass} resize-none`}
                 data-ocid="activities.desc_sv_textarea"
               />
@@ -389,7 +389,7 @@ function ActivityModal({
                 {...register("descriptionFa", { required: t("common.required") })}
                 rows={3}
                 dir="rtl"
-                placeholder="توضیح فارسی"
+                placeholder={t("admin.form.descriptionFaPlaceholder")}
                 className={`${inputClass} resize-none`}
                 data-ocid="activities.desc_fa_textarea"
               />
@@ -408,7 +408,7 @@ function ActivityModal({
               <input
                 id="af-sdesc-sv"
                 {...register("shortDescriptionSv")}
-                placeholder="Short SV"
+                placeholder={t("admin.form.shortDescriptionSvPlaceholder")}
                 className={inputClass}
               />
             </div>
@@ -423,7 +423,7 @@ function ActivityModal({
                 id="af-sdesc-fa"
                 {...register("shortDescriptionFa")}
                 dir="rtl"
-                placeholder="خلاصه فارسی"
+                placeholder={t("admin.form.shortDescriptionFaPlaceholder")}
                 className={inputClass}
               />
             </div>
@@ -499,7 +499,7 @@ function ActivityModal({
               <input
                 id="af-loc-sv"
                 {...register("locationSv")}
-                placeholder="Plats"
+                placeholder={t("admin.form.locationSvPlaceholder")}
                 className={inputClass}
               />
             </div>
@@ -514,7 +514,7 @@ function ActivityModal({
                 id="af-loc-fa"
                 {...register("locationFa")}
                 dir="rtl"
-                placeholder="مکان"
+                placeholder={t("admin.form.locationFaPlaceholder")}
                 className={inputClass}
               />
             </div>
@@ -531,7 +531,7 @@ function ActivityModal({
             <input
               id="af-tags"
               {...register("tags")}
-              placeholder="tag1, tag2, tag3"
+              placeholder={t("admin.form.tagsPlaceholder")}
               className={inputClass}
               data-ocid="activities.tags_input"
             />
