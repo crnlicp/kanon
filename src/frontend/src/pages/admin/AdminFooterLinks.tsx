@@ -307,7 +307,7 @@ export default function AdminFooterLinks() {
               <Link2 className="w-5 h-5 text-primary" />
             </div>
             <h1 className="font-display text-2xl font-bold text-foreground">
-              {t("admin.footerLinks")}
+              {t("admin.tab.footerLinks")}
             </h1>
           </div>
           <motion.button

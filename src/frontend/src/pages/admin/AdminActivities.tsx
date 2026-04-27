@@ -646,7 +646,7 @@ export default function AdminActivities() {
               <Zap className="w-5 h-5 text-primary" />
             </div>
             <h1 className="font-display text-2xl font-bold text-foreground">
-              {t("admin.activities")}
+              {t("admin.tab.activities")}
             </h1>
           </div>
 

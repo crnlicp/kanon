@@ -12,25 +12,25 @@ import { Link } from "react-router-dom";
 
 const STAT_CARDS = [
   {
-    key: "admin.activities",
+    key: "admin.tab.activities",
     icon: Zap,
     path: "/admin/activities",
     color: "text-primary",
   },
   {
-    key: "admin.areas",
+    key: "admin.tab.areas",
     icon: LayoutGrid,
     path: "/admin/areas",
     color: "text-secondary",
   },
   {
-    key: "admin.footerLinks",
+    key: "admin.tab.footerLinks",
     icon: Link2,
     path: "/admin/footer-links",
     color: "text-accent",
   },
   {
-    key: "admin.submissions",
+    key: "admin.tab.submissions",
     icon: FileText,
     path: "/admin/submissions",
     color: "text-primary",
@@ -97,7 +97,7 @@ export default function AdminDashboard() {
               {footerLinks.length}
             </div>
             <div className="text-muted-foreground text-sm font-body">
-              {t("admin.footerLinks")}
+              {t("admin.tab.footerLinks")}
             </div>
           </GlassCard>
         </div>
