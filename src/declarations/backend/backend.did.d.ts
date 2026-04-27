@@ -26,6 +26,7 @@ export interface Activity {
 }
 export interface Area {
   'id' : bigint,
+  'topic' : string,
   'order' : bigint,
   'icon' : string,
   'cardBackground' : [] | [Uint8Array | number[]],
@@ -37,6 +38,7 @@ export interface Area {
   'titleSv' : string,
 }
 export interface AreaInput {
+  'topic' : string,
   'icon' : string,
   'subtitleFa' : string,
   'subtitleSv' : string,

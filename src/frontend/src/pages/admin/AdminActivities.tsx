@@ -31,29 +31,10 @@ import { toast } from "sonner";
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
-
-/** Derive a TopicType from area title keywords (fallback: first area → cultural). */
-function areaToTopicType(area: Area): TopicType {
-  const combined = `${area.titleFa} ${area.titleSv}`.toLowerCase();
-  if (combined.includes("cultural") || combined.includes("فرهنگ"))
-    return "cultural";
-  if (
-    combined.includes("educational") ||
-    combined.includes("utbildning") ||
-    combined.includes("آموزش")
-  )
-    return "educational";
-  if (
-    combined.includes("sport") ||
-    combined.includes("idrott") ||
-    combined.includes("ورزش")
-  )
-    return "sport";
-  // Fallback based on order: 1→cultural, 2→educational, 3→sport, repeat
-  const fallbacks: TopicType[] = ["cultural", "educational", "sport"];
-  return fallbacks[(area.order - 1) % 3];
+export function getTopicForArea(area: Area): TopicType {
+  if (area.topic && area.topic.length > 0) return area.topic;
+  return "cultural";
 }
-
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -103,7 +84,7 @@ function ActivityModal({
   // Find area that matches the activity's current topic
   const defaultAreaId = activity
     ? String(
-        areas.find((a) => areaToTopicType(a) === activity.topic)?.id ??
+        areas.find((a) => a.topic === activity.topic)?.id ??
           areas[0]?.id ??
           "",
       )
@@ -209,7 +190,7 @@ function ActivityModal({
     // Derive topic from selected area
     const selectedArea = areas.find((a) => String(a.id) === data.areaId);
     const topic: TopicType = selectedArea
-      ? areaToTopicType(selectedArea)
+      ? selectedArea.topic
       : "cultural";
 
     if (activity) {
@@ -611,7 +592,7 @@ export default function AdminActivities() {
       ? undefined
       : (() => {
           const area = areas.find((a) => a.id === filterAreaId);
-          return area ? areaToTopicType(area) : undefined;
+          return area ? area.topic : undefined;
         })();
 
   const { data: activities = [], isLoading: activitiesLoading } = useQuery({
@@ -803,7 +784,7 @@ export default function AdminActivities() {
                     {areas.length > 0 &&
                       (() => {
                         const matchArea = areas.find(
-                          (a) => areaToTopicType(a) === activity.topic,
+                          (a) => a.topic === activity.topic,
                         );
                         return matchArea ? (
                           <span className="inline-flex items-center gap-1 text-xs font-body font-medium text-primary bg-primary/10 border border-primary/20 rounded-full px-2 py-0.5 mb-2">

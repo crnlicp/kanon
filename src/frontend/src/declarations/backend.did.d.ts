@@ -43,6 +43,7 @@ export interface Area {
   'areaBackground' : [] | [Blob],
   'titleFa' : string,
   'titleSv' : string,
+    'topic' : string,
 }
 export interface AreaInput {
   'icon' : string,
@@ -50,6 +51,7 @@ export interface AreaInput {
   'subtitleSv' : string,
   'titleFa' : string,
   'titleSv' : string,
+    'topic' : string,
 }
 export interface Background {
   'id' : bigint,

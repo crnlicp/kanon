@@ -139,6 +139,7 @@ export interface Area {
   areaBackground?: string;
   areaBackgroundVideo?: string;
   order: number;
+  topic: string;
 }
 
 export interface AreaInput {
@@ -147,4 +148,5 @@ export interface AreaInput {
   titleSv: string;
   subtitleFa: string;
   subtitleSv: string;
+  topic: string;
 }

@@ -59,6 +59,7 @@ module {
       areaBackground = null;
       areaBackgroundVideo = null;
       order = 0;
+      topic = "cultural";
     };
     nextAreaId.value += 1;
     areas.add(culturalArea);
@@ -74,6 +75,7 @@ module {
       areaBackground = null;
       areaBackgroundVideo = null;
       order = 1;
+      topic = "educational";
     };
     nextAreaId.value += 1;
     areas.add(educationalArea);
@@ -89,6 +91,7 @@ module {
       areaBackground = null;
       areaBackgroundVideo = null;
       order = 2;
+      topic = "sport";
     };
     nextAreaId.value += 1;
     areas.add(sportArea);
@@ -96,7 +99,7 @@ module {
     // --- Hero Slides: Cultural (2) ---
     let culturalSlide1 : ContentTypes.HeroSlide = {
       id = nextHeroSlideId.value;
-      topic = "Cultural";
+      topic = "cultural";
       titleFa = "کشف فرهنگ ایرانی";
       titleSv = "Utforska iransk kultur";
       subtitleFa = "سفری به دل هنر و تاریخ";
@@ -110,7 +113,7 @@ module {
 
     let culturalSlide2 : ContentTypes.HeroSlide = {
       id = nextHeroSlideId.value;
-      topic = "Cultural";
+      topic = "cultural";
       titleFa = "جشن نوروز ۱۴۰۴";
       titleSv = "Fira Nowruz 1404";
       subtitleFa = "سال نو مبارک — آغاز بهار";
@@ -125,7 +128,7 @@ module {
     // --- Hero Slides: Educational (2) ---
     let eduSlide1 : ContentTypes.HeroSlide = {
       id = nextHeroSlideId.value;
-      topic = "Educational";
+      topic = "educational";
       titleFa = "یادگیری بدون مرز";
       titleSv = "Lärande utan gränser";
       subtitleFa = "برنامه‌های آموزشی برای همه سنین";
@@ -139,7 +142,7 @@ module {
 
     let eduSlide2 : ContentTypes.HeroSlide = {
       id = nextHeroSlideId.value;
-      topic = "Educational";
+      topic = "educational";
       titleFa = "آینده‌ات را بساز";
       titleSv = "Bygg din framtid";
       subtitleFa = "دوره‌های تخصصی و کارگاه‌های عملی";
@@ -154,7 +157,7 @@ module {
     // --- Hero Slides: Sport (2) ---
     let sportSlide1 : ContentTypes.HeroSlide = {
       id = nextHeroSlideId.value;
-      topic = "Sport";
+      topic = "sport";
       titleFa = "سلامت و تندرستی";
       titleSv = "Hälsa och välmående";
       subtitleFa = "تجربه ورزش در محیطی دوستانه";
@@ -168,7 +171,7 @@ module {
 
     let sportSlide2 : ContentTypes.HeroSlide = {
       id = nextHeroSlideId.value;
-      topic = "Sport";
+      topic = "sport";
       titleFa = "قهرمان زندگیت باش";
       titleSv = "Bli hjälten i ditt liv";
       subtitleFa = "برنامه‌های ورزشی برای تمام سطوح";
@@ -183,7 +186,7 @@ module {
     // --- Activities: Cultural (3) ---
     let nowruz : ContentTypes.Activity = {
       id = nextActivityId.value;
-      topic = "Cultural";
+      topic = "cultural";
       slug = "nowruz-exhibition";
       titleFa = "نمایشگاه نوروز";
       titleSv = "Nowruz-utställning";
@@ -202,7 +205,7 @@ module {
 
     let calligraphy : ContentTypes.Activity = {
       id = nextActivityId.value;
-      topic = "Cultural";
+      topic = "cultural";
       slug = "calligraphy-workshop";
       titleFa = "کارگاه خوشنویسی";
       titleSv = "Kalligrafiworkshop";
@@ -221,7 +224,7 @@ module {
 
     let music : ContentTypes.Activity = {
       id = nextActivityId.value;
-      topic = "Cultural";
+      topic = "cultural";
       slug = "persian-music-night";
       titleFa = "شب موسیقی ایرانی";
       titleSv = "Persisk musiknatt";
@@ -241,7 +244,7 @@ module {
     // --- Activities: Educational (3) ---
     let langLearning : ContentTypes.Activity = {
       id = nextActivityId.value;
-      topic = "Educational";
+      topic = "educational";
       slug = "language-learning";
       titleFa = "یادگیری زبان";
       titleSv = "Språkinlärning";
@@ -260,7 +263,7 @@ module {
 
     let mathClub : ContentTypes.Activity = {
       id = nextActivityId.value;
-      topic = "Educational";
+      topic = "educational";
       slug = "math-club";
       titleFa = "باشگاه ریاضی";
       titleSv = "Matematikklubb";
@@ -279,7 +282,7 @@ module {
 
     let scienceFair : ContentTypes.Activity = {
       id = nextActivityId.value;
-      topic = "Educational";
+      topic = "educational";
       slug = "science-fair";
       titleFa = "نمایشگاه علوم";
       titleSv = "Vetenskapsmässa";
@@ -299,7 +302,7 @@ module {
     // --- Activities: Sport (3) ---
     let yoga : ContentTypes.Activity = {
       id = nextActivityId.value;
-      topic = "Sport";
+      topic = "sport";
       slug = "yoga";
       titleFa = "یوگا";
       titleSv = "Yoga";
@@ -318,7 +321,7 @@ module {
 
     let football : ContentTypes.Activity = {
       id = nextActivityId.value;
-      topic = "Sport";
+      topic = "sport";
       slug = "football";
       titleFa = "فوتبال";
       titleSv = "Fotboll";
@@ -337,7 +340,7 @@ module {
 
     let swimming : ContentTypes.Activity = {
       id = nextActivityId.value;
-      topic = "Sport";
+      topic = "sport";
       slug = "swimming";
       titleFa = "شنا";
       titleSv = "Simning";

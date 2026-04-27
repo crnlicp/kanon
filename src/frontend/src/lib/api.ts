@@ -41,24 +41,14 @@ import type {
 // Actor factory — uses the mock in dev (no env.json), real backend otherwise
 // ---------------------------------------------------------------------------
 
-async function getActor() {
+async function getActor(): Promise<typeof import('../mocks/backend').mockBackend> {
   try {
     const agent = await HttpAgent.create();
-
-    // Fetch root key for cryptographic verification in the browser
-    const fetchRootKey = await agent.fetchRootKey();
-    if (!fetchRootKey) {
-      console.warn("Unable to fetch root key. Verify your IC local is running properly.");
-    }
-
-    // Local dev canister communication doesn't need authentication
-    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
-      agent.fetchRootKey();
-    }
-
-    return createActor(canisterIds!.backend!, null as any, null as any, { agent } as any);
+    const ok = await agent.fetchRootKey();
+    if (!ok) throw new Error('IC local replica is not running');
+    return createActor(canisterIds!.backend!, null as any, null as any, { agent } as any) as any;
   } catch {
-    const { mockBackend } = await import("../mocks/backend");
+    const { mockBackend } = await import('../mocks/backend');
     return mockBackend;
   }
 }
@@ -103,8 +93,9 @@ function topicToBackend(topic: TopicType): Topic {
   return Topic.Cultural;
 }
 
-function topicFromBackend(topic: string): TopicType {
-  return topic;
+function topicFromBackend(topic: string | undefined): TopicType {
+  if (!topic) return "cultural";
+  return topic.toLowerCase();
 }
 
 function bgScopeToContext(scope: BackgroundScope): "landing" | TopicType {
@@ -181,6 +172,7 @@ function adaptArea(a: BackendArea): Area {
     areaBackground: a.areaBackground?.getDirectURL() || undefined,
     areaBackgroundVideo: a.areaBackgroundVideo?.getDirectURL() || undefined,
     order: Number(a.order),
+    topic: topicFromBackend(a.topic),
   };
 }
 
@@ -722,6 +714,7 @@ export async function createArea(input: AreaInput): Promise<Area> {
     titleSv: input.titleSv,
     subtitleFa: input.subtitleFa,
     subtitleSv: input.subtitleSv,
+    topic: topicToBackend(input.topic),
   };
   try {
     const result = await actor.addArea(token, backendInput);
@@ -747,6 +740,7 @@ export async function updateArea(
     titleSv: input.titleSv,
     subtitleFa: input.subtitleFa,
     subtitleSv: input.subtitleSv,
+    topic: topicToBackend(input.topic),
   };
   const result = await actor.updateArea(token, BigInt(id), backendInput);
   const area = unwrap(result);

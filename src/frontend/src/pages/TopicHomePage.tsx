@@ -12,29 +12,13 @@ import { motion } from "motion/react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 
-function toAreaSlug(area: Area): string {
-  return area.titleSv
-    .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9-]/g, "");
-}
-
-function slugToTopicType(slug: string): TopicType {
-  const map: Record<string, TopicType> = {
-    cultural: "cultural",
-    educational: "educational",
-    sport: "sport",
-  };
-  return map[slug] ?? "cultural";
-}
-
 export default function TopicHomePage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { lang, topic } = useParams<{ lang: string; topic: string }>();
   const { currentLang, setAreas } = useAppStore();
   const activeLang = (lang ?? currentLang) as Lang;
-  const activeSlug = topic ?? "cultural";
+  const activeTopic: TopicType = topic ?? "cultural";
 
   const { data: areas = [] } = useQuery<Area[]>({
     queryKey: ["areas"],
@@ -47,8 +31,25 @@ export default function TopicHomePage() {
     refetchOnMount: "always",
   });
 
-  const matchedArea = areas.find((a) => toAreaSlug(a) === activeSlug) ?? null;
-  const activeTopic: TopicType = slugToTopicType(activeSlug);
+  const matchedArea =
+    areas.find((a) => a.topic.toLowerCase() === activeTopic.toLowerCase()) ??
+    null;
+
+  const areaTitle = matchedArea
+    ? activeLang === "fa"
+      ? matchedArea.titleFa
+      : matchedArea.titleSv
+    : t(`topics.${activeTopic}`);
+
+  // Area background: video takes priority over image.
+  const areaBackgroundUrl =
+    (matchedArea?.areaBackgroundVideo &&
+    matchedArea.areaBackgroundVideo !== ""
+      ? matchedArea.areaBackgroundVideo
+      : null) ??
+    (matchedArea?.areaBackground && matchedArea.areaBackground !== ""
+      ? matchedArea.areaBackground
+      : undefined);
 
   const { data: slides = [], isLoading: slidesLoading } = useQuery({
     queryKey: ["heroSlides", activeTopic],
@@ -63,23 +64,6 @@ export default function TopicHomePage() {
     staleTime: 30_000,
     refetchOnMount: "always",
   });
-
-  const areaTitle = matchedArea
-    ? activeLang === "fa"
-      ? matchedArea.titleFa
-      : matchedArea.titleSv
-    : t(`topics.${activeTopic}`);
-
-  // Area background: video takes priority over image.
-  // This URL is passed to PageBackground which renders it as a full-screen
-  // fixed layer at body level (portal, z-index:-1) behind all page content.
-  const areaBackgroundUrl =
-    (matchedArea?.areaBackgroundVideo && matchedArea.areaBackgroundVideo !== ""
-      ? matchedArea.areaBackgroundVideo
-      : null) ??
-    (matchedArea?.areaBackground && matchedArea.areaBackground !== ""
-      ? matchedArea.areaBackground
-      : undefined);
 
   return (
     <Layout>
@@ -132,7 +116,7 @@ export default function TopicHomePage() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.4 }}
+          transition={{ delay: 0.2, duration: 0.4 }}
         >
           <h2 className="font-display text-2xl font-bold text-foreground mb-6">
             {areaTitle}
@@ -159,7 +143,7 @@ export default function TopicHomePage() {
                   <GlassCard
                     hoverable
                     onClick={() =>
-                      navigate(`/${activeLang}/${activeSlug}/${activity.slug}`)
+                      navigate(`/${activeLang}/${activeTopic}/${activity.slug}`)
                     }
                     className="overflow-hidden"
                     data-ocid={`topic.activity.${i + 1}`}
@@ -170,8 +154,9 @@ export default function TopicHomePage() {
                         alt={activity.title[activeLang]}
                         className="w-full h-full object-cover"
                         onError={(e) => {
-                          (e.currentTarget as HTMLImageElement).src =
-                            "/assets/images/placeholder.svg";
+                          (
+                            e.currentTarget as HTMLImageElement
+                          ).src = "/assets/images/placeholder.svg";
                         }}
                       />
                     </div>

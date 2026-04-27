@@ -89,43 +89,12 @@ function IconComponent({
 // Topic mapping helpers
 // ---------------------------------------------------------------------------
 
-const TOPIC_KEYWORDS: { fa: string[]; sv: string[]; topic: TopicType }[] = [
-  {
-    fa: ["فرهنگ", "cultural", "هنر", "موسیقی"],
-    sv: ["kultur", "kulturell", "konst"],
-    topic: "cultural",
-  },
-  {
-    fa: ["آموزش", "آموزشی", "علم", "تحصیل"],
-    sv: ["utbildn", "pedagogisk", "lärande"],
-    topic: "educational",
-  },
-  {
-    fa: ["ورزش", "ورزشی", "بدنی"],
-    sv: ["sport", "idrott", "träning"],
-    topic: "sport",
-  },
-];
-
-const TOPIC_ORDER: TopicType[] = ["cultural", "educational", "sport"];
-
-export function deriveTopicFromArea(area: Area, allAreas: Area[]): TopicType {
-  const combined =
-    `${area.titleFa} ${area.subtitleFa} ${area.titleSv} ${area.subtitleSv}`.toLowerCase();
-
-  for (const { fa, sv, topic } of TOPIC_KEYWORDS) {
-    if (
-      fa.some((k) => combined.includes(k)) ||
-      sv.some((k) => combined.includes(k))
-    ) {
-      return topic;
-    }
-  }
-
-  const sorted = [...allAreas].sort((a, b) => a.order - b.order);
-  const idx = sorted.findIndex((a) => a.id === area.id);
-  return TOPIC_ORDER[((idx >= 0 ? idx : 0) % 3) as 0 | 1 | 2];
+export function getTopicForArea(area: Area): TopicType {
+  if (area.topic && area.topic.length > 0) return area.topic;
+  return "cultural";
 }
+
+
 
 // ---------------------------------------------------------------------------
 // Shared UI helpers
@@ -615,7 +584,7 @@ function HeroSlidesSection({
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const [showAddForm, setShowAddForm] = useState(false);
-  const topic = deriveTopicFromArea(area, allAreas);
+  const topic = getTopicForArea(area);
 
   const { data: slides = [], isLoading } = useQuery({
     queryKey: ["heroSlides", topic],
@@ -712,6 +681,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
   const [titleFa, setTitleFa] = useState("");
   const [subtitleSv, setSubtitleSv] = useState("");
   const [subtitleFa, setSubtitleFa] = useState("");
+  const [topic, setTopic] = useState("cultural");
 
   // Step 1 validation errors
   const [errors, setErrors] = useState<{
@@ -750,6 +720,7 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
         titleFa,
         subtitleSv,
         subtitleFa,
+        topic,
       });
       queryClient.invalidateQueries({ queryKey: ["areas"] });
       setSavedArea(created);
@@ -1012,6 +983,28 @@ function CreateAreaWizard({ allAreas, onClose }: WizardProps) {
                     />
                   </div>
                 </div>
+
+                 {/* Topic selection */}
+                 <SectionDivider
+                  label={t("admin.topic") || "Topic"}
+                  icon={Globe}
+                  isRtl={isRtl}
+                 />
+                 <div className="flex flex-col gap-2">
+                  <label className="text-sm font-body text-foreground">
+                    {t("admin.topic") || "Topic"}
+                  </label>
+                  <select
+                   value={topic}
+                   onChange={(e) => setTopic(e.target.value)}
+                   className="glass rounded-lg px-3 py-2 text-sm font-body text-foreground border border-white/10"
+                   data-ocid="areas.topic_select"
+                   >
+                   <option value="cultural">Cultural</option>
+                   <option value="educational">Educational</option>
+                   <option value="sport">Sport</option>
+                  </select>
+                 </div>
 
                 {/* Backend error message */}
                 {createError && (
@@ -1310,11 +1303,12 @@ function EditAreaPanel({ area, allAreas, onClose }: EditAreaPanelProps) {
   const [titleFa, setTitleFa] = useState(area.titleFa);
   const [subtitleSv, setSubtitleSv] = useState(area.subtitleSv);
   const [subtitleFa, setSubtitleFa] = useState(area.subtitleFa);
+  const [topic, setTopic] = useState(area.topic);
   const [savedArea, setSavedArea] = useState<Area>(area);
   const [bgMode, setBgMode] = useState<"image" | "video">("image");
 
   const updateMutation = useMutation({
-    mutationFn: (input: AreaInput) => updateArea(area.id, input),
+    mutationFn: (input: AreaInput) => updateArea(area.id, { ...input, topic }),
     onSuccess: (updated) => {
       queryClient.invalidateQueries({ queryKey: ["areas"] });
       if (updated) setSavedArea(updated);
@@ -1363,7 +1357,7 @@ function EditAreaPanel({ area, allAreas, onClose }: EditAreaPanelProps) {
       );
       return;
     }
-    updateMutation.mutate({ icon, titleSv, titleFa, subtitleSv, subtitleFa });
+    updateMutation.mutate({ icon, titleSv, titleFa, subtitleSv, subtitleFa, topic });
   };
 
   const isSaving = updateMutation.isPending;

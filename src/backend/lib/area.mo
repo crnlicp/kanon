@@ -27,6 +27,7 @@ module {
       areaBackground = null;
       areaBackgroundVideo = null;
       order = areas.size();
+      topic = input.topic;
     };
     nextId.value += 1;
     areas.add(area);
@@ -49,6 +50,7 @@ module {
             titleSv = input.titleSv;
             subtitleFa = input.subtitleFa;
             subtitleSv = input.subtitleSv;
+            topic = input.topic;
           };
           result := ?updated;
           updated;

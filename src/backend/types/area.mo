@@ -10,6 +10,7 @@ module {
     areaBackground : ?[Nat8];
     areaBackgroundVideo : ?[Nat8];
     order : Nat;
+    topic : Text;
   };
 
   public type AreaInput = {
@@ -18,5 +19,6 @@ module {
     titleSv : Text;
     subtitleFa : Text;
     subtitleSv : Text;
+    topic : Text;
   };
 };

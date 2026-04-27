@@ -17,6 +17,7 @@ export const idlFactory = ({ IDL }) => {
     'titleSv' : IDL.Text,
   });
   const AreaInput = IDL.Record({
+    'topic' : IDL.Text,
     'icon' : IDL.Text,
     'subtitleFa' : IDL.Text,
     'subtitleSv' : IDL.Text,
@@ -25,6 +26,7 @@ export const idlFactory = ({ IDL }) => {
   });
   const Area = IDL.Record({
     'id' : IDL.Nat,
+    'topic' : IDL.Text,
     'order' : IDL.Nat,
     'icon' : IDL.Text,
     'cardBackground' : IDL.Opt(IDL.Vec(IDL.Nat8)),

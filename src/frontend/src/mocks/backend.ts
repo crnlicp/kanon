@@ -157,6 +157,7 @@ let mockAreas: Area[] = [
     areaBackground: mockBlob("https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=1600"),
     areaBackgroundVideo: mockBlob(""),
     order: BigInt(1),
+    topic: "cultural",
   },
   {
     id: BigInt(2),
@@ -169,6 +170,7 @@ let mockAreas: Area[] = [
     areaBackground: mockBlob("https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1600"),
     areaBackgroundVideo: mockBlob(""),
     order: BigInt(2),
+    topic: "educational",
   },
   {
     id: BigInt(3),
@@ -181,6 +183,7 @@ let mockAreas: Area[] = [
     areaBackground: mockBlob("https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=1600"),
     areaBackgroundVideo: mockBlob(""),
     order: BigInt(3),
+    topic: "sport",
   },
 ];
 
@@ -208,6 +211,7 @@ export const mockBackend: backendInterface = {
       areaBackground: mockBlob(""),
       areaBackgroundVideo: mockBlob(""),
       order: BigInt(mockAreas.length + 1),
+      topic: input.topic,
     };
     mockAreas.push(newArea);
     return ok(newArea);

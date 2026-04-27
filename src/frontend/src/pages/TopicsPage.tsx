@@ -49,7 +49,7 @@ const CARD_GRADIENTS = [
 ];
 
 function toAreaSlug(area: Area): string {
-  return area.titleSv
+  return area.topic
     .toLowerCase()
     .replace(/\s+/g, "-")
     .replace(/[^a-z0-9-]/g, "");
@@ -151,6 +151,7 @@ export default function TopicsPage() {
               const Icon = ICON_MAP[area.icon] ?? Star;
               const gradient = CARD_GRADIENTS[i % CARD_GRADIENTS.length];
               const slug = toAreaSlug(area);
+              const topicSlug = area.topic.toLowerCase();
               const title = activeLang === "fa" ? area.titleFa : area.titleSv;
               const subtitle =
                 activeLang === "fa" ? area.subtitleFa : area.subtitleSv;
@@ -164,7 +165,7 @@ export default function TopicsPage() {
                 >
                   <GlassCard
                     hoverable
-                    onClick={() => navigate(`/${activeLang}/${slug}`)}
+                    onClick={() => navigate(`/${activeLang}/${topicSlug}`)}
                     className="p-0 flex flex-col items-center text-center overflow-hidden"
                     data-ocid={`topics.area.${i + 1}`}
                   >

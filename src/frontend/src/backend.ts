@@ -134,6 +134,7 @@ export interface AreaInput {
     subtitleSv: string;
     titleFa: string;
     titleSv: string;
+    topic: string;
 }
 export interface FooterLink {
     id: bigint;
@@ -196,6 +197,7 @@ export interface Area {
     areaBackground?: ExternalBlob;
     titleFa: string;
     titleSv: string;
+    topic: string;
 }
 export interface ContactSubmissionInput {
     name: string;
