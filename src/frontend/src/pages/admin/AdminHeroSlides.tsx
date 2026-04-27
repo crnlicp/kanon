@@ -177,7 +177,7 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
               htmlFor="sf-topic"
               className="text-sm font-body font-medium text-foreground block mb-1"
             >
-              Topic
+                {t("admin.heroSlideTopic")}
             </label>
             <select
               id="sf-topic"
@@ -200,12 +200,12 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
                 htmlFor="sf-title-sv"
                 className="text-sm font-body font-medium text-foreground block mb-1"
               >
-                Title (SV)
+{t("admin.heroSlideTitleSv")}
               </label>
               <input
                 id="sf-title-sv"
                 {...register("titleSv", { required: t("common.required") })}
-                placeholder={t("admin.titleSv") || "Swedish title"}
+                placeholder={t("admin.heroSlideTitleSvPlaceholder")}
                 className="w-full glass rounded-lg border border-white/10 px-3 py-2 text-sm font-body text-foreground placeholder:text-muted-foreground bg-transparent focus:outline-none focus:border-primary/50"
                 data-ocid="hero_slides.title_sv_input"
               />
@@ -215,13 +215,13 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
                 htmlFor="sf-title-fa"
                 className="text-sm font-body font-medium text-foreground block mb-1"
               >
-                Title (FA)
+{t("admin.heroSlideTitleFa")}
               </label>
               <input
                 id="sf-title-fa"
                 {...register("titleFa", { required: t("common.required") })}
                 dir="rtl"
-                placeholder={t("admin.titleFa") || "عنوان فارسی"}
+                placeholder={t("admin.heroSlideTitleFaPlaceholder")}
                 className="w-full glass rounded-lg border border-white/10 px-3 py-2 text-sm font-body text-foreground placeholder:text-muted-foreground bg-transparent focus:outline-none focus:border-primary/50"
                 data-ocid="hero_slides.title_fa_input"
               />
@@ -235,12 +235,12 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
                 htmlFor="sf-subtitle-sv"
                 className="text-sm font-body font-medium text-foreground block mb-1"
               >
-                Subtitle (SV)
+{t("admin.heroSlideSubtitleSv")}
               </label>
               <input
                 id="sf-subtitle-sv"
                 {...register("subtitleSv")}
-                placeholder={t("admin.subtitleSv") || "Swedish subtitle"}
+                placeholder={t("admin.heroSlideSubtitleSvPlaceholder")}
                 className="w-full glass rounded-lg border border-white/10 px-3 py-2 text-sm font-body text-foreground placeholder:text-muted-foreground bg-transparent focus:outline-none focus:border-primary/50"
               />
             </div>
@@ -249,13 +249,13 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
                 htmlFor="sf-subtitle-fa"
                 className="text-sm font-body font-medium text-foreground block mb-1"
               >
-                Subtitle (FA)
+{t("admin.heroSlideSubtitleFa")}
               </label>
               <input
                 id="sf-subtitle-fa"
                 {...register("subtitleFa")}
                 dir="rtl"
-                placeholder={t("admin.subtitleFa") || "زیرعنوان فارسی"}
+                placeholder={t("admin.heroSlideSubtitleFaPlaceholder")}
                 className="w-full glass rounded-lg border border-white/10 px-3 py-2 text-sm font-body text-foreground placeholder:text-muted-foreground bg-transparent focus:outline-none focus:border-primary/50"
               />
             </div>
@@ -268,12 +268,12 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
                 htmlFor="sf-cta-sv"
                 className="text-sm font-body font-medium text-foreground block mb-1"
               >
-                CTA Label (SV)
+{t("admin.heroSlideCtaSv")}
               </label>
               <input
                 id="sf-cta-sv"
                 {...register("ctaLabelSv")}
-                placeholder={t("common.learnMore") || "Läs mer"}
+                placeholder={t("admin.heroSlideCtaSvPlaceholder")}
                 className="w-full glass rounded-lg border border-white/10 px-3 py-2 text-sm font-body text-foreground placeholder:text-muted-foreground bg-transparent focus:outline-none focus:border-primary/50"
               />
             </div>
@@ -282,13 +282,13 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
                 htmlFor="sf-cta-fa"
                 className="text-sm font-body font-medium text-foreground block mb-1"
               >
-                CTA Label (FA)
+{t("admin.heroSlideCtaFa")}
               </label>
               <input
                 id="sf-cta-fa"
                 {...register("ctaLabelFa")}
                 dir="rtl"
-                placeholder={t("common.learnMore") || "بیشتر بخوانید"}
+                placeholder={t("admin.heroSlideCtaFaPlaceholder")}
                 className="w-full glass rounded-lg border border-white/10 px-3 py-2 text-sm font-body text-foreground placeholder:text-muted-foreground bg-transparent focus:outline-none focus:border-primary/50"
               />
             </div>
@@ -301,7 +301,7 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
                 htmlFor="sf-cta-url"
                 className="text-sm font-body font-medium text-foreground block mb-1"
               >
-                CTA URL
+{t("admin.heroSlideCtaUrl")}
               </label>
               <input
                 id="sf-cta-url"
@@ -315,7 +315,7 @@ function SlideModal({ slide, activeTopic, onClose, onSave }: SlideModalProps) {
                 htmlFor="sf-order"
                 className="text-sm font-body font-medium text-foreground block mb-1"
               >
-                Order
+{t("admin.order")}
               </label>
               <input
                 id="sf-order"

@@ -293,7 +293,8 @@
       "locationFaPlaceholder": "مکان",
       "tagsLabel": "برچسب‌ها (با کاما جدا شده)",
       "tagsPlaceholder": "برچسب۱، برچسب۲، برچسب۳",
-      "imageLabel": "تصویر فعالیت"
+      "imageLabel": "تصویر فعالیت",
+      "slugRequired": "اسلاگ لازم است"
     },
     "category": "دسته‌بندی",
     "linkPlaceholder": "https://...",
@@ -416,7 +417,33 @@
     "locationFaPlaceholder": "مکان (فارسی)",
     "tagsPlaceholder": "تگ۱، تگ۲، تگ۳",
     "landingSubtitleSvPlaceholder": "پلی میان دو فرهنگ",
-    "landingSubtitleFaPlaceholder": "پلی میان دو فرهنگ"
+    "landingSubtitleFaPlaceholder": "پلی میان دو فرهنگ",
+    "images": {
+      "imageRequired": "تصویر لازم است"
+    },
+    "backgroundsPageSubtitle": "تصویر یا ویدیوی پسزمینه برای هر بخش",
+    "heroSlideTopic": "موضوع",
+    "heroSlideTitleSv": "عنوان (سوئدی)",
+    "heroSlideTitleFa": "عنوان (فارسی)",
+    "heroSlideSubtitleSv": "زیرعنوان (سوئدی)",
+    "heroSlideSubtitleFa": "زیرعنوان (فارسی)",
+    "heroSlideCtaSv": "برچسب CTA (سوئدی)",
+    "heroSlideCtaFa": "برچسب CTA (فارسی)",
+    "heroSlideCtaUrl": "CTA-URL",
+    "heroSlideTitleSvPlaceholder": "عنوان سوئدی",
+    "heroSlideTitleFaPlaceholder": "عنوان فارسی",
+    "heroSlideSubtitleSvPlaceholder": "زیرعنوان سوئدی",
+    "heroSlideSubtitleFaPlaceholder": "زیرعنوان فارسی",
+    "heroSlideCtaSvPlaceholder": "بیشتر بخوانید",
+    "heroSlideCtaFaPlaceholder": "بیشتر بخوانید",
+    "deleteConfirmSuffix": "به طور دائم حذف خواهد شد.",
+    "canvasContextError": "بافت 2D در دسترس نیست",
+    "canvasCompressionError": "فشرده‌سازی بافت ناموفق بود",
+    "imageLoadError": "بارگذاری تصویر ناموفق بود",
+    "mediaPreviewAlt": "پیش‌نمایش رسانه",
+    "mediaFileSize": "حجم فایل",
+    "mediaSavings": "صرفه‌جویی",
+    "mediaVideoLargeWarning": "فایل ویدیو بزرگ است. فشرده‌سازی مرورگر پشتیبانی نمی‌شود. فایل اصلی را بارگذاری کنید؟"
   },
   "landing": {
     "langLabelSv": "Svenska",

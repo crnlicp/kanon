@@ -367,7 +367,7 @@ export default function AdminBackgrounds() {
             <p className="text-sm font-body text-muted-foreground mt-0.5">
               {adminLang === "fa"
                 ? "تصویر یا ویدیو برای هر بخش سایت"
-                : "Image or video background for each section"}
+                : t("admin.backgroundsPageSubtitle")}
             </p>
           </div>
         </div>

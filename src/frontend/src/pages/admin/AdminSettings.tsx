@@ -225,7 +225,7 @@ export default function AdminSettings() {
       return;
     }
     if (newPw.length < 8) {
-      setPwError("Password must be at least 8 characters");
+      setPwError(t("admin.passwordMinLength"));
       return;
     }
 

@@ -84,7 +84,7 @@ async function compressImage(
       canvas.height = height;
       const ctx = canvas.getContext("2d");
       if (!ctx) {
-        reject(new Error("Canvas 2D context unavailable"));
+        reject(new Error(t("admin.canvasContextError")));
         return;
       }
       ctx.drawImage(img, 0, 0, width, height);
@@ -94,7 +94,7 @@ async function compressImage(
         canvas.toBlob(
           (blob) => {
             if (!blob) {
-              reject(new Error("Canvas compression failed"));
+              reject(new Error(t("admin.canvasCompressionError")));
               return;
             }
             if (blob.size <= maxBytes || quality <= 0.3) {
@@ -118,7 +118,7 @@ async function compressImage(
 
     img.onerror = () => {
       URL.revokeObjectURL(objectUrl);
-      reject(new Error("Failed to load image"));
+      reject(new Error(t("admin.imageLoadError")));
     };
 
     img.src = objectUrl;
@@ -217,7 +217,7 @@ function CompressionPreviewModal({
               {originalSize > 0 && (
                 <div className="text-center text-xs font-body text-muted-foreground">
                   {Math.round((1 - compressedSize / originalSize) * 100)}%{" "}
-                  savings
+                  t("admin.mediaSavings")
                 </div>
               )}
             </>
@@ -225,14 +225,14 @@ function CompressionPreviewModal({
             <>
               <div className="flex items-center justify-between">
                 <span className="text-sm font-body text-muted-foreground">
-                  File size
+                  t("admin.mediaFileSize")
                 </span>
                 <span className="text-sm font-body font-medium text-amber-400 tabular-nums">
                   {formatBytes(originalSize)}
                 </span>
               </div>
               <p className="text-xs font-body text-muted-foreground leading-relaxed">
-                Video file is large ({formatBytes(originalSize)}). Browser video
+                t("admin.mediaVideoLargeWarning") ({formatBytes(originalSize)}). Browser video
                 compression is not supported. Upload the original file?
               </p>
             </>
@@ -435,7 +435,7 @@ export function MediaUpload({
           </span>
         )}
 
-        {/* Media preview — max 160px height; video shows native controls */}
+        {/* t("admin.mediaPreviewAlt") — max 160px height; video shows native controls */}
         {displayUrl && (
           <div className="relative rounded-xl overflow-hidden border border-white/10 bg-black/20">
             {isVideo ? (
@@ -450,7 +450,7 @@ export function MediaUpload({
             ) : (
               <img
                 src={displayUrl}
-                alt={label ?? "Media preview"}
+                alt={label ?? t("admin.mediaPreviewAlt")}
                 className="w-full object-cover"
                 style={{ maxHeight: "160px" }}
               />

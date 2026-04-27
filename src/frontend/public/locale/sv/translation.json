@@ -131,7 +131,7 @@
     "confirmPassword": "Bekräfta lösenord",
     "passwordMismatch": "Lösenorden matchar inte",
     "passwordChanged": "Lösenordet har ändrats",
-    "passwordMinLength": "Lösenordet måste vara minst 8 tecken",
+    "passwordMinLength": "Lösenordet måste vara minst 8 tecken långt",
     "languageToggle": "Byt språk",
     "compressionPreview": "Komprimeringsförhandsvisning",
     "originalSize": "Ursprunglig storlek",
@@ -294,7 +294,8 @@
       "locationFaLabel": "Plats (FA)",
       "locationFaPlaceholder": "Plats",
       "tagsLabel": "Taggar (kommaseparerade)",
-      "tagsPlaceholder": "tag1, tag2, tag3"
+      "tagsPlaceholder": "tag1, tag2, tag3",
+      "slugRequired": "Slug krävs"
     },
     "category": "Kategori",
     "linkPlaceholder": "https://...",
@@ -417,7 +418,33 @@
     "locationFaPlaceholder": "Plats (FA)",
     "tagsPlaceholder": "tag1, tag2, tag3",
     "landingSubtitleSvPlaceholder": "En bro mellan två kulturer",
-    "landingSubtitleFaPlaceholder": "Underrubrik (FA)"
+    "landingSubtitleFaPlaceholder": "Underrubrik (FA)",
+    "images": {
+      "imageRequired": "Bild krävs"
+    },
+    "backgroundsPageSubtitle": "Bakgrundbild eller video för varje sektion",
+    "heroSlideTopic": "Ämne",
+    "heroSlideTitleSv": "Titel (SV)",
+    "heroSlideTitleFa": "Titel (FA)",
+    "heroSlideSubtitleSv": "Underrubrik (SV)",
+    "heroSlideSubtitleFa": "Underrubrik (FA)",
+    "heroSlideCtaSv": "CTA-etikett (SV)",
+    "heroSlideCtaFa": "CTA-etikett (FA)",
+    "heroSlideCtaUrl": "CTA-URL",
+    "heroSlideTitleSvPlaceholder": "Svensk titel",
+    "heroSlideTitleFaPlaceholder": "Persisk titel",
+    "heroSlideSubtitleSvPlaceholder": "Svensk underrubrik",
+    "heroSlideSubtitleFaPlaceholder": "Persisk underrubrik",
+    "heroSlideCtaSvPlaceholder": "Läs mer",
+    "heroSlideCtaFaPlaceholder": "Läs mer",
+    "deleteConfirmSuffix": "kommer att tas bort permanent.",
+    "canvasContextError": "Canvas 2D-kontext inte tillgänglig",
+    "canvasCompressionError": "Canvas-komprimering misslyckades",
+    "imageLoadError": "Misslyckades med att läsa in bild",
+    "mediaPreviewAlt": "Mediapreview",
+    "mediaFileSize": "Filstorlek",
+    "mediaSavings": "besparing",
+    "mediaVideoLargeWarning": "Videofil är stor. Webbläsarkomprimering stöds inte. Ladda upp originalfilen?"
   },
   "landing": {
     "langLabelSv": "Svenska",

@@ -223,7 +223,7 @@ function LinkModal({ link, onClose, onSave, nextOrder }: LinkModalProps) {
             </div>
             <div>
               <label htmlFor="fl-order" className={labelClass}>
-                Order
+{t("admin.order")}
               </label>
               <input
                 id="fl-order"

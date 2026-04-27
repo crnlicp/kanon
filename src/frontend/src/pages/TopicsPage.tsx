@@ -139,15 +139,11 @@ export default function TopicsPage() {
           >
             <div className="text-5xl mb-4">🌐</div>
             <p className="font-display text-xl font-bold text-foreground mb-2">
-              {activeLang === "fa"
-                ? "هنوز بخشی اضافه نشده"
-                : "Inga områden ännu"}
-            </p>
-            <p className="text-muted-foreground font-body">
-              {activeLang === "fa"
-                ? "به زودی بخش‌های جدید اضافه می‌شوند"
-                : "Nya områden läggs till snart"}
-            </p>
+               {t("topics.noAreas.title")}
+             </p>
+             <p className="text-muted-foreground font-body">
+               {t("topics.noAreas.subtitle")}
+             </p>
           </motion.div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

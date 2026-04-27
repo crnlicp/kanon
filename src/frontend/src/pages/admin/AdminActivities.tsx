@@ -312,7 +312,7 @@ function ActivityModal({
             </label>
             <input
               id="af-slug"
-              {...register("slug", { required: "Slug is required" })}
+              {...register("slug", { required: t("admin.form.slugRequired") })}
               placeholder={t("admin.activitySlugPlaceholder")}
               className={inputClass}
               data-ocid="activities.slug_input"
@@ -698,7 +698,7 @@ export default function AdminActivities() {
                 <p className="font-body text-muted-foreground text-xs mb-3">
                   {adminLang === "fa"
                     ? "برای افزودن فعالیت، ابتدا باید حداقل یک حوزه ایجاد کنید."
-                    : "You need to create at least one area before you can add activities."}
+                    : t("admin.noAreasDescription")}
                 </p>
                 <Link
                   to="/admin/areas"
