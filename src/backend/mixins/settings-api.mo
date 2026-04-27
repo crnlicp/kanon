@@ -34,9 +34,6 @@ mixin (
   };
 
   /// Public: invalidate a session token.
-  public shared func adminLogout(token : Text) : async () {
-    AuthLib.logout(sessionState, token)
-  };
 
   public query func getSiteSettings() : async ?SettingsTypes.SiteSettings {
     SettingsLib.getSiteSettings(siteSettingsHolder.value);

@@ -182,7 +182,6 @@ export interface backendInterface {
         err: string;
     }>;
     adminLogin(password: string): Promise<string | null>;
-    adminLogout(token: string): Promise<void>;
     assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
     deleteActivity(token: string, id: bigint): Promise<{
         __kind__: "ok";
@@ -234,7 +233,6 @@ export interface backendInterface {
     getAllHeroSlides(): Promise<Array<HeroSlide>>;
     getAreas(): Promise<Array<Area>>;
     getBackgrounds(): Promise<Array<Background>>;
-    getCallerUserRole(): Promise<UserRole>;
     getContactInfo(): Promise<ContactInfo | null>;
     getContactSubmissions(token: string): Promise<{
         __kind__: "ok";

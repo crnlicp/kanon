@@ -174,7 +174,6 @@ service : {
       ok: HeroSlide;
     });
   adminLogin: (password: text) -> (opt text);
-  adminLogout: (token: text) -> ();
   deleteActivity: (token: text, id: nat) -> (variant {
                                                err: text;
                                                ok: bool;

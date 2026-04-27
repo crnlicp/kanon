@@ -150,7 +150,6 @@ export interface _SERVICE {
       { 'err' : string }
   >,
   'adminLogin' : ActorMethod<[string], [] | [string]>,
-  'adminLogout' : ActorMethod<[string], undefined>,
   'deleteActivity' : ActorMethod<
     [string, bigint],
     { 'ok' : boolean } |

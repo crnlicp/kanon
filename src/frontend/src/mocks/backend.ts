@@ -314,7 +314,6 @@ export const mockBackend: backendInterface = {
     if (password === "kanonGolYasAdminPassword") return password;
     return null;
   },
-  adminLogout: async () => undefined,
 
   getActivities: async (topic) => {
     const all = [sampleActivity1, sampleActivity2, sampleActivity3];
@@ -367,7 +366,6 @@ export const mockBackend: backendInterface = {
   // Authorization mixin stubs
   _initializeAccessControl: async () => undefined,
   assignCallerUserRole: async (_user, _role) => undefined,
-  getCallerUserRole: async () => UserRole.guest,
   isCallerAdmin: async () => false,
 
   // Object storage methods (required by backendInterface)

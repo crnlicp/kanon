@@ -281,7 +281,6 @@ export interface backendInterface {
         err: string;
     }>;
     adminLogin(password: string): Promise<string | null>;
-    adminLogout(token: string): Promise<void>;
     assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
     deleteActivity(token: string, id: bigint): Promise<{
         __kind__: "ok";
@@ -333,7 +332,6 @@ export interface backendInterface {
     getAllHeroSlides(): Promise<Array<HeroSlide>>;
     getAreas(): Promise<Array<Area>>;
     getBackgrounds(): Promise<Array<Background>>;
-    getCallerUserRole(): Promise<UserRole>;
     getContactInfo(): Promise<ContactInfo | null>;
     getContactSubmissions(token: string): Promise<{
         __kind__: "ok";
@@ -659,20 +657,6 @@ export class Backend implements backendInterface {
             return from_candid_opt_n29(this._uploadFile, this._downloadFile, result);
         }
     }
-    async adminLogout(arg0: string): Promise<void> {
-        if (this.processError) {
-            try {
-                const result = await this.actor.adminLogout(arg0);
-                return result;
-            } catch (e) {
-                this.processError(e);
-                throw new Error("unreachable");
-            }
-        } else {
-            const result = await this.actor.adminLogout(arg0);
-            return result;
-        }
-    }
     async assignCallerUserRole(arg0: Principal, arg1: UserRole): Promise<void> {
         if (this.processError) {
             try {
@@ -917,20 +901,6 @@ export class Backend implements backendInterface {
         } else {
             const result = await this.actor.getBackgrounds();
             return from_candid_vec_n40(this._uploadFile, this._downloadFile, result);
-        }
-    }
-    async getCallerUserRole(): Promise<UserRole> {
-        if (this.processError) {
-            try {
-                const result = await this.actor.getCallerUserRole();
-                return from_candid_UserRole_n45(this._uploadFile, this._downloadFile, result);
-            } catch (e) {
-                this.processError(e);
-                throw new Error("unreachable");
-            }
-        } else {
-            const result = await this.actor.getCallerUserRole();
-            return from_candid_UserRole_n45(this._uploadFile, this._downloadFile, result);
         }
     }
     async getContactInfo(): Promise<ContactInfo | null> {
