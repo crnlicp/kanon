@@ -149,7 +149,6 @@ export const idlFactory = ({ IDL }) => {
         [],
       ),
     'adminLogin' : IDL.Func([IDL.Text], [IDL.Opt(IDL.Text)], []),
-    'adminLogout' : IDL.Func([IDL.Text], [], []),
     'deleteActivity' : IDL.Func(
         [IDL.Text, IDL.Nat],
         [IDL.Variant({ 'ok' : IDL.Bool, 'err' : IDL.Text })],

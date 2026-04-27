@@ -81,7 +81,15 @@ function unwrap<T>(
   result: { __kind__: "ok"; ok: T } | { __kind__: "err"; err: string },
 ): T {
   if (result.__kind__ === "ok") return result.ok;
-  throw new Error(result.err);
+  const msg = result.err;
+  // Auto-logout on unauthorized errors — clears stale token so user can re-login
+  if (msg.toLowerCase().includes("unauthorized")) {
+    try {
+      const { useAppStore } = require("../store") as typeof import("../store");
+      useAppStore.getState().clearAdminAuth();
+    } catch {}
+  }
+  throw new Error(msg);
 }
 
 // ---------------------------------------------------------------------------
