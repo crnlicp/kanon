@@ -2,10 +2,12 @@ import {
   BackgroundScope,
   SubmissionStatus,
   Topic,
+
   createActor,
   canisterIds,
   ExternalBlob,
 } from "../backend";
+
 import { Actor, HttpAgent } from "@dfinity/agent";
 import type {
   AboutContent as BackendAboutContent,
@@ -87,42 +89,26 @@ function unwrap<T>(
 // ---------------------------------------------------------------------------
 
 function topicToBackend(topic: TopicType): Topic {
-  const map: Record<TopicType, Topic> = {
-    cultural: Topic.Cultural,
-    educational: Topic.Educational,
-    sport: Topic.Sport,
-  };
-  return map[topic];
+  if (topic === "cultural") return Topic.Cultural;
+  if (topic === "educational") return Topic.Educational;
+  if (topic === "sport") return Topic.Sport;
+  return Topic.Cultural;
 }
 
-function topicFromBackend(topic: Topic): TopicType {
-  const map: Record<Topic, TopicType> = {
-    [Topic.Cultural]: "cultural",
-    [Topic.Educational]: "educational",
-    [Topic.Sport]: "sport",
-  };
-  return map[topic];
+function topicFromBackend(topic: string): TopicType {
+  return topic;
 }
 
 function bgScopeToContext(scope: BackgroundScope): "landing" | TopicType {
-  const map: Record<BackgroundScope, "landing" | TopicType> = {
-    [BackgroundScope.Landing]: "landing",
-    [BackgroundScope.Cultural]: "cultural",
-    [BackgroundScope.Educational]: "educational",
-    [BackgroundScope.Sport]: "sport",
-    [BackgroundScope.Activity]: "landing",
-  };
-  return map[scope];
+  if (scope === BackgroundScope.Landing) return "landing";
+  if (scope === BackgroundScope.Activity) return "activity";
+  return "landing";
 }
 
 function contextToBgScope(context: "landing" | TopicType): BackgroundScope {
-  const map: Record<string, BackgroundScope> = {
-    landing: BackgroundScope.Landing,
-    cultural: BackgroundScope.Cultural,
-    educational: BackgroundScope.Educational,
-    sport: BackgroundScope.Sport,
-  };
-  return map[context] ?? BackgroundScope.Landing;
+  if (context === "landing") return BackgroundScope.Landing;
+  if (context === "activity") return BackgroundScope.Activity;
+  return BackgroundScope.Landing;
 }
 
 function adaptActivity(a: BackendActivity): Activity {
@@ -386,7 +372,8 @@ export async function updateSubmissionStatus(
     BigInt(id),
     statusMap[status],
   );
-  return unwrap(result);
+  if ("ok" in result) return result.ok;
+  throw new Error(result.err);
 }
 
 export async function deleteSubmission(id: number): Promise<boolean> {
@@ -931,8 +918,12 @@ export async function setAbout(
     contentSv: input.contentSv,
     imagePath: input.imagePath,
   };
-  const result = await actor.setAbout(token, backendInput);
-  return unwrap(result);
+  const result = (await actor.setAbout(
+    token,
+    backendInput,
+  )) as unknown as { ok: boolean } | { err: string };
+  if ("ok" in result) return result.ok;
+  throw new Error(result.err);
 }
 
 // ---------------------------------------------------------------------------

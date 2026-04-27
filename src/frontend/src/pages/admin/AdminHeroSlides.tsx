@@ -16,7 +16,8 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 
-const TOPICS: TopicType[] = ["cultural", "educational", "sport"];
+// Topic is now dynamic — slides can be associated with any area slug.
+const TOPICS: TopicType[] = [];
 
 type SlideFormFields = {
   topic: TopicType;

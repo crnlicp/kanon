@@ -1,5 +1,23 @@
-import type { backendInterface, AboutContent, Activity, ContactSubmission, ContactSubmissionInput, HeroSlide, FooterLink, SiteSettings, Background, ContactInfo, RegistrationSubmission, RegistrationInput, Area, AreaInput, _ImmutableObjectStorageCreateCertificateResult, _ImmutableObjectStorageRefillInformation, _ImmutableObjectStorageRefillResult } from "../backend";
-import { Topic, BackgroundScope, SubmissionStatus, UserRole } from "../backend";
+import type {
+  backendInterface,
+  AboutContent,
+  Activity,
+  ContactSubmission,
+  ContactSubmissionInput,
+  HeroSlide,
+  FooterLink,
+  SiteSettings,
+  Background,
+  ContactInfo,
+  RegistrationSubmission,
+  RegistrationInput,
+  Area,
+  AreaInput,
+  _ImmutableObjectStorageCreateCertificateResult,
+  _ImmutableObjectStorageRefillInformation,
+  _ImmutableObjectStorageRefillResult,
+} from "../backend";
+import { BackgroundScope, SubmissionStatus, Topic, UserRole } from "../backend";
 
 // Helper to create a mock ExternalBlob
 const mockBlob = (url: string) => ({

@@ -1,6 +1,6 @@
 export type Lang = "fa" | "sv";
 export type Dir = "rtl" | "ltr";
-export type TopicType = "cultural" | "educational" | "sport";
+export type TopicType = string;
 
 export interface MultiLangText {
   fa: string;

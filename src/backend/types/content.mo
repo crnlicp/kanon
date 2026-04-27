@@ -1,9 +1,5 @@
 module {
-  public type Topic = {
-    #Cultural;
-    #Educational;
-    #Sport;
-  };
+  public type Topic = Text;
 
   public type HeroSlide = {
     id : Nat;
@@ -15,7 +11,7 @@ module {
     imageUrl : ?[Nat8];
     order : Nat;
     isActive : Bool;
-  };
+   };
 
   public type Activity = {
     id : Nat;
@@ -32,23 +28,16 @@ module {
     hasRegistrationForm : Bool;
     createdAt : Int;
     updatedAt : Int;
-  };
+   };
 
-  public type BackgroundScope = {
-    #Landing;
-    #Cultural;
-    #Educational;
-    #Sport;
-    #Activity;
-  };
 
   public type Background = {
     id : Nat;
-    scope : BackgroundScope;
+    scope : Text;
     activitySlug : ?Text;
     imageUrl : ?[Nat8];
     mediaType : ?Text;
-  };
+   };
 
   public type FooterLink = {
     id : Nat;
@@ -57,12 +46,12 @@ module {
     url : Text;
     order : Nat;
     category : Text;
-  };
+   };
 
   public type AboutContent = {
     id : Nat;
     contentFa : Text;
     contentSv : Text;
     imagePath : ?Text;
-  };
+   };
 };
